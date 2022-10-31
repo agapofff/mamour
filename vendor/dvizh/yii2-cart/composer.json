@@ -1,0 +1,34 @@
+{
+    "name": "dvizh/yii2-cart",
+    "description": "yii2-cart it's a simple cart module to collect application models, that implement cart interface + widgets",
+    "keywords": ["yii2", "yii 2", "application", "cart", "shop", "module", "dvizh"],
+    "homepage": "https://github.com/dvizh/",
+    "type": "yii2-extension",
+    "license": "Apache-2.0",
+    "support": {
+        "source": "https://github.com/dvizh/yii2-cart"
+    },
+    "authors": [
+        {
+            "name": "Ilya Pistol",
+            "email": "admin@nethammer.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "autoload": {
+        "psr-4": {
+            "dvizh\\cart\\": "src\\"
+        }
+    },
+    "extra": {
+        "bootstrap": "dvizh\\cart\\Bootstrap"
+    }
+}

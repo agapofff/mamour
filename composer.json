@@ -1,0 +1,102 @@
+{
+    "name": "yiisoft/yii2-app-advanced",
+    "description": "Yii 2 Advanced Project Template",
+    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.0",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "dektrium/yii2-user": "^0.9.14",
+        "yii2mod/yii2-rbac": "*",
+        "githubjeka/yii2-gui-rbac": "^2.0",
+        "developeruz/yii2-db-rbac": "^1.1",
+        "jino5577/yii2-date-range-picker": "^1.0",
+        "kartik-v/yii2-datecontrol": "^1.9",
+        "kartik-v/yii2-widgets": "*",
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "alexantr/yii2-colorpicker": "^2.0",
+        "2amigos/yii2-grid-view-library": "*",
+        "dvizh/yii2-gallery": "dev-master",
+        "dvizh/yii2-tree": "dev-master",
+        "dvizh/yii2-promocode": "@dev",
+        "dvizh/yii2-seo": "dev-master",
+        "dvizh/yii2-filter": "dev-master",
+        "asofter/yii2-imperavi-redactor": "dev-master",
+        "dvizh/yii2-field": "dev-master",
+        "newerton/yii2-fancybox": "dev-master",
+        "dvizh/yii2-relations": "dev-master",
+        "voskobovich/yii2-many-many-behavior": "^3.0",
+        "kartik-v/yii2-widget-select2": "dev-master",
+        "kartik-v/yii2-export": "*",
+        "dompdf/dompdf": "*",
+        "tecnickcom/tcpdf": "*",
+        "jpgraph/jpgraph": "*",
+        "setasign/fpdf": "*",
+        "trntv/yii2-file-kit": "*",
+        "league/flysystem": "*",
+        "dvizh/yii2-cart": "@dev",
+        "kartik-v/yii2-mpdf": "dev-master",
+        "nex/yii2-datepicker": "dev-master",
+        "dvizh/yii2-order": "@dev",
+        "dvizh/yii2-shop": "dev-master",
+        "2amigos/yii2-editable-widget": "^1.1",
+        "klisl/yii2-languages": "^2.8",
+        "kartik-v/yii2-widget-switchinput": "*",
+        "loveorigami/yii2-slimscroll-widget": "*",
+        "lavrentiev/yii2-toastr": "^2.0",
+        "yiisoft/yii2-bootstrap4": "^2.0",
+        "linslin/yii2-curl": "*",
+        "yurkinx/yii2-image": "^1.3",
+        "cetver/yii2-language-url-manager": "^1.0",
+        "cetver/yii2-languages-dispatcher": "^1.1",
+        "cetver/yii2-language-selector": "^1.0",
+        "skeeks/yii2-assets-auto-compress": "*",
+        "alexandernst/yii2-device-detect": "^0.0.12",
+        "facebook/php-business-sdk": "^12.0",
+        "vova07/yii2-imperavi-widget": "*",
+        "jisoft/yii2-sypexgeo": "*",
+        "agapofff/yii2-gallery": "dev-master",
+        "yii2mod/yii2-settings": "*",
+        "pelock/yii2-imgopt": "*",
+        "sitronik/yii2-tree-menu": "dev-master"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.1.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/codeception": "^4.0",
+        "codeception/module-asserts": "^1.0",
+        "codeception/module-yii2": "^1.0",
+        "codeception/module-filesystem": "^1.0",
+        "codeception/verify": "~0.5.0 || ~1.1.0",
+        "symfony/browser-kit": ">=2.7 <=4.2.4"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        },
+		"platform-check": false,
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}

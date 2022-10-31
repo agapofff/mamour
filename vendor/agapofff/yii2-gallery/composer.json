@@ -1,0 +1,39 @@
+{
+    "name": "agapofff/yii2-gallery",
+    "description": "Allows to attach images to any model",
+    "keywords": [
+        "yii2", 
+        "images", 
+        "yii2-images", 
+        "agapofff"
+    ],
+    "homepage": "https://github.com/agapofff/yii2-gallery",
+    "type": "yii2-extension",
+    "license": "Apache-2.0",
+    "support": {
+        "source": "https://github.com/agapofff/yii2-gallery"
+    },
+    "authors": [
+        {
+            "name": "Dmitriy Agapofff",
+            "email": "agapofff@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "kartik-v/yii2-widget-fileinput": "*",
+        "abeautifulsite/simpleimage": "2.*",
+        "yiisoft/yii2-jui": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "autoload": {
+        "psr-4": {
+            "agapofff\\gallery\\": "src\\"
+        }
+    }
+}

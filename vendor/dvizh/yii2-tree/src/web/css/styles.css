@@ -1,0 +1,22 @@
+.categories-tree li {
+    list-style: none;
+}
+
+/* .categories-tree li:hover { */
+    /* cursor: pointer; */
+/* } */
+/* .categories-tree li:hover > div > div > p > big { */
+    /* border-bottom: 1px dotted */
+/* } */
+
+.dvizh-tree-right-col {
+    text-align: right;
+}
+
+.children-li > .row:hover {
+    padding-right: 10px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-top: 4px;
+}

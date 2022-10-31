@@ -1,0 +1,46 @@
+.dvizh-gallery {
+    list-style-type:none; 
+}
+
+.dvizh-gallery-item {
+    list-style: none;
+    position: relative;
+}
+
+.dvizh-gallery .main .thumbnail {
+    border-color: red;
+}
+.dvizh-gallery .thumbnail {
+    cursor: move;
+}
+.dvizh-gallery-item a.delete {
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    left: 52%;
+    display: none;
+}
+.dvizh-gallery-item:hover a.delete {
+    display: block;
+}
+
+.dvizh-gallery-item a.write {
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    right: 52%;
+    display: none;
+}
+.dvizh-gallery-item:hover a.write {
+    display: block;
+}
+
+.ui-sortable-placeholder {
+    visibility: visible !important;
+}
+.ui-sortable-placeholder .thumbnail {
+    border: 2px dashed blue !important;
+}
+.ui-sortable-placeholder img {
+    opacity: 0.15;
+}

@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Courier New';
+    src: url('CourierNewBold.eot');
+    src: url('CourierNewBold.eot?#iefix') format('embedded-opentype'),
+        url('CourierNewBold.woff2') format('woff2'),
+        url('CourierNewBold.woff') format('woff'),
+        url('CourierNewBold.ttf') format('truetype'),
+        url('CourierNewBold.svg#CourierNewBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Courier New';
+    src: url('CourierNew.eot');
+    src: url('CourierNew.eot?#iefix') format('embedded-opentype'),
+        url('CourierNew.woff2') format('woff2'),
+        url('CourierNew.woff') format('woff'),
+        url('CourierNew.ttf') format('truetype'),
+        url('CourierNew.svg#CourierNew') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

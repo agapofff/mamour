@@ -1,0 +1,9 @@
+User-agent: *
+Allow: *.css
+Allow: *.js
+Disallow: *checkout
+Disallow: *login
+Disallow: *register
+Disallow: *request
+
+Sitemap: https://nrk87.com/sitemap.xml

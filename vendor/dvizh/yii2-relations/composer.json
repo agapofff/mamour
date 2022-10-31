@@ -1,0 +1,33 @@
+{
+    "name": "dvizh/yii2-relations",
+    "description": "Модуль позволяет привязывать любые модели к любым моделям (пример - похожие товары и т.д.)",
+    "keywords": ["yii2", "yii2", "application", "images", "yii2-relations", "relations", "dvizh"],
+    "homepage": "https://github.com/dvizh/yii2-relations",
+    "type": "yii2-extension",
+    "license": "Apache-2.0",
+    "support": {
+        "source": "https://github.com/dvizh/yii2-relations"
+    },
+    "authors": [
+        {
+            "name": "Ilya Pistol",
+            "email": "admin@nethammer.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "kartik-v/yii2-widget-fileinput": "*",
+        "newerton/yii2-fancybox": "dev-master"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "autoload": {
+        "psr-4": {
+            "dvizh\\relations\\": "src\\"
+        }
+    }
+}
