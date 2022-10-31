@@ -283,7 +283,7 @@
                                 </a>
                             </div>
                             <div class="col-auto d-none d-md-block">
-                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>" class="d-inline-block p-0_25 rounded-pill <?= Yii::$app->user->isGuest ? '' : 'border border-primary' ?>" style="width:2em; height: 2em;">
+                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>" class="d-flex align-items-center justify-content-center p-0_25 rounded-pill <?= Yii::$app->user->isGuest ? '' : 'border border-primary' ?>" style="width:2em; height: 2em;">
                                     <img src="/images/user.svg">
                                 </a>
                             </div>
