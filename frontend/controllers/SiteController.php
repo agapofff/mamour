@@ -109,10 +109,6 @@ class SiteController extends Controller
     
     public function actionBlog()
     {
-        $categories = NewsCategories::findAll([
-            'active' => 1
-        ]);
-        
         $posts = News::find()
             ->where([
                 'active' => 1
@@ -122,21 +118,9 @@ class SiteController extends Controller
             ])
             ->limit(6)
             ->all();
-            
-        $actions = Actions::find()
-            ->where([
-                'active' => 1
-            ])
-            ->orderBy([
-                'published' => SORT_DESC
-            ])
-            ->limit(4)
-            ->all();
         
         return $this->render('blog', [
             'categories' => $categories,
-            'posts' => $posts,
-            'actions' => $actions,
         ]);
     }
     
