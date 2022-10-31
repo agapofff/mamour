@@ -17,21 +17,23 @@ $this->title = Yii::t('front', 'Новости');
                         <?= $this->title ?>
                     </h1>
                     <div id="news" class="row mb-4">
-                    <?php
-                        foreach ($posts as $post) {
-                            $image = $post->getImage();
-                            $cachedImage = '/images/cache/News/News' . $image->itemId . '/' . $image->urlAlias . '_500x500.' . $image->getExtension();
-                            $name = json_decode($post->name)->{Yii::$app->language};
-                    ?>
+            <?php
+                if ($posts) {
+                    foreach ($posts as $post) {
+                        $image = $post->getImage();
+                        $cachedImage = '/images/cache/News/News' . $image->itemId . '/' . $image->urlAlias . '_500x500.' . $image->getExtension();
+                        $name = json_decode($post->name)->{Yii::$app->language};
+            ?>
                         <div class="col-sm-6 col-lg-4">
                             <?= $this->render('/news/_post', [
                                     'post' => $post
                                 ])
                             ?>
                         </div>
-                    <?php
-                        }
-                    ?>
+            <?php
+                    }
+                }
+            ?>
                     </div>
                 </div>
             </div>
