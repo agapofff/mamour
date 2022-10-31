@@ -112,8 +112,8 @@
                 
                 <?= $form
                         ->field($model, 'type')
-                        // ->hiddenInput()
-                        // ->label(false)
+                        ->hiddenInput()
+                        ->label(false)
                 ?>
                 
                 <?= Html::hiddenInput('lang', Yii::$app->language) ?>
