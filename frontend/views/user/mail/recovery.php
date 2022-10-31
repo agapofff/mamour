@@ -20,7 +20,7 @@ use yii\helpers\Html;
     <?= Yii::t('front', 'Здравствуйте') ?>!
 </p>
 <p>
-    <?= Yii::t('front', 'Мы получили запрос на смену пароля для Вашей учётной записи на сайте {0}', Yii::$app->id) ?>.
+    <?= Yii::t('front', 'Мы получили запрос на смену пароля для Вашей учётной записи на сайте {0}', Yii::$app->name) ?>.
 </p>
 <p>
     <?= Yii::t('front', 'Для завершения операции, пожалуйста, перейдите по ссылке ниже') ?>.
@@ -30,14 +30,14 @@ use yii\helpers\Html;
     <?= Html::a(Yii::t('front', 'Восстановить пароль'), $token->url, [
             'style' => '
                 display: inline-block;
-                padding: 24px 60px;
+                padding: 20px 50px;
                 color: #ffffff !important;
-                background-color: #474F73;
-                border: 1px solid #474F73;
-                -webkit-border-radius: 50%;
-                -moz-border-radius: 50%;
-                border-radius: 50px;
-                font-size: 24px;
+                background-color: #1E1E1E;
+                border: 1px solid #1E1E1E;
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+                font-size: 25px;
                 font-weight: 400;
                 text-align: center;
                 text-decoration: none !important;

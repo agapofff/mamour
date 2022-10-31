@@ -301,20 +301,26 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-1 mb-0_5 d-none d-md-flex">
-                <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6 col-xxl-5">
-                    <div class="row justify-content-between flex-nowrap">
-                <?php
-                    foreach ($menuItems as $menuItem) {
-                ?>
-                        <div class="col-auto">
-                            <a href="<?= $menuItem['url'] ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= $menuItem['class'] ?>">
-                                <?= $menuItem['label'] ?>
-                            </a>
+            <div class="container-xxl">
+                <div class="row justify-content-center mt-1 mb-0_5 d-none d-md-flex">
+                    <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
+                        <div class="row justify-content-center">
+                            <div class="col-xxl-10">
+                                <div class="row justify-content-between flex-nowrap">
+                            <?php
+                                foreach ($menuItems as $menuItem) {
+                            ?>
+                                    <div class="col-auto">
+                                        <a href="<?= $menuItem['url'] ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= $menuItem['class'] ?>">
+                                            <?= $menuItem['label'] ?>
+                                        </a>
+                                    </div>
+                            <?php
+                                }
+                            ?>
+                                </div>
+                            </div>
                         </div>
-                <?php
-                    }
-                ?>
                     </div>
                 </div>
             </div>
@@ -359,111 +365,115 @@
         <footer class="mt-5 mt-sm-7 pt-4 pt-sm-7 pb-1 pb-sm-2 bg-gray-300">
             <div class="container-xxl">
                 <div class="row justify-content-center">
-                    <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6 col-xxl-5">
-                        <form>
-                            <div class="row">
-                                <div class="col-12 col-sm">
-                                    <input type="email" class="form-control py-1 py-sm-0_5 px-1_5 h-100" name="email" placeholder="<?= Yii::t('front', 'Ваш E-mail') ?>">
+                    <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
+                        <div class="row justify-content-center">
+                            <div class="col-xxl-10">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-12 col-sm">
+                                            <input type="email" class="form-control py-1 py-sm-0_5 px-1_5 h-100" name="email" placeholder="<?= Yii::t('front', 'Ваш E-mail') ?>">
+                                        </div>
+                                        <div class="col-12 col-sm-auto mt-1 mt-sm-0">
+                                            <button type="submit" class="btn btn-primary btn-sm-block gotham px-2 py-0_5 py-sm-1">
+                                                <?= Yii::t('front', 'Подписаться') ?>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row justify-content-between align-items-end mt-3 mt-sm-5">
+                                    <div class="col-12 col-md">
+                                        <div class="row">
+                                            <div class="col-sm-4 col-md-5 col-xl-4 mb-2">
+                                                <p class="gotham text-uppercase font-weight-bold mb-1_5">
+                                                    <?= Yii::t('front', 'О бренде') ?>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/about/history']) ?>">
+                                                        <?= Yii::t('front', 'История') ?>
+                                                    </a>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/about/philosophy']) ?>">
+                                                        <?= Yii::t('front', 'Философия') ?>
+                                                    </a>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/gallery']) ?>">
+                                                        <?= Yii::t('front', 'Фото') ?>-<?= Yii::t('front', 'Видео') ?>
+                                                    </a>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/about/publications']) ?>">
+                                                        <?= Yii::t('front', 'Публикации') ?>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-md-7 col-lg-7 col-xl-6 mb-2">
+                                                <p class="gotham text-uppercase font-weight-bold mb-1_5">
+                                                    <?= Yii::t('front', 'Клиентский сервис') ?>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/service/payment']) ?>">
+                                                        <?= Yii::t('front', 'Способы оплаты') ?>
+                                                    </a>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/service/shipping']) ?>">
+                                                        <?= Yii::t('front', 'Философия') ?>
+                                                    </a>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/service/exchange-refund']) ?>">
+                                                        <?= Yii::t('front', 'Обмен') ?>-<?= Yii::t('front', 'Возврат') ?>
+                                                    </a>
+                                                </p>
+                                                <p class="small text-lowercase mb-0">
+                                                    <a href="<?= Url::to(['/service/sizes']) ?>">
+                                                        <?= Yii::t('front', 'Размерная сетка') ?>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto mt-sm-2 pb-2_5">
+                                <?php
+                                    foreach (Yii::$app->params['socials'] as $socialName => $socialUrl) {
+                                ?>
+                                        <a href="<?= $socialUrl ?>" target="_blank" class="text-decoration-none">
+                                            <img src="/images/socials/<?= $socialName ?>.svg" alt="<?= $socialName ?>">
+                                        </a>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
                                 </div>
-                                <div class="col-12 col-sm-auto mt-1 mt-sm-0">
-                                    <button type="submit" class="btn btn-primary btn-sm-block gotham px-2 py-0_5 py-sm-1">
-                                        <?= Yii::t('front', 'Подписаться') ?>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="row justify-content-between align-items-end mt-3 mt-sm-5">
-                            <div class="col-12 col-md">
-                                <div class="row">
-                                    <div class="col-sm-4 col-md-5 col-xl-4 mb-2">
-                                        <p class="gotham text-uppercase font-weight-bold mb-1_5">
-                                            <?= Yii::t('front', 'О бренде') ?>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/about/history']) ?>">
-                                                <?= Yii::t('front', 'История') ?>
-                                            </a>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/about/philosophy']) ?>">
-                                                <?= Yii::t('front', 'Философия') ?>
-                                            </a>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/gallery']) ?>">
-                                                <?= Yii::t('front', 'Фото') ?>-<?= Yii::t('front', 'Видео') ?>
-                                            </a>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/about/publications']) ?>">
-                                                <?= Yii::t('front', 'Публикации') ?>
-                                            </a>
+                                <div class="row justify-content-between mt-2 mt-sm-4">
+                                    <div class="col-12 col-lg-auto mb-0_5 mb-lg-1 text-center text-lg-left">
+                                        <p>
+                                            <em>
+                                                <small>
+                                                    © <?= date('Y') ?> <?= Yii::$app->config->name ?>. <?= Yii::t('front', 'Все права защищены') ?>
+                                                </small>
+                                            </em>
                                         </p>
                                     </div>
-                                    <div class="col-sm-6 col-md-7 col-lg-7 col-xl-6 mb-2">
-                                        <p class="gotham text-uppercase font-weight-bold mb-1_5">
-                                            <?= Yii::t('front', 'Клиентский сервис') ?>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/service/payment']) ?>">
-                                                <?= Yii::t('front', 'Способы оплаты') ?>
-                                            </a>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/service/shipping']) ?>">
-                                                <?= Yii::t('front', 'Философия') ?>
-                                            </a>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/service/exchange-refund']) ?>">
-                                                <?= Yii::t('front', 'Обмен') ?>-<?= Yii::t('front', 'Возврат') ?>
-                                            </a>
-                                        </p>
-                                        <p class="small text-lowercase mb-0">
-                                            <a href="<?= Url::to(['/service/sizes']) ?>">
-                                                <?= Yii::t('front', 'Размерная сетка') ?>
-                                            </a>
+                                    <div class="col-12 col-lg-auto mb-0_5 mb-lg-1 text-center text-lg-right">
+                                        <p>
+                                            <em>
+                                                <small>
+                                                    <a href="<?= Url::to(['/privacy-policy']) ?>">
+                                                        <?= Yii::t('front', 'Политика конфиденциальности') ?>
+                                                    </a>
+                                                </small>
+                                            </em>
                                         </p>
                                     </div>
+                                    <div class="col-12 text-center mt-2 mb-1">
+                                        <small>
+                                            <?= Yii::t('front', 'сделано в') ?> <a href="https://axioweb.ru" target="_blank">AXIO web</a>
+                                        </small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-auto mt-sm-2 pb-2_5">
-                        <?php
-                            foreach (Yii::$app->params['socials'] as $socialName => $socialUrl) {
-                        ?>
-                                <a href="<?= $socialUrl ?>" target="_blank" class="text-decoration-none">
-                                    <img src="/images/socials/<?= $socialName ?>.svg" alt="<?= $socialName ?>">
-                                </a>
-                        <?php
-                            }
-                        ?>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between mt-2 mt-sm-4">
-                            <div class="col-12 col-lg-auto mb-0_5 mb-lg-1 text-center text-lg-left">
-                                <p>
-                                    <em>
-                                        <small>
-                                            © <?= date('Y') ?> <?= Yii::$app->config->name ?>. <?= Yii::t('front', 'Все права защищены') ?>
-                                        </small>
-                                    </em>
-                                </p>
-                            </div>
-                            <div class="col-12 col-lg-auto mb-0_5 mb-lg-1 text-center text-lg-right">
-                                <p>
-                                    <em>
-                                        <small>
-                                            <a href="<?= Url::to(['/privacy-policy']) ?>">
-                                                <?= Yii::t('front', 'Политика конфиденциальности') ?>
-                                            </a>
-                                        </small>
-                                    </em>
-                                </p>
-                            </div>
-                            <div class="col-12 text-center mt-2 mb-1">
-                                <small>
-                                    <?= Yii::t('front', 'сделано в') ?> <a href="https://axioweb.ru" target="_blank">AXIO web</a>
-                                </small>
                             </div>
                         </div>
                     </div>

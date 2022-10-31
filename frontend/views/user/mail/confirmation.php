@@ -18,7 +18,7 @@ use yii\helpers\Html;
 ?>
 
 <h1 style="text-align: center">
-    <?= Yii::t('front', 'Благодарим Вас за регистрацию на сайте {0}', Yii::$app->id) ?>.
+    <?= Yii::t('front', 'Благодарим Вас за регистрацию на сайте {0}', Yii::$app->name) ?>.
 </h1>
 <p style="text-align: center">
     <?= Yii::t('front', 'Чтобы завершить регистрацию, пожалуйста, пройдите по ссылке ниже') ?>.
