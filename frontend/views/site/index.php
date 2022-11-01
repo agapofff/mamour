@@ -73,7 +73,7 @@ $this->title = Yii::$app->name;
     </div>
 </div>
 
-<div class="container mt-8">
+<div class="container mt-8" style="max-width: 1120px">
     <div class="row">
         <div class="col-6 mb-1_5">
             <a href="<?= Url::to(['/catalog/girls-3-8']) ?>">
