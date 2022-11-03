@@ -191,5 +191,4 @@ class CategoryController extends Controller
             return $this->redirect(Yii::$app->request->referrer);
         }
     }
-	
 }

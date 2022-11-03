@@ -76,7 +76,7 @@ $this->title = Yii::$app->name;
 <div class="container mt-8" style="max-width: 1120px">
     <div class="row">
         <div class="col-6 mb-1_5">
-            <a href="<?= Url::to(['/catalog/girls-3-8']) ?>">
+            <a href="<?= Url::to(['/catalog/girls']) ?>">
                 <?= ImgOpt::widget([
                         'src' => '/images/main/mainpage_category_1.jpg', 
                         'alt' => $this->title,
@@ -86,7 +86,7 @@ $this->title = Yii::$app->name;
             </a>
         </div>
         <div class="col-6 mb-1_5">
-            <a href="<?= Url::to(['/catalog/boys-3-8']) ?>">
+            <a href="<?= Url::to(['/catalog/boys']) ?>">
                 <?= ImgOpt::widget([
                         'src' => '/images/main/mainpage_category_2.jpg', 
                         'alt' => $this->title,
@@ -97,7 +97,7 @@ $this->title = Yii::$app->name;
         </div>
         <div class="col-12">
             <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="30" data-nav="true" data-dots="true" data-loop="true">
-                <a href="<?= Url::to(['/catalog/girls-3-8/t-shirts']) ?>">
+                <a href="<?= Url::to(['/catalog/girls/t-shirts']) ?>">
                     <?= ImgOpt::widget([
                             'src' => '/images/main/mainpage_category_3.jpg', 
                             'alt' => $this->title,
@@ -105,7 +105,7 @@ $this->title = Yii::$app->name;
                         ])
                     ?>
                 </a>
-                <a href="<?= Url::to(['/catalog/girls-3-8/trousers']) ?>">
+                <a href="<?= Url::to(['/catalog/girls/trousers']) ?>">
                     <?= ImgOpt::widget([
                             'src' => '/images/main/mainpage_category_4.jpg', 
                             'alt' => $this->title,
@@ -113,7 +113,7 @@ $this->title = Yii::$app->name;
                         ])
                     ?>
                 </a>
-                <a href="<?= Url::to(['/catalog/girls-3-8/shorts']) ?>">
+                <a href="<?= Url::to(['/catalog/girls/shorts']) ?>">
                     <?= ImgOpt::widget([
                             'src' => '/images/main/mainpage_category_5.jpg', 
                             'alt' => $this->title,
@@ -121,7 +121,7 @@ $this->title = Yii::$app->name;
                         ])
                     ?>
                 </a>
-                <a href="<?= Url::to(['/catalog/girls-3-8/dresses']) ?>">
+                <a href="<?= Url::to(['/catalog/girls/dresses']) ?>">
                     <?= ImgOpt::widget([
                             'src' => '/images/main/mainpage_category_6.jpg', 
                             'alt' => $this->title,
@@ -129,7 +129,7 @@ $this->title = Yii::$app->name;
                         ])
                     ?>
                 </a>
-                <a href="<?= Url::to(['/catalog/girls-3-8/shorts']) ?>">
+                <a href="<?= Url::to(['/catalog/girls/shorts']) ?>">
                     <?= ImgOpt::widget([
                             'src' => '/images/main/mainpage_category_5.jpg', 
                             'alt' => $this->title,

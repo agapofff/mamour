@@ -56,8 +56,13 @@ use yii\web\View;
             <?= $form
                     ->field($model, 'url')
                     ->textInput()
-                    ->hint(Yii::t('back', 'Относительные ссылки, без доменного имени, ничинаются со слеша, например: /catalog'))
+                    ->hint(Yii::t('back', 'Относительные ссылки, без доменного имени, ничинаются со слеша, например: /catalog') . '<br>' . Html::a('Категория', ['#linkbuilder'], ['data-toggle' => 'modal']))
             ?>
+            <p class="hidden">
+                <a href="#linkbuilder" data-toggle="modal">
+                    <?= Yii::t('back', 'Построитель ссылок на выборки товаров') ?>
+                </a>
+            </p>
             
             <?= $form
                     ->field($model, 'alias')
@@ -92,11 +97,7 @@ use yii\web\View;
 
             <?= Html::input('hidden', 'saveAndExit', 0) ?>
             
-            <p>
-                <a href="#linkbuilder" data-toggle="modal">
-                    <?= Yii::t('back', 'Построитель ссылок на выборки товаров') ?>
-                </a>
-            </p>
+
 
             <br>
             <div class="form-group text-center">
@@ -124,11 +125,11 @@ use yii\web\View;
 
 <?php
     Modal::begin([
-        'header' => Html::tag('h4', 'Построить ссылку'),
+        'header' => Html::tag('h4', 'Категория'),
         'id' => 'linkbuilder',
     ]);
 ?>
-        <div class="form-horizontal">
+        <div class="form-horizontal hidden">
             <div class="form-group">
                 <label class="col-sm-3 control-label">
                     <?= Yii::t('back', 'Тип ссылки') ?>
@@ -154,9 +155,31 @@ use yii\web\View;
                 </div>
             </div>
         </div>
-        <hr>
+        <hr class="hidden">
         <form class="linkbuilder form-horizontal active" data-type="catalog">
-    <?php
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+                    Категория
+                </label>
+                <div class="col-sm-9">
+                    <?= Select2::widget([
+                            'name' => 'categories',
+                            'data' => $categories,
+                            'options' => [
+                                'placeholder' => Yii::t('back', 'Выберите'),
+                                'multiple' => false,
+                                // 'data-name' => 'filter[' . $filter->id . '][]',
+                                // 'data-type' => 0,
+                                'onchange' => 'getCategoryData(this.value)'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true,
+                            ],
+                        ]);
+                    ?>
+                </div>
+            </div>
+    <?php /*
         foreach ($filters as $filter) {
             if ($filter->active) {
     ?>
@@ -185,9 +208,9 @@ use yii\web\View;
                 </div>
     <?php
             }
-        }
+        } */
     ?>
-            <div class="text-center">
+            <div class="text-center hidden">
                 <?= Html::submitButton(Yii::t('back', 'Создать ссылку'), [
                         'class' => 'btn btn-success',
                     ]) 
@@ -201,15 +224,16 @@ use yii\web\View;
 <?php
     $this->registerJs("
         getCategoryData = function (id) {
-            $.get('/treemenu/default/get-category-data', {
+            $.get('/admin/treemenu/default/get-category-data', {
                 id: id
             }, function (response) {
                 var category = JSON.parse(response),
                     categoryNames = JSON.parse(category.name);
-                $('#category_path').val(category.path);
+                $('#treemenu-url').val(category.path);
                 $.each(categoryNames, function (lang, name) {
                     $('#treemenu_name_' + lang).val(name).trigger('input');
                 });
+                $('#linkbuilder').modal('hide');
             });
         }
         

@@ -210,7 +210,7 @@ class DefaultController extends Controller
         return json_encode([
             'id' => $category->id,
             'name' => $category->name,
-            'path' => join('/', array_reverse(Category::getAllParents($categories, $category->id, 'slug', true)))
+            'path' => '/catalog/' . join('/', array_reverse(Category::getAllParents($categories, $category->id, 'slug', true)))
         ]);
     }
 }
