@@ -361,7 +361,12 @@
             </div>
             
         </div>
+        
+<!-- Subscription Form -->
+ <style >.sp-force-hide { display: none;}.sp-form[sp-id="3524"] { display: block; background: #ffffff; padding: 5px; width: 100%; max-width: 100%; border-radius: 0px; font-family: inherit; background-repeat: no-repeat; background-position: center; background-size: auto;}.sp-form[sp-id="3524"] input[type="checkbox"] { display: inline-block; opacity: 1; visibility: visible;}.sp-form[sp-id="3524"] .sp-form-fields-wrapper { margin: 0 auto; width: 950px;}.sp-form[sp-id="3524"] .sp-form-control { background: #ffffff; border-color: #c3c3c3; border-style: solid; border-width: 1px; font-size: 15px; padding-left: 8.75px; padding-right: 8.75px; border-radius: 0px; height: 35px; width: 100%;}.sp-form[sp-id="3524"] .sp-field label { color: #444444; font-size: 13px; font-style: normal; font-weight: bold;}.sp-form[sp-id="3524"] .sp-button-messengers { border-radius: 0px;}.sp-form[sp-id="3524"] .sp-button { border-radius: 0px; background-color: #000000; color: #ffffff; width: auto; font-weight: 700; font-style: normal; font-family: Arial, sans-serif; box-shadow: none;}.sp-form[sp-id="3524"] .sp-button-container { text-align: left; width: auto;}</style>
+ 
 
+<!-- /Subscription Form -->
         <script type="text/javascript" async="async" src="//mailer.i.bizml.ru/apps/fc3/build/default-handler.js?1665563471096"></script> 
         <footer class="mt-5 mt-sm-7 pt-4 pt-sm-7 pb-1 pb-sm-2 bg-gray-300">
             <div class="container-xxl">
