@@ -194,6 +194,20 @@ jQuery(document).ready(function ($) {
             }
         });
     }
+    
+    $(document).on('submit', '#subscribe', function (e) {
+        e.preventDefault();
+        var $form = $(this),
+            url = $form.attr('action'),
+            message = $form.data('message'),
+            data = $form.serialize();
+            
+        loading();
+        $.post(url, data, function () {
+            toastr.success(message);
+            loading(false);
+        });
+    });
 
 
     // OWL
@@ -409,6 +423,6 @@ jQuery(document).ready(function ($) {
         // }
     // });
 
-
+    $()
     
 });
