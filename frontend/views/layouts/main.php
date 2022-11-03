@@ -362,25 +362,37 @@
             
         </div>
 
+        <script type="text/javascript" async="async" src="//mailer.i.bizml.ru/apps/fc3/build/default-handler.js?1665563471096"></script> 
         <footer class="mt-5 mt-sm-7 pt-4 pt-sm-7 pb-1 pb-sm-2 bg-gray-300">
             <div class="container-xxl">
                 <div class="row justify-content-center">
                     <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
-                        <div class="row justify-content-center">
-                            <div class="col-xxl-10">
-                                <form action="https://mailer.i.bizml.ru/forms/simple/u/eyJ1c2VyX2lkIjoyMDAwMDQ2MTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjkyNzMzMSwibGFuZyI6InJ1In0=" method="post" target="_blank">
+                        <div id="sp-form-3524" sp-id="3524" sp-hash="2b7f4940b15a86304377d80aa6b26da567d871f9c9b68c63084ddbc75e4689a7" sp-lang="ru" class="row justify-content-center sp-form- sp-form-regular sp-form-embed sp-form-horizontal- sp-form-full-width" sp-show-options="%7B%22satellite%22%3A%22biz_mailru%22%2C%22maDomain%22%3A%22mailer.i.bizml.ru%22%2C%22formsDomain%22%3A%22form.i.bizml.ru%22%2C%22condition%22%3A%22onEnter%22%2C%22scrollTo%22%3A25%2C%22delay%22%3A10%2C%22repeat%22%3A3%2C%22background%22%3A%22rgba(0%2C%200%2C%200%2C%200.5)%22%2C%22position%22%3A%22bottom-right%22%2C%22animation%22%3A%22%22%2C%22hideOnMobile%22%3Afalse%2C%22submitRedirectUrl%22%3A%22%22%2C%22urlFilter%22%3Afalse%2C%22urlFilterConditions%22%3A%5B%7B%22force%22%3A%22hide%22%2C%22clause%22%3A%22contains%22%2C%22token%22%3A%22%22%7D%5D%2C%22analytics%22%3A%7B%22ga%22%3A%7B%22eventLabel%22%3A%22%D0%A4%D0%BE%D1%80%D0%BC%D0%B0_%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9C%D0%BE%D1%8F_%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F_%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0%22%2C%22send%22%3Afalse%7D%2C%22ym%22%3A%7B%22counterId%22%3Anull%2C%22eventLabel%22%3Anull%2C%22targetId%22%3Anull%2C%22send%22%3Afalse%7D%7D%2C%22utmEnable%22%3Afalse%7D">
+                            <div class="col-xxl-10 sp-form-fields-wrapper show-grid">
+                                <form novalidate="" class="sp-element-container sp-lg sp-field-nolabel">
                                     <div class="row">
-                                        <div class="col-12 col-sm">
-                                            <input type="email" class="form-control py-1 py-sm-0_5 px-1_5 h-100" name="email" placeholder="<?= Yii::t('front', 'Ваш E-mail') ?>" required>
+                                        <div class="col-12 col-sm sp-field" sp-id="sp-5c5c1eed-c8de-46b3-a850-75f376aed280">
+                                            <input type="email" class="form-control py-1 py-sm-0_5 px-1_5 h-100 sp-form-control" name="sform[email]" placeholder="<?= Yii::t('front', 'Ваш E-mail') ?>" autocomplete="on" required="required" sp-type="email" sp-tips="%7B%22required%22%3A%22%D0%9E%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D0%BE%D0%BB%D0%B5%22%2C%22wrong%22%3A%22%D0%9D%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9%20email-%D0%B0%D0%B4%D1%80%D0%B5%D1%81%22%7D">
                                         </div>
-                                        <div class="col-12 col-sm-auto mt-1 mt-sm-0">
-                                            <button type="submit" class="btn btn-primary btn-sm-block gotham px-2 py-0_5 py-sm-1">
+                                        <div class="col-12 col-sm-auto mt-1 mt-sm-0 sp-field sp-button-container" sp-id="sp-1414a3be-b57b-42ac-9d92-a50ddd2626ef">
+                                            <button id="sp-1414a3be-b57b-42ac-9d92-a50ddd2626ef" type="submit" class="btn btn-primary btn-sm-block gotham px-2 py-0_5 py-sm-1 sp-button">
                                                 <?= Yii::t('front', 'Подписаться') ?>
                                             </button>
                                         </div>
                                     </div>
                                     <input type="hidden" name="sender" value="sendbox@mamour-enfants.com">
                                 </form>
+                                <div class="sp-message">
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
+                        <div class="row justify-content-center">
+                            <div class="col-xxl-10">
                                 <div class="row justify-content-between align-items-end mt-3 mt-sm-5">
                                     <div class="col-12 col-md">
                                         <div class="row">
