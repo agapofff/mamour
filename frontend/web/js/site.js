@@ -201,12 +201,10 @@ jQuery(document).ready(function ($) {
             url = $form.attr('action'),
             message = $form.data('message'),
             data = $form.serialize();
-            
         loading();
-        $.post(url, data, function () {
-            toastr.success(message);
-            loading(false);
-        });
+        toastr.success(message);
+        $.post(url, data);
+        loading(false);
     });
 
 
