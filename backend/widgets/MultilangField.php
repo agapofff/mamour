@@ -25,7 +25,7 @@ class MultilangField extends \yii\base\Widget
             $this->languages[] = Yii::$app->language;
         }
 
-        $modelName = strtolower(basename(get_class($this->model)));
+        $modelName = strtolower(end(explode('\\', basename(get_class($this->model)))));
         
         $li = '';
         foreach ($this->languages as $language) {
@@ -47,9 +47,9 @@ class MultilangField extends \yii\base\Widget
                     'value' => json_decode($this->model->{$this->field})->{$language},
                     'settings' => [
                         'lang' => Yii::$app->language,
-                        // 'buttonsHide' => [
-                            // 'file',
-                        // ],
+                        'buttonsHide' => [
+                            'file',
+                        ],
                         'minHeight' => 200,
                         'maxHeight' => 600,
                         'imageUpload' => Url::toRoute(['/site/image-upload']),
