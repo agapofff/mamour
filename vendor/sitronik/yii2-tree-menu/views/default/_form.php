@@ -227,8 +227,10 @@ use yii\web\View;
             $.get('/admin/treemenu/default/get-category-data', {
                 id: id
             }, function (response) {
+console.log(response);
                 var category = JSON.parse(response),
                     categoryNames = JSON.parse(category.name);
+console.log(categoryNames);
                 $('#treemenu-url').val(category.path);
                 $.each(categoryNames, function (lang, name) {
                     $('#treemenu_name_' + lang).val(name).trigger('input');
