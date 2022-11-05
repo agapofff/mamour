@@ -368,10 +368,10 @@
                     <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
                         <div class="row justify-content-center">
                             <div class="col-xxl-10">
-                                <form id="subscribe" action="https://mailer.i.bizml.ru/forms/simple/u/eyJ1c2VyX2lkIjoyMDAwMDQ2MTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjkyNzMzMSwibGFuZyI6InJ1In0=" method="post" target="_blank" data-message="<?= Yii::t('front', 'Благодарим Вас за подписку на нашу email-рассылку! Мы отправили висьмо с подтверждением на указанный Вами e-mail') ?>">
+                                <form id="subscribe" action="https://mailer.i.bizml.ru/forms/simple/u/eyJ1c2VyX2lkIjoyMDAwMDQ2MTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjkyNzMzMSwibGFuZyI6InJ1In0=" method="post" target="_blank" data-message="<?= Yii::t('front', 'Благодарим Вас за подписку на нашу email-рассылку! Мы отправили письмо с подтверждением на указанный Вами e-mail') ?>">
                                     <div class="row">
                                         <div class="col-12 col-sm">
-                                            <input type="email" class="form-control py-1 py-sm-0_5 px-1_5 h-100" name="email" placeholder="<?= Yii::t('front', 'Ваш E-mail') ?>" required>
+                                            <input type="email" class="form-control py-1 py-sm-0_5 px-1_5 h-100" name="email" placeholder="<?= Yii::t('front', 'Ваш e-mail') ?>" required>
                                         </div>
                                         <div class="col-12 col-sm-auto mt-1 mt-sm-0">
                                             <button type="submit" class="btn btn-primary btn-sm-block gotham px-2 py-0_5 py-sm-1">
