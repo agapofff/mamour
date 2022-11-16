@@ -103,24 +103,38 @@ class LoginForm extends Model
                 return $model->type == 'phone';
             }],
             
-            [['login', 'password', 'phone', 'sms_code'], function ($attribute) {
+            'confirmationValidate' => ['login', function ($attribute) {
                 if ($this->user !== null) {
-                    if ($this->type == 'email') {
-                        $confirmationRequired = $this->module->enableConfirmation && !$this->module->enableUnconfirmedLogin;
-                        if ($confirmationRequired && !$this->user->getIsConfirmed()) {
-                            $this->addError($attribute, Yii::t('front', 'Вам необходимо подтвердить свой e-mail адрес'));
-                        }
+                    $confirmationRequired = $this->module->enableConfirmation
+                        && !$this->module->enableUnconfirmedLogin;
+                    if ($confirmationRequired && !$this->user->getIsConfirmed()) {
+                        $this->addError($attribute, Yii::t('front', 'Вам необходимо подтвердить свой e-mail адрес'));
                     }
                     if ($this->user->getIsBlocked()) {
                         $this->addError($attribute, Yii::t('front', 'Ваш аккаунт был заблокирован'));
                     }
                 }
-                if ($this->user === null) {
-                    if (!Password::validate($this->password, $this->user->password_hash)) {
-                        $this->addError($attribute, Yii::t('front', 'Неверный пароль'));
-                    }
+            }, 'when' => function ($model) {
+                return $model->type == 'email';
+            }],
+            
+            'passwordValidate' => ['password', function ($attribute) {
+                if ($this->user === null || !Password::validate($this->password, $this->user->password_hash)) {
                     $this->addError($attribute, Yii::t('front', 'Неверный логин или пароль'));
                 }
+            }, 'when' => function ($model) {
+                return $model->type == 'email';
+            }],
+            
+            'smsCode' => ['sms_code', 'string', 'min' => 4, 'max' => 4, 'when' => function ($model) {
+                return $model->type == 'phone';
+            }],
+            'checkSmsCode' => ['sms_code', function ($attribute, $params) {
+                if ($this->$attribute != Yii::$app->session->get('smsCode')) {
+                    $this->addError($attribute, Yii::t('front', 'Неправильный код!'));
+                }
+            }, 'when' => function ($model) {
+                return $model->type == 'phone';
             }],
         ];
 
