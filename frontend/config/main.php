@@ -9,6 +9,11 @@ use common\models\Stores;
 use dvizh\filter\models\Product;
 use dvizh\filter\models\FilterVariant;
 use dektrium\user\models\User;
+use sitronik\treemenu\models\TreeMenu;
+use dektrium\user\models\User;
+use dektrium\user\controllers\RegistrationController;
+use dektrium\user\controllers\SecurityController;
+use backend\models\Bonus;
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -49,6 +54,7 @@ return [
             $langLinks[] = $lang . '/' . $pathNoLang . ($query ? '?' . $query : '');
         }
         Yii::$app->params['langLinks'] = $langLinks;
+
     },
     'on beforeAction' => function () {
         
@@ -82,6 +88,21 @@ return [
         if ($currency) {
             Yii::$app->params['currency'] = $currency;
         }
+        
+        // menu
+        $menu = TreeMenu::find()
+            ->where([
+                'active' => 1
+            ])
+            ->asArray()
+            ->all();
+        if ($menu) {
+            foreach ($menu as $k => $menuItem) {
+                $menu[$k]['current'] = $menuItem['url'] == '/'.Yii::$app->request->pathInfo ? true : false;
+            }
+        }
+        Yii::$app->params['menu'] = $menu;
+// echo Yii::$app->request->pathInfo; exit;
     },
     /*
     'on beforeAction' => function () {
@@ -115,6 +136,46 @@ return [
             $user->save();
         }
     },
+    'on beforeRender' => function () {
+
+    },
+    
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'admins' => ['admin'],
+            'enableGeneratingPassword' => false,
+            'controllerMap' => [
+                // 'registration' => [
+                    // 'class' => RegistrationController::className(),
+                    // 'on ' . RegistrationController::EVENT_AFTER_CONFIRM => function ($e) {
+                        // if (Yii::$app->user->identity->referal) {
+                            // if ($user = User::findOne(base64_decode(Yii::$app->user->identity->referal))) {
+                                // $addBonus = new Bonus();
+                                // $addBonus->attributes = [
+                                    // 'active' => 1,
+                                    // 'user_id' => $user->id,
+                                    // 'type' => 1,
+                                    // 'amount' => 5,
+                                    // 'reason' => 0,
+                                    // 'description' => (string) Yii::$app->user->id,
+                                    // 'created_at' => date('Y-m-d H:i:s'),
+                                    // 'updated_at' => date('Y-m-d H:i:s'),
+                                // ];
+                                // $addBonus->save();
+                            // }
+                        // }
+                    // },
+                // ],
+                'security' => [
+                    'class' => SecurityController::className(),
+                    'on ' . SecurityController::EVENT_AFTER_LOGIN => function ($e) {
+                        Yii::$app->response->redirect(Url::to(['/account']))->send();
+                    }
+                ],
+            ],
+        ],     
+    ],
     
     'components' => [
     

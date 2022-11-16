@@ -1,4 +1,9 @@
 <?php
+use dektrium\user\models\User;
+use dektrium\user\controllers\RegistrationController;
+use dektrium\user\controllers\SecurityController;
+use backend\models\Bonus;
+use yii\helpers\Url;
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -14,12 +19,11 @@ return [
         // 'log',
     ],
     'modules' => [
-        /*
         'user' => [
             'class' => 'dektrium\user\Module',
             'admins' => ['admin'],
-        ],
-        */
+            'enableGeneratingPassword' => false,
+        ],  
         'rbac' => [
             'class' => 'yii2mod\rbac\Module',
             'as access' => [
