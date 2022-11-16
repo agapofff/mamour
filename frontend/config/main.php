@@ -10,7 +10,6 @@ use dvizh\filter\models\Product;
 use dvizh\filter\models\FilterVariant;
 use dektrium\user\models\User;
 use sitronik\treemenu\models\TreeMenu;
-use dektrium\user\models\User;
 use dektrium\user\controllers\RegistrationController;
 use dektrium\user\controllers\SecurityController;
 use backend\models\Bonus;
