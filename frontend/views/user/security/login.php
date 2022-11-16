@@ -220,17 +220,21 @@
 
 <?php
     $this->registerJS("
-
-        switchLoginForm = function (byPhone = 0) {
+        switchLoginForm = function (byPhone) {
+            $('#login-form-login, #login-form-password, #login-form-phone, #login-form-sms_code').val('');
             if (byPhone) {
                 $('.login-by-email').hide();
                 $('.login-by-phone').show();
                 $('#login-form-type').val('phone');
+                $('#login-form-login, #login-form-password').attr('disabled', 'disabled');
+                $('#login-form-phone').removeAttr('disabled');
                 $('#login-form-phone').focus();
             } else {
-                $('.login-by-email').show();
                 $('.login-by-phone').hide(); 
+                $('.login-by-email').show();
                 $('#login-form-type').val('email');
+                $('#login-form-login, #login-form-password').removeAttr('disabled');
+                $('#login-form-phone').attr('disabled', 'disabled');
                 $('#login-form-login').focus();
             }
         }
