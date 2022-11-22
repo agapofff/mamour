@@ -426,7 +426,7 @@ return [
                 
                 'cookies-notification-shown' => 'site/cookies-notification-shown',
 
-                'about' => 'site/about',
+                // 'about' => 'site/about',
 
                 'orders' => 'orders/index',
                 'orders/<id>' => 'orders/view',
