@@ -105,7 +105,7 @@ class Category extends \yii\db\ActiveRecord
         }
     }
     
-    public static function getAllChilds($categories, $id, $type = 'all', $self = false, $childs = [], $i = 0)
+    public static function getAllChilds($categories, $id, $type = false, $self = false, $childs = [], $i = 0)
     {
         if ($self && !$i) {
             $childs[] = $id;
@@ -132,6 +132,52 @@ class Category extends \yii\db\ActiveRecord
             }
         }
         return $parents;
+    }
+    
+    public static function buildTreeArray($data, $rootID = 0)
+    {
+        $tree = [];
+        foreach ($data as $id => $node) {
+            if ($node['parent_id'] == $rootID) {
+                unset($data[$id]);
+                $node['childs'] = self::buildTree($data, $node['id']);
+                $tree[] = $node;
+            }
+        }
+        return $tree;
+    }
+    
+    public static function buildSelectTree($data, $level = 0, $separator = '••••')
+    {
+        foreach ($data as $key => $item) {
+            $string = '';
+            for ($i = 0; $i < $level; $i++) {
+                $string .= $separator;
+            }
+            $data[$key]['name'] = $string . $item['name'];
+            $data[$key]['parent_id'] = $item['parent_id'];
+            if (isset($item['childs'])) {
+                $data[$key]['childs'] = self::buildSelectTree($item['childs'], $level+1, $separator);
+            }
+        }
+        return $data;
+    }
+    
+    
+    public static function buildPlainTree($data)
+    {
+        $arr = [];
+        foreach ($data as $key => $item) {
+            $arr[] = [
+                'id' => $item['category_id'],
+                'name' => $item['name'],
+                'parent' => $item['parent_id'],
+            ];
+            if (isset($item['childs'])) {
+                $arr = array_merge($arr, self::buildPlainTree($item['childs']));
+            }
+        }
+        return $arr;
     }
 
     public static function buildTextTree($id = null, $level = 1, $ban = [])

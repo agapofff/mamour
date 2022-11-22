@@ -18,6 +18,53 @@ use yii\helpers\VarDumper;
 
 class CatalogController extends Controller
 {
+    public function actionIndex()
+    {
+        $categories = Category::find()
+            ->where([
+                'active' => 1
+            ])
+            ->orderBy([
+                'sort' => SORT_ASC
+            ])
+            ->all();
+        
+        return $this->render('index', [
+            'categories' => $categories
+        ]);
+    }
+    
+    public function actionCategory($slug)
+    {
+        $category = Category::find()
+            ->where('slug = :slug', [
+                ':slug' => $slug
+            ])
+            ->one();
+
+        $store = Stores::findOne([
+            'lang' => Yii::$app->language,
+            'type' => Yii::$app->params['store_type']
+        ]);
+        
+        $prices = Price::find()
+            ->where([
+                'name' => $store->store_id
+            ])
+            ->asArray()
+            ->all();
+
+        $products = $category->products;
+
+        return $this->render('category', [
+            'category' => $category,
+            'products' => $products,
+            'store' => $store,
+            'prices' => ArrayHelper::index($prices, 'item_id'),
+        ]);
+    }
+
+/*
     public function actionProducts($path = null)
     {
         $new = $popular = $sale = $promo = null;
@@ -450,6 +497,6 @@ class CatalogController extends Controller
             'title' => $title,
         ]);
     }
-
+*/
     
 }

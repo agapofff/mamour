@@ -163,7 +163,6 @@ use PELock\ImgOpt\ImgOpt;
             </div>
             
             <div class="col-md-6">
-                <div class="hidden">
                     <?= $form
                             ->field($model, 'category_id')
                             ->widget(Select2::classname(), [
@@ -177,14 +176,14 @@ use PELock\ImgOpt\ImgOpt;
                                 ],
                             ]);
                     ?>
-                </div>
                     
                 <?php // предустановка категории, из которой сделан переход
-                    if (!$model->id && Yii::$app->request->get('category_id')){
-                        $model->category_ids = [Yii::$app->request->get('category_id')];
-                    }
+                    // if (!$model->id && Yii::$app->request->get('category_id')){
+                        // $model->category_ids = [Yii::$app->request->get('category_id')];
+                    // }
                 ?>
-                <?= $form
+                <?php /*
+                    echo $form
                         ->field($model, 'category_ids')
                         ->label(Yii::t('back', 'Категории'))
                         ->widget(Select2::classname(), [
@@ -200,6 +199,7 @@ use PELock\ImgOpt\ImgOpt;
                                 'allowClear' => true
                             ],
                         ]);
+                    */
                 ?>
                 
                 <div class="hidden">

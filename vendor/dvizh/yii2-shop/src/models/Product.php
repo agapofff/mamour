@@ -403,16 +403,17 @@ class Product extends \yii\db\ActiveRecord implements \dvizh\relations\interface
         parent::afterSave($insert, $changedAttributes);
 
         if(!empty($this->category_id) && !empty($this->id)) {
-            if(!(new \yii\db\Query())
-            ->select('*')
-            ->from('{{%shop_product_to_category}}')
-            ->where('product_id ='.$this->id.' AND category_id = '.$this->category_id)
-            ->all()) {
+            Yii::$app->db->createCommand()->delete('{{%shop_product_to_category}}', ['product_id' => $this->id])->execute();
+            // if(!(new \yii\db\Query())
+            // ->select('*')
+            // ->from('{{%shop_product_to_category}}')
+            // ->where('product_id ='.$this->id.' AND category_id = '.$this->category_id)
+            // ->all()) {
                 Yii::$app->db->createCommand()->insert('{{%shop_product_to_category}}', [
                     'product_id' => $this->id,
                     'category_id' => $this->category_id,
                 ])->execute();
-            }
+            // }
         }
     }
     

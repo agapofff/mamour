@@ -402,7 +402,11 @@ return [
                 // '<catalog:(slug)>' => 'catalog/index',
                 
                 'catalog' => 'catalog/index',
-                'catalog/<path:[\w_\/-]+>' => 'catalog/products',
+                'catalog/<slug>' => 'catalog/category',
+                
+                // 'catalog' => 'catalog/index',
+                // 'catalog/<path:[\w_\/-]+>' => 'catalog/products',
+                
                 // [
                     // 'pattern' => 'catalog/<path:[\w_\/-]+>',
                     // 'route' => 'catalog',

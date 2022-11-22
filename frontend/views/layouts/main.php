@@ -11,6 +11,7 @@
     use yii\web\View;
     use dvizh\cart\widgets\CartInformer;
     use dvizh\cart\widgets\ElementsList;
+    use dvizh\shop\models\Category;
 
     AppAsset::register($this);
     
@@ -30,7 +31,7 @@
         ]);
     }
     
-    
+    // echo yii\helpers\VarDumper::dump(Category::buildTreeArray(Yii::$app->params['menu']), 99, true);
     // fonts preload
     $fonts = [
         'names' => [
@@ -113,7 +114,7 @@
     ]);
     $langs = $langs->toArray();
     
-    
+    // echo \yii\helpers\VarDumper::dump(Yii::$app->params['menu'], 99, true);
     // меню
     $menuItems = [
         [
@@ -308,14 +309,19 @@
                             <div class="col-xxl-10">
                                 <div class="row justify-content-between flex-nowrap">
                             <?php
-                                foreach ($menuItems as $menuItem) {
+
+                                foreach (Yii::$app->params['menu'] as $menuItem) {
+                                    $menuChilds = Category::getAllChilds(Yii::$app->params['menu'], (int)$menuItem['id']);
+                                    if (!$menuItem['parent_id']) {
+
                             ?>
-                                    <div class="col-auto">
-                                        <a href="<?= $menuItem['url'] ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= $menuItem['class'] ?>">
-                                            <?= $menuItem['label'] ?>
-                                        </a>
-                                    </div>
+                                        <div class="col-auto">
+                                            <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item">
+                                                <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
+                                            </a>
+                                        </div>
                             <?php
+                                    }
                                 }
                             ?>
                                 </div>
@@ -420,7 +426,7 @@
                                                 </p>
                                                 <p class="small text-lowercase mb-0">
                                                     <a href="<?= Url::to(['/service/shipping']) ?>">
-                                                        <?= Yii::t('front', 'Философия') ?>
+                                                        <?= Yii::t('front', 'Доставка') ?>
                                                     </a>
                                                 </p>
                                                 <p class="small text-lowercase mb-0">
