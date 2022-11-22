@@ -12,7 +12,7 @@
 
 <div class="container-xxl mt-3">    
     <div class="row justify-content-center">
-        <div class="col-sm-11 col-md-10 col-lg-9 col-xl-6 col-xxl-5">
+        <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
             <h1 class="gotham font-weight-bold text-uppercase headline mb-5">
             <?= $h1 ?>
             </h1>

@@ -48,7 +48,7 @@
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1800px;
-  --font-family-sans-serif: "Gotham Pro", sans-serif;
+  --font-family-sans-serif: "Montserrat", sans-serif;
   --font-family-monospace: "Courier New", monospace; }
 
 *,
@@ -315,7 +315,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: "Gotham Pro", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   line-height: 1.2; }
 
