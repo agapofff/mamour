@@ -39,11 +39,11 @@
                 '',
                 'Bold',
             ],
-            'GothamPro' => [
-                '',
-                'Bold',
-                'Light',
-            ],
+            // 'GothamPro' => [
+                // '',
+                // 'Bold',
+                // 'Light',
+            // ],
         ],
         'extensions' => [
             'eot',
@@ -210,7 +210,7 @@
         <?php $this->head() ?>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
         <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="194x194" href="/images/favicons/favicon-194x194.png">

@@ -238,8 +238,10 @@ button,
 .text-sans-serif,
 .font-gotham-pro,
 .font-gotham,
-.gotham {
-    font-family: 'Gotham Pro';
+.gotham,
+.font-montserrat,
+.montserrat {
+    font-family: 'Montserrat';
 }
 .text-monospace,
 .font-courier-new,
