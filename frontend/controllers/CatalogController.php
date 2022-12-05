@@ -164,10 +164,7 @@ class CatalogController extends Controller
         }
         
         $this->view->params['model'] = $category;
-        $this->view->params['title'] = json_decode($category->seo->title)->{Yii::$app->language} ?: json_decode($category->name)->{Yii::$app->language};
-        $this->view->params['description'] = json_decode($category->seo->description)->{Yii::$app->language} ?: json_decode($category->text)->{Yii::$app->language};
-        $this->view->params['keywords'] = json_decode($category->seo->keywords)->{Yii::$app->language} ?: null;
-
+        
         return $this->render('category', [
             'products' => $products,
             'productsSizes' => $productsSizes,

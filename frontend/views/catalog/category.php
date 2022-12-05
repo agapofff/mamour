@@ -3,7 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
-
+    
+if (!$this->title) {
+    $this->title = json_decode($category->name)->{Yii::$app->language};
+}
 ?>
 
 <div class="container-xxl mt-3">    

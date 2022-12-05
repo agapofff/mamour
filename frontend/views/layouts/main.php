@@ -33,21 +33,26 @@
     ]);
     
     
-    // SEO    
-    if ($this->params['title']) {
-        $this->title = $this->params['title'];
-    }
-    if ($this->params['description']) {
-        $this->registerMetaTag([
-            'name' => 'description',
-            'content' => $this->params['description']
-        ]);
-    }
-    if ($this->params['keywords']) {
-        $this->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $this->params['keywords']
-        ]);
+    // SEO   
+    if ($this->params['model']) {
+        $model = $this->params['model'];
+        if ($model->seo->title && $modelTitle = json_decode($model->seo->title)->{Yii::$app->language}) {
+            $this->title = $modelTitle;
+        } else {
+            $this->title = json_decode($model->name)->{Yii::$app->language};
+        }
+        if ($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language}) {
+            $this->registerMetaTag([
+                'name' => 'description',
+                'content' => $modelDescription
+            ]);
+        }
+        if ($model->seo->keywords && $modelKeywords = json_decode($model->seo->keywords)->{Yii::$app->language}) {
+            $this->registerMetaTag([
+                'name' => 'keywords',
+                'content' => $modelKeywords
+            ]);
+        }
     }
     
     // fonts preload
