@@ -140,7 +140,7 @@ class Category extends \yii\db\ActiveRecord
         foreach ($data as $id => $node) {
             if ($node['parent_id'] == $rootID) {
                 unset($data[$id]);
-                $node['childs'] = self::buildTree($data, $node['id']);
+                $node['childs'] = self::buildTreeArray($data, $node['id']);
                 $tree[] = $node;
             }
         }

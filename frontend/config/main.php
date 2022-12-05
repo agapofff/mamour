@@ -402,7 +402,7 @@ return [
                 // '<catalog:(slug)>' => 'catalog/index',
                 
                 'catalog' => 'catalog/index',
-                'catalog/<slug>' => 'catalog/category',
+                'catalog/<path:[\w_\/-]+>' => 'catalog/category',
                 
                 // 'catalog' => 'catalog/index',
                 // 'catalog/<path:[\w_\/-]+>' => 'catalog/products',

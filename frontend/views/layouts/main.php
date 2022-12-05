@@ -12,6 +12,18 @@
     use dvizh\cart\widgets\CartInformer;
     use dvizh\cart\widgets\ElementsList;
     use dvizh\shop\models\Category;
+    
+    function renderMenu($items) {
+        echo '<ul class="list-unstyled pl-2">';
+        foreach ($items as $item) {
+            echo '<li><a href="' . Url::to([$item['url']]) . '" class="dropdown-item' . ($item['current'] ? ' active' : '') . '">' . json_decode($item['name'])->{Yii::$app->language} . '</a>';
+            if (!empty($item['childs'])) {
+                renderMenu($item['childs']);
+            }
+            echo '</li>';
+        }
+        echo '</ul>';
+    }
 
     AppAsset::register($this);
     
@@ -19,19 +31,25 @@
         'rel' => 'canonical',
         'href' => Url::canonical()
     ]);
-
-    if (Yii::$app->params['title']) {
-        $this->title = Yii::$app->params['title'];
+    
+    
+    // SEO    
+    if ($this->params['title']) {
+        $this->title = $this->params['title'];
     }
-
-    if (Yii::$app->params['description']) {
+    if ($this->params['description']) {
         $this->registerMetaTag([
             'name' => 'description',
-            'content' => Yii::$app->params['description']
+            'content' => $this->params['description']
+        ]);
+    }
+    if ($this->params['keywords']) {
+        $this->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $this->params['keywords']
         ]);
     }
     
-    // echo yii\helpers\VarDumper::dump(Category::buildTreeArray(Yii::$app->params['menu']), 99, true);
     // fonts preload
     $fonts = [
         'names' => [
@@ -73,10 +91,10 @@
         'property' => 'og:title',
         'content' => $this->title
     ]);
-    if (Yii::$app->params['description']) {
+    if ($this->params['description']) {
         $this->registerMetaTag([
             'property' => 'og:description',
-            'content' => Yii::$app->params['description']
+            'content' => $this->params['description']
         ]);        
     }
     $this->registerMetaTag([
@@ -85,7 +103,7 @@
     ]);
     $this->registerMetaTag([
         'property' => 'og:site_name',
-        'content' => Yii::$app->id
+        'content' => Yii::$app->name
     ]);
     $this->registerMetaTag([
         'property' => 'og:type',
@@ -113,74 +131,15 @@
         'languages' => Yii::$app->params['languages'],
     ]);
     $langs = $langs->toArray();
-    
+
+    foreach (Yii::$app->params['menu'] as $menuKey => $menuItem) {
+        if ($menuItem['url'] == '/' . Yii::$app->request->pathInfo) {
+            Yii::$app->params['menu'][$menuKey]['current'] = true;
+        }
+    }    
     // echo \yii\helpers\VarDumper::dump(Yii::$app->params['menu'], 99, true);
-    // меню
-    $menuItems = [
-        [
-            'label' => Yii::t('front', 'Девочки'),
-            'url' => Url::to(['/catalog/girls-3-8']),
-            'class' => 'caret',
-        ],
-        [
-            'label' => Yii::t('front', 'Мальчики'),
-            'url' => Url::to(['/catalog/boys-3-8']),
-            'class' => 'caret',
-        ],
-        [
-            'label' => Yii::t('front', 'О бренде'),
-            'url' => Url::to(['/about']),
-            'class' => '',
-        ],
-        [
-            'label' => Yii::t('front', 'Блог'),
-            'url' => Url::to(['/blog']),
-            'class' => '',
-        ],
-    ];
-    
-    // меню
-    $footerMenuItems = [
-        [
-            'label' => Yii::t('front', 'Главная'),
-            'url' => Url::to(['/']),
-            'class' => '',
-        ],
-        [
-            'label' => Yii::t('front', 'Подписка'),
-            'url' => Url::to(['/subscribtion']),
-            'class' => '',
-        ],
-        [
-            'label' => Yii::t('front', 'Каталог'),
-            'url' => Url::to(['/catalog']),
-            'class' => '',
-        ],
-        [
-            'label' => Yii::t('front', 'Блог'),
-            'url' => Url::to(['/blog']),
-            'class' => '',
-        ],
-        [
-            'label' => Yii::t('front', 'Преимущества'),
-            'url' => Url::to(['/about']),
-            'class' => '',
-        ],
-    ];
-    
-    if (Yii::$app->user->isGuest) {
-        $footerMenuItems[] = [
-            'label' => Yii::t('front', 'Авторизация'),
-            'url' => Url::to(['/login']),
-            'class' => '',
-        ];
-    } else {
-        $footerMenuItems[] = [
-            'label' => Yii::t('front', 'Личный кабинет'),
-            'url' => Url::to(['/account']),
-            'class' => '',
-        ];
-    }
+    // echo \yii\helpers\VarDumper::dump(Category::buildTreeArray(Yii::$app->params['menu']), 99, true);
+
     
     $controllerID = Yii::$app->controller->id;
     $actionID = Yii::$app->controller->action->id;
@@ -210,7 +169,7 @@
         <?php $this->head() ?>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="194x194" href="/images/favicons/favicon-194x194.png">
@@ -231,11 +190,6 @@
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Загрузка...</span>
                 </div>
-                <!--
-                <svg width="150" height="204" viewBox="0 0 150 204" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M110.887 130.389C120.238 119.45 129.252 107.898 136.418 95.3405C140.001 89.1457 142.857 82.7276 144.816 75.8072C147.224 67.2126 148.736 58.3389 148.96 49.4652C149.184 41.2612 148.512 32.6666 146.048 24.7975C144.145 18.6584 140.841 12.5752 135.354 8.94761C121.693 -0.0376936 105.065 12.5194 96.3864 22.7883C87.0363 33.8944 81.7174 47.9025 79.9818 62.1897C79.7578 63.9756 79.5899 65.7057 79.5339 67.4916C80.1497 67.38 80.7656 67.3242 81.4375 67.2126C76.5105 53.2044 71.4715 39.0289 62.9613 26.695C59.1541 21.2257 54.7869 16.0912 49.692 11.7939C44.4851 7.38495 38.3263 3.19925 31.5517 1.58078C25.0011 0.0181158 18.6184 1.63659 13.5794 6.10134C8.87637 10.287 5.96497 16.0354 4.00537 21.8954C-0.641672 35.7919 0.646065 50.8604 4.17334 64.8686C7.53265 78.207 12.8516 91.099 18.8423 103.433C24.6651 115.376 31.4397 126.873 39.0542 137.811C46.7246 148.75 55.1789 159.131 64.417 168.841C73.767 178.664 83.845 187.761 94.5388 196.132C96.8343 197.918 99.1298 199.816 101.537 201.378C103.049 202.383 104.953 203.053 106.8 202.997C109.04 202.941 111.503 201.322 111.895 198.978C112.231 197.137 110.719 195.742 109.208 194.904C107.36 193.956 105.345 193.509 103.329 193.007C99.6897 192.058 95.9945 191.054 92.3552 190.105C91.5154 189.882 90.7316 189.658 89.8917 189.435C88.716 189.1 88.2121 190.942 89.3878 191.277C94.5948 192.672 99.8017 194.123 105.009 195.407C106.464 195.797 110.831 196.858 109.824 199.034C108.76 201.322 106.072 201.267 104.057 200.43C102.321 199.76 100.921 198.476 99.4658 197.36C88.9959 189.547 79.1419 180.896 69.9598 171.632C60.8897 162.535 52.4914 152.713 44.821 142.388C37.2625 132.175 30.4879 121.403 24.4972 110.186C18.5064 98.9123 13.2435 87.1365 9.21231 74.9701C4.73323 61.6875 1.70985 47.5119 3.33351 33.4479C4.11735 26.8624 5.96497 20.1095 9.26829 14.3053C12.1237 9.33828 16.3788 4.81772 22.0337 3.25506C28.9203 1.30173 35.9188 4.48286 41.6296 8.11047C47.0605 11.5707 51.9315 15.9238 56.1307 20.835C65.3128 31.4946 71.0796 44.4982 75.9506 57.5576C77.1823 60.9061 78.3581 64.1989 79.5339 67.5474C79.8698 68.552 81.3255 68.3846 81.4375 67.2684C82.2773 53.4277 86.4204 39.6428 94.4268 28.2577C98.458 22.4535 103.553 17.319 109.432 13.3007C115.646 9.05923 123.709 5.8781 131.211 8.66857C137.202 10.9009 141.121 16.5935 143.305 22.3419C146.104 29.5413 147 37.522 147.112 45.1679C147.28 53.7625 146.16 62.413 144.145 70.7844C143.249 74.4678 142.241 78.207 140.897 81.7788C139.721 84.8483 138.266 87.8621 136.754 90.7641C130.091 103.21 121.413 114.651 112.399 125.533C111.447 126.65 110.551 127.766 109.6 128.882C108.76 129.998 110.104 131.338 110.887 130.389Z" stroke="#B8994F" stroke-width="2" class="loading-heart-1"></path>
-                </svg>
-                -->
             </div>
         </div>
 
@@ -263,7 +217,7 @@
                                 </div>
                             </div>
                             <div class="col-auto d-none d-md-block">
-                                <a href="#" class="btn btn-link text-dark text-decoration-none search">
+                                <a href="<?= Url::to(['/search']) ?>" class="btn btn-link text-dark text-decoration-none search">
                                     <img src="/images/search.svg">
                                 </a>
                             </div>
@@ -284,19 +238,25 @@
                                 </a>
                             </div>
                             <div class="col-auto d-none d-md-block">
-                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>" class="d-flex align-items-center justify-content-center p-0_25 rounded-pill <?= Yii::$app->user->isGuest ? '' : 'border border-primary' ?>" style="width:2em; height: 2em;">
-                                    <img src="/images/user.svg">
+                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>">
+                                    <img src="/images/<?= Yii::$app->user->isGuest ? 'guest' : 'user' ?>.svg">
                                 </a>
                             </div>
                             <div class="col-auto d-none d-md-block">
-                                <a href="<?= Url::to(['/cart']) ?>">
+                                <a href="<?= Url::to(['/cart']) ?>" class="d-flex align-items-center text-decoration-none">
                                     <img src="/images/cart.svg">
+                                    <?= CartInformer::widget([
+                                            'htmlTag' => 'span',
+                                            'cssClass' => 'mt-1',
+                                            'text' => '{c}'
+                                        ]);
+                                    ?>
                                 </a>
                             </div>
                             <div class="col-auto d-md-none">
-                                <a href="#menu">
+                                <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#menu" aria-label="<?= Yii::t('front', 'Меню') ?>">
                                     <img src="/images/menu.svg">
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -307,18 +267,43 @@
                     <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
                         <div class="row justify-content-center">
                             <div class="col-xxl-10">
-                                <div class="row justify-content-between flex-nowrap">
+                                <div id="mainmenu" class="row justify-content-between flex-nowrap">
                             <?php
 
                                 foreach (Yii::$app->params['menu'] as $menuItem) {
-                                    $menuChilds = Category::getAllChilds(Yii::$app->params['menu'], (int)$menuItem['id']);
+                                    $menuChilds = [];
+                                    $menuChilds = Category::getAllChilds(Yii::$app->params['menu'], $menuItem['id']);
                                     if (!$menuItem['parent_id']) {
-
                             ?>
-                                        <div class="col-auto">
-                                            <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item">
+                                        <div class="col-auto dropdown hover">
+                                            <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
                                                 <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
                                             </a>
+                                    <?php
+                                        if (!empty($menuChilds)) {
+                                    ?>
+                                            <div class="dropdown-menu mt-0">
+                                                <ul class="list-unstyled">
+                                            <?php
+                                                foreach (Yii::$app->params['menu'] as $menuItemChild) {
+                                                    if ($menuItemChild['parent_id'] == $menuItem['id']) {
+                                            ?>
+                                                        <li>
+                                                            <a href="<?= Url::to([$menuItemChild['url']]) ?>" class="dropdown-item">
+                                                                <?= json_decode($menuItemChild['name'])->{Yii::$app->language} ?>
+                                                            </a>
+                                                            <?php renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id'])) ?>
+                                                        </li>
+                                                        <div class="dropdown-divider"></div>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
+                                                </ul>
+                                            </div>
+                                    <?php
+                                        }
+                                    ?>
                                         </div>
                             <?php
                                     }
@@ -489,111 +474,47 @@
         </footer>
 
         
-        <div id="menu" class="modal side p-0 fade" tabindex="-1" aria-labelledby="menuLabel" aria-hidden="true">
-            <div class="modal-dialog position-absolute top-0 right-0 left-0 vw-100 mt-6 mx-0 border-0">
-                <div class="modal-content m-0 border-0 vw-100 min-vh-100 bg-gray-900 rounded-0">
-                    <div class="modal-body p-0 rounded-0">
-                        <div class="container-lg container-xl container-xxl">
-                            <div class="d-sm-none mt-2">
-                                <?php
-                                    if ($langs) {
-                                        foreach ($langs as $key => $lang) {
-                                            echo Html::a($lang['label'], $lang['url'], [
-                                                'class' => 'text-uppercase text-white mr-1 ' . ($lang['active'] ? 'text-underline' : 'text-decoration-none')
-                                            ]);
-                                        }
-                                    }
-                                ?>
+        <div class="modal side p-0 fade" id="menu" tabindex="-1" aria-labelledby="menuLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable position-absolute top-0 bottom-0 left-0 border-0 m-0">
+                <div class="modal-content m-0 border-0 vh-100">
+                    <div class="modal-header d-block px-1">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col text-center">
+                                <a href="<?= Url::to(['/search']) ?>">
+                                    <img src="/images/search.svg">
+                                </a>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="col-xl-11 col-xxl-10 mt-3 mt-md-4 mt-lg-5 mt-xl-6 mt-xxl-7">
-                                    <div class="row justify-content-between">
-                                        <div class="col-auto">
-                                            <ul class="nav flex-column my-auto">
-                                                <?php                            
-                                                    foreach ($menuItems as $menuItem) {
-                                                        $activeMenu = false;
-                                                        if (isset($menuItem['url'])) {
-                                                            $activeMenu = $menuItem['url'] == Url::to();
-                                                        }
-                                                ?>
-                                                        <li class="nav-item <?= $menuItem['class'] ?> <?= $activeMenu ? 'active' : '' ?>">
-                                                        <?php
-                                                            if (isset($menuItem['url'])) {
-                                                        ?>
-                                                                <a href="<?= $menuItem['url'] ?>" class="nav-link main-menu-item d-inline-block position-relative h4 font-weight-light text-uppercase text-white p-0 mb-1 mb-md-1_5 mb-lg-3 border-white <?= $activeMenu ? 'text-underline' : 'text-decoration-none' ?>"
-                                                                    <?php 
-                                                                        if (isset($menuItem['options'])) {
-                                                                            foreach ($menuItem['options'] as $optionKey => $optionVal) {
-                                                                                echo $optionKey . '="' . $optionVal . '" ';
-                                                                            }
-                                                                        }
-                                                                    ?>
-                                                                >
-                                                                    <?= $menuItem['label'] ?>
-                                                                </a>
-                                                        <?php
-                                                            } else {
-                                                                echo $menuItem['label'];
-                                                            }
-                                                        ?>
-                                                        </li>
-                                                <?php
-                                                    }
-                                                ?>
-                                            </ul>
-                                        </div>
-                                        <div class="col-auto">
-                                            <p class="h4 text-white font-weight-light text-uppercase mb-2">
-                                                <?= Yii::t('front', 'Just like you') ?>
-                                            </p>
-                                            <p class="h5 text-white text-uppercase font-weight-light mb-3">
-                                                <?= Yii::t('front', 'For ultra{0}high-net-worth{1}dogs', ['<br>', '<br>']) ?>
-                                            </p>
-                                            <div class="mb-3">
-                                            <?php
-                                                foreach (Yii::$app->params['socials'] as $socialName => $socialUrl) {
-                                                    echo Html::a(Html::img('/images/socials/' . $socialName . '_light.svg', [
-                                                        'class' => 'menu-social-icon',
-                                                    ]), $socialUrl, [
-                                                        'class' => 'mr-1',
-                                                    ]);
-                                                }
-                                            ?>
-                                            </div>
-                                            <div id="menu-contacts" class="mb-4">
-                                                <a href="mailto:<?= Yii::$app->params['supportEmail'] ?>" class="text-white" style="text-decoration: underline">
-                                                    <?= Yii::$app->params['supportEmail'] ?>
-                                                </a>
-                                                <br>
-                                                <a href="tel:+<?= preg_replace('/[^0-9]/', '', Yii::$app->params['phone']) ?>" class="text-white">
-                                                    <?= Yii::$app->params['phone'] ?>
-                                                </a>
-                                            </div>
-                                            <div class="mb-3">
-                                                <?= Html::img('/images/logo/big.svg', [
-                                                        'id' => 'logo-big',
-                                                    ])
-                                                ?>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col my-1">
-                                                    <?= Html::img('/images/apple_store.png', [
-                                                            'id' => 'apple-store',
-                                                        ])
-                                                    ?>
-                                                </div>
-                                                <div class="col my-1">
-                                                    <?= Html::img('/images/google_play.png', [
-                                                            'id' => 'google-play',
-                                                        ])
-                                                    ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col text-center">
+                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>">
+                                    <img src="/images/<?= Yii::$app->user->isGuest ? 'guest' : 'user' ?>.svg">
+                                </a>
                             </div>
+                            <div class="col text-center">
+                                <a href="<?= Url::to(['/wishlist']) ?>">
+                                    <img src="/images/wishlist.svg">
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a href="<?= Url::to(['/cart']) ?>" class="d-flex align-items-center text-decoration-none">
+                                    <img src="/images/cart.svg">
+                                    <?= CartInformer::widget([
+                                            'htmlTag' => 'span',
+                                            'cssClass' => 'mt-1',
+                                            'text' => '{c}'
+                                        ]);
+                                    ?>
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <button type="button" class="btn btn-link p-0" data-dismiss="modal" aria-label="<?= Yii::t('front', 'Закрыть') ?>">
+                                    <img src="/images/close.svg">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div id="mobile-menu" class="nav flex-column my-auto w-100">
+                            <?php renderMenu(Category::buildTreeArray(Yii::$app->params['menu'])); ?>
                         </div>
                     </div>
                 </div>

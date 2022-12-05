@@ -5,7 +5,7 @@
     $name = json_decode($model->name)->{Yii::$app->language};
     $text = json_decode($model->text)->{Yii::$app->language};
     
-    $this->title = Yii::$app->params['title'] ?: $name;
+    $this->title = Yii::$app->params['title'] ?: strip_tags($name);
     
     $h1 = Yii::$app->params['h1'] ?: $name;
 ?>

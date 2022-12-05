@@ -211,6 +211,7 @@ class DefaultController extends Controller
             'id' => $category->id,
             'name' => $category->name,
             'path' => '/catalog/' . join('/', array_reverse(Category::getAllParents($categories, $category->id, 'slug', true)))
+            // 'path' => '/catalog/' . $category->slug
         ]);
     }
 }

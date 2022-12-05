@@ -34,33 +34,145 @@ class CatalogController extends Controller
         ]);
     }
     
-    public function actionCategory($slug)
+    public function actionCategory($path = null)
     {
-        $category = Category::find()
-            ->where('slug = :slug', [
-                ':slug' => $slug
-            ])
-            ->one();
+        $new = $popular = $sale = $promo = $category_id = $category = null;
+        $products = $productsIDs = $productsSizes = $productsPrices = [];
 
-        $store = Stores::findOne([
-            'lang' => Yii::$app->language,
-            'type' => Yii::$app->params['store_type']
-        ]);
-        
-        $prices = Price::find()
-            ->where([
-                'name' => $store->store_id
+        $categories = Category::find()
+            ->select([
+                'id', 'parent_id', 'slug'
             ])
             ->asArray()
             ->all();
+            
+        if ($path) {
+            $slugs = explode('/', $path);
+            
+            switch ($slugs[array_key_last($slugs)]) {
+                case 'new':
+                    $new = 1;
+                    break;
+                case 'popular':
+                    $popular = 1;
+                    break;
+                case 'promo':
+                    $promo = 1;
+                    break;
+                case 'sale':
+                    $sale = 1;
+                    break;
+            }
+            
+            if (in_array(1, [$new, $popular, $promo, $sale])) {
+                array_pop($slugs);
+                $path = join('/', $slugs);
+            }
+            
+            $category_id = Category::getByPath($categories, $path);
+            
+            $category = Category::findOne($category_id);
 
-        $products = $category->products;
+            $categoryChilds = Category::getAllChilds($categories, $category_id, 'id', true);
+
+            $productCategories = Category::find()
+                ->where([
+                    'id' => $categoryChilds
+                ])
+                ->active()
+                ->all();
+                
+            if ($productCategories) {
+                foreach ($productCategories as $productCategory) {
+                    if ($productCategory->products) {
+                        foreach ($productCategory->products as $categoryProduct) {
+                            $productsIDs[$categoryProduct->id] = $categoryProduct->id;
+                        }
+                    }
+                }
+            }
+        } else {
+            $productsIDs = Product::find()->active()->column();
+        }
+
+        if (!empty($productsIDs)) {
+            $modifications = Product::getAllProductsPrices($productsIDs);
+            $modificationsSizes = Product::getAllProductsSizes($productsIDs);
+            $modificationsPrices = ArrayHelper::map($modifications, 'product_id', 'price');
+            $modificationsOldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
+            $productsSizes = array_unique(ArrayHelper::map($modificationsSizes, 'id', 'value'));
+            $productsPrices = array_unique($modificationsPrices);
+
+            $goods = Product::find()
+                ->where([
+                    'id' => $productsIDs,
+                ])
+                ->active()
+                ->andFilterWhere([
+                    'new' => $new,
+                    'promo' => $promo,
+                    'popular' => $popular,
+                    'sale' => $sale,
+                ])
+                ->filtered()
+                ->orderBy([
+                    'sort' => SORT_ASC
+                ])
+                ->all();
+
+            if ($goods) {
+                foreach ($goods as $key => $product) {
+                    $productSizes = array_filter($modificationsSizes, function ($modificationsSizes) use ($product) {
+                        return $modificationsSizes['product_id'] == $product->id;
+                    });
+
+                    $products[] = [
+                        'id' => $product->id,
+                        'model' => $product,
+                        'name' => json_decode($product->name)->{Yii::$app->language},
+                        'price' => (float)$modificationsPrices[$product->id],
+                        'oldPrice' => (float)$modificationsOldPrices[$product->id],
+                        'sizes' => ArrayHelper::map($productSizes, 'id', 'id'), // $productSizes ?: [],
+                    ];
+                }
+            }
+            
+// echo VarDumper::dump(ArrayHelper::map($products, 'id', 'name'), 99, true); exit;
+            
+            $price = Yii::$app->request->get('price');
+            if ($price) {
+                $price = explode(';', $price);
+                $products = array_filter($products, function ($product) use ($price) {
+                    return $product['price'] >= (float) $price[0] && $product['price'] <= (float) $price[1];
+                });
+            }
+
+            $sizes = Yii::$app->request->get('sizes');
+            if ($sizes) {
+                $products = array_filter($products, function ($product) use ($sizes) {
+                    return !empty(array_intersect($product['sizes'], $sizes));
+                });
+            }
+            
+            $sort = Yii::$app->request->get('sort');
+            if ($sort) {
+                $isDesc = mb_substr($sort, 0, 1) == '-';
+                $sortField = $isDesc ? mb_substr($sort, 1) : $sort;
+                $sortDir = $isDesc ? SORT_DESC : SORT_ASC;
+                ArrayHelper::multisort($products, [$sortField], [$sortDir]);
+            }
+        }
+        
+        $this->view->params['model'] = $category;
+        $this->view->params['title'] = json_decode($category->seo->title)->{Yii::$app->language} ?: json_decode($category->name)->{Yii::$app->language};
+        $this->view->params['description'] = json_decode($category->seo->description)->{Yii::$app->language} ?: json_decode($category->text)->{Yii::$app->language};
+        $this->view->params['keywords'] = json_decode($category->seo->keywords)->{Yii::$app->language} ?: null;
 
         return $this->render('category', [
-            'category' => $category,
             'products' => $products,
-            'store' => $store,
-            'prices' => ArrayHelper::index($prices, 'item_id'),
+            'productsSizes' => $productsSizes,
+            'productsPrices' => $productsPrices,
+            'category' => $category,
         ]);
     }
 

@@ -308,30 +308,6 @@ picture img {
 
 
 
-/* dropdown menu */
-.dropdown-menu {
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    display: block;
-    overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: none !important;
-    top: 100% !important;
-}
-.dropdown-menu.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-.dropdown.hover:hover > .dropdown-menu {
-    opacity: 1;
-    z-index: 10000;
-    pointer-events: auto;
-}
-
-
-
 /* OWL */
 .owl-nav {
 	position: absolute;
@@ -468,11 +444,6 @@ form[disabled] {
     pointer-events: none;
 }
 
-.modal .close img {
-    width: 1em;
-    height: 1em;
-}
-
 #nav {
     z-index: 1040;
 }
@@ -486,18 +457,44 @@ form[disabled] {
     }
 }
 
-#menu {
-    z-index: 1039 !important;
-}
-
-.main-menu-item.caret:before {
+.main-menu-item.dropdown-toggle:before {
     content: '';
     display: inline-block;
     width: 1em;
     height: 1em;
     margin-right: 0.3em;
     background: url('../images/menu_caret.svg') center center / contain no-repeat;
-    transform: translateY(0.2em);
+    transform: translateY(0.1em);
+}
+.main-menu-item.dropdown-toggle:after {
+    display: none !important;
+}
+#mainmenu .dropdown-menu .dropdown-divider:last-child {
+    display: none !important;
+}
+#mainmenu .dropdown-menu > ul {
+    margin-bottom: 0 !important;
+}
+.dropdown-menu {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: none !important;
+    top: 100% !important;
+    width: max-content;
+}
+.dropdown-menu.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.dropdown.hover:hover > .dropdown-menu {
+    opacity: 1;
+    z-index: 10000;
+    pointer-events: auto;
 }
 
 .headline {
@@ -520,6 +517,21 @@ form[disabled] {
 .dvizh-change-options input[type="radio"] {
     display: none;
 }
+
+.modal.side .modal-dialog,
+.modal.side .modal-content {
+    max-height: 100vh !important;
+}
+.modal.side.fade:not(.show) .modal-dialog.left-0 {
+    transform: translate(-100%, 0) !important;
+}
+.modal.side.fade:not(.show) .modal-dialog.right-0 {
+    transform: translate(100%, 0) !important;
+}
+
+#mobile-menu > ul {
+    padding-left: 0 !important;
+} 
 
 /* WISHLIST */
 
