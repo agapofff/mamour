@@ -280,7 +280,7 @@
                                     $menuChilds = Category::getAllChilds(Yii::$app->params['menu'], $menuItem['id']);
                                     if (!$menuItem['parent_id']) {
                             ?>
-                                        <div class="col-auto dropdown hover">
+                                        <div class="col-auto dropdown hover px-0_5">
                                             <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
                                                 <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
                                             </a>
