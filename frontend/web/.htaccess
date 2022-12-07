@@ -1,3 +1,8 @@
+AuthType Basic
+AuthName "Protected Area"
+AuthUserFile /var/www/www-root/data/www/mamour-enfants.com/frontend/web/.htpasswd
+Require valid-user
+
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-f
