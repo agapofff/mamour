@@ -13,18 +13,6 @@
     use dvizh\cart\widgets\ElementsList;
     use dvizh\shop\models\Category;
     
-    function renderMenu($items) {
-        echo '<ul class="list-unstyled pl-2">';
-        foreach ($items as $item) {
-            echo '<li><a href="' . Url::to([$item['url']]) . '" class="dropdown-item' . ($item['current'] ? ' active' : '') . '">' . json_decode($item['name'])->{Yii::$app->language} . '</a>';
-            if (!empty($item['childs'])) {
-                renderMenu($item['childs']);
-            }
-            echo '</li>';
-        }
-        echo '</ul>';
-    }
-
     AppAsset::register($this);
     
     $this->registerLinkTag([
@@ -297,7 +285,7 @@
                                                             <a href="<?= Url::to([$menuItemChild['url']]) ?>" class="dropdown-item">
                                                                 <?= json_decode($menuItemChild['name'])->{Yii::$app->language} ?>
                                                             </a>
-                                                            <?php renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id'])) ?>
+                                                            <?php Category::renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id']), 'list-unstyled pl-2', '', 'dropdown-item') ?>
                                                         </li>
                                                         <div class="dropdown-divider"></div>
                                             <?php
@@ -519,7 +507,7 @@
                     </div>
                     <div class="modal-body d-flex align-items-center">
                         <div id="mobile-menu" class="nav flex-column my-auto w-100">
-                            <?php renderMenu(Category::buildTreeArray(Yii::$app->params['menu'])); ?>
+                            <?php Category::renderMenu(Category::buildTreeArray(Yii::$app->params['menu']), 'list-unstyled pl-2', '', 'dropdown-item'); ?>
                         </div>
                     </div>
                 </div>
