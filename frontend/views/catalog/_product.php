@@ -9,7 +9,7 @@
             <a href="<?= Url::to(['/product/' . $product->slug]) ?>">
                 <?php
                     $image = $product->getImage();
-                    $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_x500.' . $image->extension;
+                    $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_x500.' . $image->extension;
                 ?>
                 <img src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('x500') ?>" class="img-fluid" alt="<?= $image->alt ? $image->alt : $productName ?>" loading="lazy">
             </a>
