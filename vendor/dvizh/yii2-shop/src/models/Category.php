@@ -124,22 +124,22 @@ class Category extends \yii\db\ActiveRecord
     {
         foreach ($categories as $category) {
             if ($category['id'] == $id) {
-                if ($self || (!$self && $i)) {
-                    $parents[] = !$type ? $category : $category[$type];
+                if ($self || $i) {
+                    $parents[] = $type ? $category[$type] : $category;
                 }
-                $parents = self::getAllParents($categories, $category['parent_id'], $type, $self, $parents, $i++);
+                $parents = self::getAllParents($categories, $category['parent_id'], $type, $self, $parents, $i+1);
                 break;
             }
         }
         return $parents;
     }
     
-    public static function renderMenu($items, $ulClass = null, $liClass = null, $aClass = null) {
+    public static function renderMenu($items, $ulClass = null, $liClass = null, $aClass = null, $activeClass = null) {
         echo '<ul' . ($ulClass ? ' class="' . $ulClass . '"' : '') . '>';
         foreach ($items as $item) {
-            echo '<li' . ($liClass ? ' class="' . $liClass . '"' : '') . '><a href="' . Url::to([$item['url']]) . '" class="' . ($item['current'] ? 'active' : '') . ($aClass ? ' ' . $aClass : '') . '">' . json_decode($item['name'])->{Yii::$app->language} . '</a>';
+            echo '<li' . ($liClass ? ' class="' . $liClass . '"' : '') . '><a href="' . Url::to([$item['url']]) . '" class="' . ($item['current'] ? 'active' . ($activeClass ? ' ' . $activeClass : '') : '') . ($aClass ? ' ' . $aClass : '') . '">' . json_decode($item['name'])->{Yii::$app->language} . '</a>';
             if (!empty($item['childs'])) {
-                self::renderMenu($item['childs']);
+                self::renderMenu($item['childs'], $ulClass, $liClass, $aClass, $activeClass);
             }
             echo '</li>';
         }

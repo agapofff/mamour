@@ -82,7 +82,9 @@ button,
 .custom-control-label {
     cursor: pointer;
 }
-
+.text-decoration-underline {
+    text-decoration: underline;
+}
 .text-underline {
     display: inline-block;
     position: relative;
