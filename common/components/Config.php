@@ -73,7 +73,18 @@ class Config extends Component
                 $value = filter_var($value, FILTER_VALIDATE_BOOLEAN); 
                 break;
             case 3: 
-                $value = explode(PHP_EOL, $value); 
+                $arr = explode(PHP_EOL, $value); 
+                if (!empty($arr)) {
+                    $value = [];
+                    foreach ($arr as $key => $val) {
+                        $v = explode(' = ', $val);
+                        if (count($v) == 2) {
+                            $value[$v[0]] = $v[1];
+                        } else {
+                            $value[] = $val;
+                        }
+                    }
+                }
                 break;
         }
         return $value;
