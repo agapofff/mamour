@@ -535,6 +535,10 @@ form[disabled] {
     padding-left: 0 !important;
 } 
 
+#category-menu  ul li ul li ul {
+    display: none !important;
+}
+
 /* WISHLIST */
 
 .btn-wishlist div:last-child,

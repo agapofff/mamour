@@ -13,7 +13,7 @@ if (!$this->title) {
 
 <div class="container-xxl mt-3">    
     <div class="row justify-content-center justify-content-lg-start">
-        <div class="col-sm-3 col-md-3 col-lg-2 col-xl-2 d-none d-md-block">
+        <div id="category-menu" class="col-sm-3 col-md-3 col-lg-2 col-xl-3 d-none d-md-block">
         <?php 
             $menu = ArrayHelper::index(Yii::$app->params['menu'], 'id');
             $rootID = 0;
@@ -38,7 +38,7 @@ if (!$this->title) {
 
             Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase mb-0_5', 'text-decoration-underline') ?>
         </div>
-        <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6 offset-xl-1">
+        <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6">
             <div class="row justify-content-center">
                 <div class="col-xxl-10">
                     <h1 class="gotham font-weight-bold text-uppercase headline mb-3 mb-md-5">
