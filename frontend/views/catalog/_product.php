@@ -5,7 +5,7 @@
 ?>
 
     <div class="card bg-transparent border-0 product">
-        <div class="card-body px-sm-1 px-md-2 px-lg-3 px-xl-4 px-xxl-5">
+        <div class="card-body">
             <a href="<?= Url::to(['/product/' . $product->slug]) ?>">
                 <?php
                     $image = $product->getImage();

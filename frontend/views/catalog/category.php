@@ -46,6 +46,30 @@ if (!$this->title) {
                     </h1>
                 </div>
             </div>
+    <?php
+        if ($products) {
+    ?>
+            <div class="row justify-content-center">
+        <?php
+            foreach ($products as $product) {
+        ?>
+                <div class="col-sm-6 col-md-12 col-lg-6 col-xl-4">
+                    <?= $this->render('@frontend/views/catalog/_product', [
+                            'product' => $product['model'],
+                            'productName' => $product['name'],
+                            'oldPrice' => $product['oldPrice'],
+                            'price' => $product['price'],
+                            'sizes' => $product['sizes'],
+                        ])
+                    ?> 
+                </div>
+        <?php
+            }
+        ?>
+            </div>
+    <?php
+        }
+    ?>
         </div>
     </div>
 </div>

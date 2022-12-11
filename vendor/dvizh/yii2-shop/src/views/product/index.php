@@ -87,421 +87,421 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'summary' => false,
             'tableOptions' => [
-                'class' => 'table table-striped table-bordered' . ($ordering ? ' sortable ' . $ordering : ''),
-                'data-ordering' => Url::to(['ordering']),
+                'class' => 'table table-striped table-bordered' . ($sort ? ' sortable ' . $sort : ''),
+                'data-sort' => Url::to(['sort']),
             ],
             'columns' => [
-                // ['class' => '\kartik\grid\CheckboxColumn'],
-                
-                // ['class' => 'yii\grid\SerialColumn'],
-                [
-                    'attribute' => 'sort',
-                    'format' => 'html',
-                    'filter' => false,
-                    'value' => function ($model) use ($ordering) {
-                        return Html::tag('i', '', [
-                            'class' => 'fa fa-sort ' . ($ordering ? 'text-info sort-handler' : 'text-muted')
-                        ]);
-                    },
-                    'headerOptions' => [
-                        'class' => 'text-center',
-                        'style' => 'width: 50px;',
-                    ],
-                    'contentOptions' => [
-                        'class' => 'text-center'
-                    ],
-                ],
-                [
-                    'attribute' => 'active',
-                    'format' => 'html',
-                    'filter' => Html::activeDropDownList($searchModel, 'active', [
-                            0 => Yii::t('back', 'Нет'),
-                            1 => Yii::t('back', 'Да'),
-                        ], [
-                            'class' => 'form-control',
-                            'prompt' => Yii::t('back', 'Все'),
-                        ]
-                    ),
-                    'value' => function ($data) {
-                        return Html::a(Html::tag('big', '', [
-                                'class' => 'glyphicon glyphicon-' . ($data->active ? 'ok text-success' : 'remove text-danger')
-                            ]), [
-                                'active',
-                                'id' => $data->id
-                            ], [
-                                'class' => 'pjax'
+                    // ['class' => '\kartik\grid\CheckboxColumn'],
+                    
+                    // ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'attribute' => 'sort',
+                        'format' => 'html',
+                        'filter' => false,
+                        'value' => function ($model) use ($sort) {
+                            return Html::tag('i', '', [
+                                'class' => 'fa fa-sort ' . ($sort ? 'text-info sort-handler' : 'text-muted')
                             ]);
-                    },
-                    'headerOptions' => [
-                        'class' => 'text-center'
+                        },
+                        'headerOptions' => [
+                            'class' => 'text-center',
+                            'style' => 'width: 50px;',
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-center'
+                        ],
                     ],
-                    'contentOptions' => [
-                        'class' => 'text-center'
-                    ],
-                ],
-                [
-                    'attribute' => 'id',
-                    'contentOptions' => [
-                        'class' => 'text-center'
-                    ],
-                    'headerOptions' => [
-                        'class' => 'text-center',
-                        'style' => 'width: 100px'
-                    ],
-                    'filterInputOptions' => [
-                        'class' => 'form-control text-center',
-                        'placeholder' => Yii::t('back', 'Поиск...'),
-                    ],
-                ],
-                
-                [
-                    'attribute' => 'name',
-                    'label' => Yii::t('back', 'Товар'),
-                    'format' => 'raw',
-                    'contentOptions' => [
-                        'class' => 'text-center',
-                        'style' => 'vertical-align: center',
-                    ],
-                    'headerOptions' => [
-                        'class' => 'text-center'
-                    ],
-                    'filterInputOptions' => [
-                        'class' => 'form-control text-center',
-                        'placeholder' => Yii::t('back', 'Поиск...'),
-                    ],
-                    'value' => function ($model) {
-                        $name = json_decode($model->name)->{Yii::$app->language};
-						$image = $model->getImage();
-                        if ($image){
-                            return Html::a(Html::tag('div', Html::tag('div', Html::img($image->getUrl('50x50')), [
-                                'class' => 'media-left'
-                            ]) . Html::tag('div', $name, [
-                                'class' => 'media-body media-middle text-left'
-                            ]), [
-                                'class' => 'media'
-                            ]), [
-                                'update',
-                                'id' => $model->id,
-                                'ref' => Url::current([], true),
+                    [
+                        'attribute' => 'active',
+                        'format' => 'html',
+                        'filter' => Html::activeDropDownList($searchModel, 'active', [
+                                0 => Yii::t('back', 'Нет'),
+                                1 => Yii::t('back', 'Да'),
                             ], [
-                                'data-pjax' => 0,
-                            ]);
-                        } else {
-                            return Html::a($name, [
-                                'update',
-                                'id' => $model->id,
-                                'ref' => Url::current([], true),
-                            ], [
-                                'data-pjax' => 0,
-                            ]);
-                        }
-                    }
-                ],
-                
-                /*
-                [
-                    'attribute' => 'images',
-                    'format' => 'images',
-                    'filter' => false,
-                    'content' => function($model){
-                        if ($image = $model->getImage()->getUrl('50x50')){
-                            return Html::a(Html::img($image), ['update', 'id' => $model->id]);
-                        }
-                    }
-                ],
-                */
-                /*
-                [
-                    'attribute' => 'code',
-                    'format' => 'raw',
-                    'contentOptions' => [
-                        // 'style' => 'min-width: 200px'
-                    ],
-                    'headerOptions' => [
-                        'class' => 'text-center',
-                        'style' => 'width: 20%'
-                    ],
-                    'filterInputOptions' => [
-                        'class' => 'form-control text-center',
-                        'placeholder' => Yii::t('back', 'Поиск...'),
-                    ],
-                ],
-                */
-                /*
-                [
-                    'attribute' => 'amount',
-                    'contentOptions' => [
-                        'class' => 'text-center'
-                    ],
-                    'format' => 'raw',
-                    'filter' => false,
-                    'value' => function($data){
-                        return $data->amount > 0 ? Html::tag('span', '', [
-                            'class' => 'glyphicon glyphicon-ok text-success'
-                        ]) : Html::tag('span', '', [
-                            'class' => 'glyphicon glyphicon-remove text-danger'
-                        ]);
-                    },
-                ],
-                */
-                
-                /*
-                [
-                    'attribute' => 'price',
-                    'label' => Yii::t('back', 'Цена'),
-                    'headerOptions' => [
-                        'class' => 'text-center',
-                    ],
-                    'filterInputOptions' => [
-                        'class' => 'form-control text-center',
-                        'placeholder' => Yii::t('back', 'Поиск...'),
-                    ],
-                    'contentOptions' => [
-                        'class' => 'text-right',
-                    ],
-                    'content' => function ($model) {
-                        $prices = '';
-                        foreach($model->prices as $price){
-                            $prices .= Html::tag('p', Html::tag('span', $price->price, [
-                                'title' => $price->name
-                            ]));
-                            // $return .= "<p class=\"productsMenuPrice\"><span title=\"{$price->name}\">{$price->price}</span></p>";
-                        }
-                        return $prices;
-                    }
-                ],
-                */
-                
-                // [
-                    // 'attribute' => 'available',
-                    // 'format' => 'raw',
-                    // 'contentOptions' => [
-                        // 'class' => 'text-center'
-                    // ],
-                    // 'headerOptions' => [
-                        // 'class' => 'text-center',
-                        // 'style' => 'min-width: 90px'
-                    // ],
-                    // 'filter' => Html::activeDropDownList(
-                        // $searchModel,
-                        // 'available',
-                        // [
-                            // 0 => Yii::t('back', 'Нет'),
-                            // 1 => Yii::t('back', 'Да'),
-                        // ], [
-                            // 'class' => 'form-control',
-                            // 'prompt' => Yii::t('back', 'Все'),
-                        // ]
-                    // ),
-                    // 'value' => function ($data) {
-                        // return Html::a(Html::tag('big', '', [
-                            // 'class' => 'glyphicon glyphicon-' . ($data->available ? 'ok text-success' : 'remove text-danger')
-                        // ]), [
-                            // 'active',
-                            // 'id' => $data->id
-                        // ], [
-                            // 'class' => 'pjax'
-                        // ]);
-                    // },
-                // ],
-				
-                // [
-                    // 'attribute' => 'is_new',
-                    // 'format' => 'raw',
-                    // 'contentOptions' => [
-                        // 'class' => 'text-center'
-                    // ],
-                    // 'headerOptions' => [
-                        // 'class' => 'text-center',
-                        // 'style' => 'min-width: 90px'
-                    // ],
-                    // 'filter' => Html::activeDropDownList(
-                        // $searchModel,
-                        // 'is_new',
-                        // [
-                            // 0 => Yii::t('back', 'Нет'),
-                            // 1 => Yii::t('back', 'Да'),
-                        // ], [
-                            // 'class' => 'form-control',
-                            // 'prompt' => Yii::t('back', 'Все'),
-                        // ]
-                    // ),
-                    // 'value' => function ($data) {
-                        // return Html::a(Html::tag('big', '', [
-                            // 'class' => 'glyphicon glyphicon-' . ($data->is_new ? 'ok text-success' : 'remove text-danger')
-                        // ]), [
-                            // 'active',
-                            // 'id' => $data->id
-                        // ], [
-                            // 'class' => 'pjax'
-                        // ]);
-                    // },
-                // ],
-				
-                // [
-                    // 'attribute' => 'is_popular',
-                    // 'format' => 'raw',
-                    // 'contentOptions' => [
-                        // 'class' => 'text-center'
-                    // ],
-                    // 'headerOptions' => [
-                        // 'class' => 'text-center',
-                        // 'style' => 'min-width: 90px'
-                    // ],
-                    // 'filter' => Html::activeDropDownList(
-                        // $searchModel,
-                        // 'is_popular',
-                        // [
-                            // 0 => Yii::t('back', 'Нет'),
-                            // 1 => Yii::t('back', 'Да'),
-                        // ], [
-                            // 'class' => 'form-control',
-                            // 'prompt' => Yii::t('back', 'Все'),
-                        // ]
-                    // ),
-                    // 'value' => function ($data) {
-                        // return Html::a(Html::tag('big', '', [
-                            // 'class' => 'glyphicon glyphicon-' . ($data->is_popular ? 'ok text-success' : 'remove text-danger')
-                        // ]), [
-                            // 'active',
-                            // 'id' => $data->id
-                        // ], [
-                            // 'class' => 'pjax'
-                        // ]);
-                    // },
-                // ],
-				
-                // [
-                    // 'attribute' => 'is_promo',
-                    // 'format' => 'raw',
-                    // 'contentOptions' => [
-                        // 'class' => 'text-center'
-                    // ],
-                    // 'headerOptions' => [
-                        // 'class' => 'text-center',
-                        // 'style' => 'min-width: 90px'
-                    // ],
-                    // 'filter' => Html::activeDropDownList(
-                        // $searchModel,
-                        // 'is_promo',
-                        // [
-                            // 0 => Yii::t('back', 'Нет'),
-                            // 1 => Yii::t('back', 'Да'),
-                        // ], [
-                            // 'class' => 'form-control',
-                            // 'prompt' => Yii::t('back', 'Все'),
-                        // ]
-                    // ),
-                    // 'value' => function ($data) {
-                        // return Html::a(Html::tag('big', '', [
-                            // 'class' => 'glyphicon glyphicon-' . ($data->is_popular ? 'ok text-success' : 'remove text-danger')
-                        // ]), [
-                            // 'active',
-                            // 'id' => $data->id
-                        // ], [
-                            // 'class' => 'pjax'
-                        // ]);
-                    // },
-                // ],
-                
-                [
-                    'attribute' => 'category_id',
-                    'format' => 'raw',
-                    'headerOptions' => [
-                        'class' => 'text-center',
-                        'style' => 'min-width: 150px;'
-                    ],
-                    'filter' => Html::activeDropDownList(
-                        $searchModel,
-                        'category_id',
-                        Category::buildTextTree(),
-                        [
-                            'class' => 'form-control',
-                            'prompt' => Yii::t('back', 'Все'),
-                        ]
-                    ),
-                    // 'value' => 'category.name'
-                    'value' => function ($model) use ($categories) {
-                        $html = '';
-                        $cats = [];
-                        foreach ($model->categories as $key => $category) {
-                            $productCategories = array_reverse(Category::getAllParents($categories, $category->id, false, true));
-                            foreach ($productCategories as $productCategory) {
-                                $cats[$key][] = Html::a(json_decode($productCategory['name'])->{Yii::$app->language}, [
-                                    '/shop/category/update',
-                                    'id' => $productCategory['id']
+                                'class' => 'form-control',
+                                'prompt' => Yii::t('back', 'Все'),
+                            ]
+                        ),
+                        'value' => function ($data) {
+                            return Html::a(Html::tag('big', '', [
+                                    'class' => 'glyphicon glyphicon-' . ($data->active ? 'ok text-success' : 'remove text-danger')
+                                ]), [
+                                    'active',
+                                    'id' => $data->id
                                 ], [
-                                    'data-pjax' => 0
+                                    'class' => 'pjax'
+                                ]);
+                        },
+                        'headerOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-center'
+                        ],
+                    ],
+                    [
+                        'attribute' => 'id',
+                        'contentOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'headerOptions' => [
+                            'class' => 'text-center',
+                            'style' => 'width: 100px'
+                        ],
+                        'filterInputOptions' => [
+                            'class' => 'form-control text-center',
+                            'placeholder' => Yii::t('back', 'Поиск...'),
+                        ],
+                    ],
+                    
+                    [
+                        'attribute' => 'name',
+                        'label' => Yii::t('back', 'Товар'),
+                        'format' => 'raw',
+                        'contentOptions' => [
+                            'class' => 'text-center',
+                            'style' => 'vertical-align: center',
+                        ],
+                        'headerOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'filterInputOptions' => [
+                            'class' => 'form-control text-center',
+                            'placeholder' => Yii::t('back', 'Поиск...'),
+                        ],
+                        'value' => function ($model) {
+                            $name = json_decode($model->name)->{Yii::$app->language};
+                            $image = $model->getImage();
+                            if ($image){
+                                return Html::a(Html::tag('div', Html::tag('div', Html::img($image->getUrl('50x50')), [
+                                    'class' => 'media-left'
+                                ]) . Html::tag('div', $name, [
+                                    'class' => 'media-body media-middle text-left'
+                                ]), [
+                                    'class' => 'media'
+                                ]), [
+                                    'update',
+                                    'id' => $model->id,
+                                    'ref' => Url::current([], true),
+                                ], [
+                                    'data-pjax' => 0,
+                                ]);
+                            } else {
+                                return Html::a($name, [
+                                    'update',
+                                    'id' => $model->id,
+                                    'ref' => Url::current([], true),
+                                ], [
+                                    'data-pjax' => 0,
                                 ]);
                             }
                         }
-                        if (!empty($cats)) {
-                            foreach ($cats as $cat) {
-                                $html .= Html::tag('div', join(' / ', $cat));
+                    ],
+                    
+                    /*
+                    [
+                        'attribute' => 'images',
+                        'format' => 'images',
+                        'filter' => false,
+                        'content' => function($model){
+                            if ($image = $model->getImage()->getUrl('50x50')){
+                                return Html::a(Html::img($image), ['update', 'id' => $model->id]);
                             }
                         }
-                        return $html;
-                    }
-                ],
-                
-                /*
-                [
-                    'attribute' => 'producer_id',
-                    'contentOptions' => [
-                        'class' => 'text-center'
                     ],
-                    'headerOptions' => [
-                        'class' => 'text-center'
+                    */
+                    /*
+                    [
+                        'attribute' => 'code',
+                        'format' => 'raw',
+                        'contentOptions' => [
+                            // 'style' => 'min-width: 200px'
+                        ],
+                        'headerOptions' => [
+                            'class' => 'text-center',
+                            'style' => 'width: 20%'
+                        ],
+                        'filterInputOptions' => [
+                            'class' => 'form-control text-center',
+                            'placeholder' => Yii::t('back', 'Поиск...'),
+                        ],
                     ],
-                    'filter' => Html::activeDropDownList(
-                        $searchModel,
-                        'producer_id',
-                        ArrayHelper::map(Producer::find()->orderBy('name')->all(), 'id', 'name'),
-                        ['class' => 'form-control', 'prompt' => 'Производитель']
-                    ),
-                    'value' => 'producer.name'
-                ],
-                */
-                
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'template' => '{update} {copy} {delete}',
-                    'contentOptions' => [
-                        'class' => 'text-center'
-                    ],
-                    'buttons' => [
-                        'update' => function ($url, $model) {
-                            return Html::a('', $url, [
-                                'class' => 'glyphicon glyphicon-pencil btn btn-primary btn-xs',
-                                'title' => Yii::t('back', 'Изменить'),
-                                'data-pjax' => 0,
+                    */
+                    /*
+                    [
+                        'attribute' => 'amount',
+                        'contentOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'format' => 'raw',
+                        'filter' => false,
+                        'value' => function($data){
+                            return $data->amount > 0 ? Html::tag('span', '', [
+                                'class' => 'glyphicon glyphicon-ok text-success'
+                            ]) : Html::tag('span', '', [
+                                'class' => 'glyphicon glyphicon-remove text-danger'
                             ]);
                         },
-                        'copy' => function ($url, $model) {
-                            return Html::a('', [
-								'copy',
-								'id' => $model->id,
-							], [
-                                'class' => 'glyphicon glyphicon-duplicate btn btn-info btn-xs',
-                                'title' => Yii::t('back', 'Копировать'),
-                                'data-pjax' => 0,
-                            ]);
-                        },
-                        'delete' => function ($url, $model) {
-                            return Html::a('', $url, [
-                                'class' => 'glyphicon glyphicon-trash btn btn-danger btn-xs',
-                                'title' => Yii::t('back', 'Удалить'),
-                                'data' => [
-                                    'pjax' => 0,
-                                    'confirm' => Yii::t('back', 'Вы уверены, что хотите удалить этот элемент?'),
-                                    'method' => 'post'
-                                ]
-                            ]);
-                        },
-                    ]
+                    ],
+                    */
+                    
+                    /*
+                    [
+                        'attribute' => 'price',
+                        'label' => Yii::t('back', 'Цена'),
+                        'headerOptions' => [
+                            'class' => 'text-center',
+                        ],
+                        'filterInputOptions' => [
+                            'class' => 'form-control text-center',
+                            'placeholder' => Yii::t('back', 'Поиск...'),
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-right',
+                        ],
+                        'content' => function ($model) {
+                            $prices = '';
+                            foreach($model->prices as $price){
+                                $prices .= Html::tag('p', Html::tag('span', $price->price, [
+                                    'title' => $price->name
+                                ]));
+                                // $return .= "<p class=\"productsMenuPrice\"><span title=\"{$price->name}\">{$price->price}</span></p>";
+                            }
+                            return $prices;
+                        }
+                    ],
+                    */
+                    
+                    // [
+                        // 'attribute' => 'available',
+                        // 'format' => 'raw',
+                        // 'contentOptions' => [
+                            // 'class' => 'text-center'
+                        // ],
+                        // 'headerOptions' => [
+                            // 'class' => 'text-center',
+                            // 'style' => 'min-width: 90px'
+                        // ],
+                        // 'filter' => Html::activeDropDownList(
+                            // $searchModel,
+                            // 'available',
+                            // [
+                                // 0 => Yii::t('back', 'Нет'),
+                                // 1 => Yii::t('back', 'Да'),
+                            // ], [
+                                // 'class' => 'form-control',
+                                // 'prompt' => Yii::t('back', 'Все'),
+                            // ]
+                        // ),
+                        // 'value' => function ($data) {
+                            // return Html::a(Html::tag('big', '', [
+                                // 'class' => 'glyphicon glyphicon-' . ($data->available ? 'ok text-success' : 'remove text-danger')
+                            // ]), [
+                                // 'active',
+                                // 'id' => $data->id
+                            // ], [
+                                // 'class' => 'pjax'
+                            // ]);
+                        // },
+                    // ],
+                    
+                    // [
+                        // 'attribute' => 'is_new',
+                        // 'format' => 'raw',
+                        // 'contentOptions' => [
+                            // 'class' => 'text-center'
+                        // ],
+                        // 'headerOptions' => [
+                            // 'class' => 'text-center',
+                            // 'style' => 'min-width: 90px'
+                        // ],
+                        // 'filter' => Html::activeDropDownList(
+                            // $searchModel,
+                            // 'is_new',
+                            // [
+                                // 0 => Yii::t('back', 'Нет'),
+                                // 1 => Yii::t('back', 'Да'),
+                            // ], [
+                                // 'class' => 'form-control',
+                                // 'prompt' => Yii::t('back', 'Все'),
+                            // ]
+                        // ),
+                        // 'value' => function ($data) {
+                            // return Html::a(Html::tag('big', '', [
+                                // 'class' => 'glyphicon glyphicon-' . ($data->is_new ? 'ok text-success' : 'remove text-danger')
+                            // ]), [
+                                // 'active',
+                                // 'id' => $data->id
+                            // ], [
+                                // 'class' => 'pjax'
+                            // ]);
+                        // },
+                    // ],
+                    
+                    // [
+                        // 'attribute' => 'is_popular',
+                        // 'format' => 'raw',
+                        // 'contentOptions' => [
+                            // 'class' => 'text-center'
+                        // ],
+                        // 'headerOptions' => [
+                            // 'class' => 'text-center',
+                            // 'style' => 'min-width: 90px'
+                        // ],
+                        // 'filter' => Html::activeDropDownList(
+                            // $searchModel,
+                            // 'is_popular',
+                            // [
+                                // 0 => Yii::t('back', 'Нет'),
+                                // 1 => Yii::t('back', 'Да'),
+                            // ], [
+                                // 'class' => 'form-control',
+                                // 'prompt' => Yii::t('back', 'Все'),
+                            // ]
+                        // ),
+                        // 'value' => function ($data) {
+                            // return Html::a(Html::tag('big', '', [
+                                // 'class' => 'glyphicon glyphicon-' . ($data->is_popular ? 'ok text-success' : 'remove text-danger')
+                            // ]), [
+                                // 'active',
+                                // 'id' => $data->id
+                            // ], [
+                                // 'class' => 'pjax'
+                            // ]);
+                        // },
+                    // ],
+                    
+                    // [
+                        // 'attribute' => 'is_promo',
+                        // 'format' => 'raw',
+                        // 'contentOptions' => [
+                            // 'class' => 'text-center'
+                        // ],
+                        // 'headerOptions' => [
+                            // 'class' => 'text-center',
+                            // 'style' => 'min-width: 90px'
+                        // ],
+                        // 'filter' => Html::activeDropDownList(
+                            // $searchModel,
+                            // 'is_promo',
+                            // [
+                                // 0 => Yii::t('back', 'Нет'),
+                                // 1 => Yii::t('back', 'Да'),
+                            // ], [
+                                // 'class' => 'form-control',
+                                // 'prompt' => Yii::t('back', 'Все'),
+                            // ]
+                        // ),
+                        // 'value' => function ($data) {
+                            // return Html::a(Html::tag('big', '', [
+                                // 'class' => 'glyphicon glyphicon-' . ($data->is_popular ? 'ok text-success' : 'remove text-danger')
+                            // ]), [
+                                // 'active',
+                                // 'id' => $data->id
+                            // ], [
+                                // 'class' => 'pjax'
+                            // ]);
+                        // },
+                    // ],
+                    
+                    [
+                        'attribute' => 'category_id',
+                        'format' => 'raw',
+                        'headerOptions' => [
+                            'class' => 'text-center',
+                            'style' => 'min-width: 150px;'
+                        ],
+                        'filter' => Html::activeDropDownList(
+                            $searchModel,
+                            'category_id',
+                            Category::buildTextTree(),
+                            [
+                                'class' => 'form-control',
+                                'prompt' => Yii::t('back', 'Все'),
+                            ]
+                        ),
+                        // 'value' => 'category.name'
+                        'value' => function ($model) use ($categories) {
+                            $html = '';
+                            $cats = [];
+                            foreach ($model->categories as $key => $category) {
+                                $productCategories = array_reverse(Category::getAllParents($categories, $category->id, false, true));
+                                foreach ($productCategories as $productCategory) {
+                                    $cats[$key][] = Html::a(json_decode($productCategory['name'])->{Yii::$app->language}, [
+                                        '/shop/category/update',
+                                        'id' => $productCategory['id']
+                                    ], [
+                                        'data-pjax' => 0
+                                    ]);
+                                }
+                            }
+                            if (!empty($cats)) {
+                                foreach ($cats as $cat) {
+                                    $html .= Html::tag('div', join(' / ', $cat));
+                                }
+                            }
+                            return $html;
+                        }
+                    ],
+                    
+                    /*
+                    [
+                        'attribute' => 'producer_id',
+                        'contentOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'headerOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'filter' => Html::activeDropDownList(
+                            $searchModel,
+                            'producer_id',
+                            ArrayHelper::map(Producer::find()->orderBy('name')->all(), 'id', 'name'),
+                            ['class' => 'form-control', 'prompt' => 'Производитель']
+                        ),
+                        'value' => 'producer.name'
+                    ],
+                    */
+                    
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{update} {copy} {delete}',
+                        'contentOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'buttons' => [
+                            'update' => function ($url, $model) {
+                                return Html::a('', $url, [
+                                    'class' => 'glyphicon glyphicon-pencil btn btn-primary btn-xs',
+                                    'title' => Yii::t('back', 'Изменить'),
+                                    'data-pjax' => 0,
+                                ]);
+                            },
+                            'copy' => function ($url, $model) {
+                                return Html::a('', [
+                                    'copy',
+                                    'id' => $model->id,
+                                ], [
+                                    'class' => 'glyphicon glyphicon-duplicate btn btn-info btn-xs',
+                                    'title' => Yii::t('back', 'Копировать'),
+                                    'data-pjax' => 0,
+                                ]);
+                            },
+                            'delete' => function ($url, $model) {
+                                return Html::a('', $url, [
+                                    'class' => 'glyphicon glyphicon-trash btn btn-danger btn-xs',
+                                    'title' => Yii::t('back', 'Удалить'),
+                                    'data' => [
+                                        'pjax' => 0,
+                                        'confirm' => Yii::t('back', 'Вы уверены, что хотите удалить этот элемент?'),
+                                        'method' => 'post'
+                                    ]
+                                ]);
+                            },
+                        ]
+                    ],
                 ],
-            ],
-        ]);
+            ]);
 
     ?>
 

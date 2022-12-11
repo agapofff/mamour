@@ -417,7 +417,7 @@ class ProductController extends Controller
         }
     }
     
-    public function actionOrdering($elements)
+    public function actionSort($elements)
     {
         $elements = explode(',', $elements);
         
