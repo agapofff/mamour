@@ -553,7 +553,7 @@ form[disabled] {
 .category-product .btn-wishlist {
     position: absolute;
     top: -0.5em;
-    right: 0.5em;    
+    right: 1.5em;    
     z-index: 1;
 }
 .category-product .btn-wishlist img {
