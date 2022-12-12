@@ -8,7 +8,7 @@ use dvizh\shop\models\Price;
 use kartik\switchinput\SwitchInput;
 use kartik\alert\AlertBlock;
 use kartik\select2\Select2;
-use backend\models\Stores;
+use common\models\Stores;
 
 $priceTypes = PriceType::find()->all();
 $priceModel = new Price;
