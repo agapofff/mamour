@@ -31,9 +31,9 @@ class Wishlist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'size'], 'required'],
+            [['user_id', 'product_id'], 'required'],
             [['product_id'], 'integer'],
-            [['size', 'user_id'], 'string', 'max' => 255],
+            [['user_id'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,7 +46,6 @@ class Wishlist extends \yii\db\ActiveRecord
             'id' => Yii::t('front', 'ID'),
             'user_id' => Yii::t('front', 'User ID'),
             'product_id' => Yii::t('front', 'Product ID'),
-            'size' => Yii::t('front', 'Size'),
         ];
     }
 

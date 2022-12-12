@@ -34,7 +34,11 @@ class WishlistController extends \yii\web\Controller
     public function actionIndex($product_id = null)
     {
         if ($product_id && $size) {
-            $this->actionRemove($product_id);
+            $model = Wishlist::findOne([
+                'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
+                'product_id' => $product_id,
+            ]);
+            $model->delete();
         }
         
         $wishlist = Wishlist::find()
@@ -130,8 +134,12 @@ class WishlistController extends \yii\web\Controller
             $model = new Wishlist();
             $model->user_id = Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id;
             $model->product_id = $product_id;
-            $model->save();
+            if (!$model->save()){
+                return print_r($model->getErrors());
+            }
         }
+        
+        return $this->actionCheck($product_id);
     }
     
     public function actionRemove($product_id)
@@ -141,6 +149,7 @@ class WishlistController extends \yii\web\Controller
             'product_id' => $product_id,
         ]);
         $model->delete();
+        return $this->actionCheck($product_id);
     }
 
 }

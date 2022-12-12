@@ -104,15 +104,10 @@ class CatalogController extends Controller
             $productsSizes = array_unique(ArrayHelper::map($modificationsSizes, 'id', 'value'));
             $productsPrices = array_unique($modificationsPrices);
             
-            $wishlist = Wishlist::find()
-                ->select(['product_id'])
-                ->where([
-                    'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
-                    // 'product_id' => $productsIDs,
-                ])
-                ->asArray()
-                ->all();
-// print_r($wishlist);
+            $wishlist = Wishlist::findAll([
+                'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
+            ]);
+            $wishlist = ArrayHelper::getColumn($wishlist, 'product_id');
 
             $goods = Product::find()
                 ->where([

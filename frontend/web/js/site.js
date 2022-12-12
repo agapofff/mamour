@@ -367,19 +367,17 @@ jQuery(document).ready(function ($) {
     
 
     // wishlist
-    wishlistCheck = function () {
-        var $btn = $('.btn-wishlist');
-        $.get('/' + $btn.data('lang') + '/wishlist/check', {
-            'product_id': $btn.data('product'),
-        }, function(data) {
-            $btn.replaceWith(data);
-        });
-    }
     $(document).on('click', '.btn-wishlist', function () {
-        $.get('/' + $(this).data('lang') + '/wishlist/' + $(this).data('action'), {
-            'product_id': $(this).data('product')
-        }, function () {
-            wishlistCheck();
+        var $btn = $(this),
+            lang = $(this).data('lang'),
+            product_id = $(this).data('product'),
+            action = $(this).data('action');
+        loading();
+        $.get('/' + lang + '/wishlist/' + action, {
+            'product_id': product_id
+        }, function (data) {
+            $btn.replaceWith(data);
+            loading(false);
         });
     });
     
