@@ -19,7 +19,8 @@ if (!$this->title) {
             $rootID = 0;
             foreach ($menu as $item) {
                 if ($item['current']) {
-                    $rootID = $item['parent_id'];
+                    $rootID = $item['parent_id'] == '0' ? $item['id'] : $item['parent_id'];
+
                     // foreach ($menu as $parentItem) {
                         // if ($parentItem['id'] == $item['parent_id']) {
                             // $rootID = $parentItem['parent_id'];
