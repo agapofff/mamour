@@ -31,10 +31,10 @@ class WishlistController extends \yii\web\Controller
         // ];
     // }
     
-    public function actionIndex($product_id = null, $size = null)
+    public function actionIndex($product_id = null)
     {
         if ($product_id && $size) {
-            $this->actionRemove($product_id, $size);
+            $this->actionRemove($product_id);
         }
         
         $wishlist = Wishlist::find()
@@ -87,7 +87,7 @@ class WishlistController extends \yii\web\Controller
                 }))[0];
 
                 $image = $product->getImage();
-                $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_200x200.jpg';
+                $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_200x200.jpg';
                 $productImage = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('200x200');
                 
                 $items[] = [
@@ -108,42 +108,37 @@ class WishlistController extends \yii\web\Controller
         ]);
     }
     
-    public function actionCheck($product_id, $size = null)
+    public function actionCheck($product_id)
     {
         $model = Wishlist::findOne([
             'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
             'product_id' => $product_id,
-            'size' => $size,
         ]);
         
         return $this->renderPartial('product', [
-            'check' => $model ? true : false,
+            'action' => $model ? 'remove' : 'add',
             'product_id' => $product_id,
-            'size' => $size,
         ]);
     }
     
-    public function actionAdd($product_id, $size = null)
+    public function actionAdd($product_id)
     {
         if (!$model = Wishlist::findOne([
             'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
             'product_id' => $product_id,
-            'size' => $size,
         ])) {
             $model = new Wishlist();
             $model->user_id = Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id;
             $model->product_id = $product_id;
-            $model->size = $size;
             $model->save();
         }
     }
     
-    public function actionRemove($product_id, $size = null)
+    public function actionRemove($product_id)
     {
         $model = Wishlist::findOne([
             'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
             'product_id' => $product_id,
-            'size' => $size,
         ]);
         $model->delete();
     }

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Stores;
 use common\models\Languages;
+use common\models\Wishlist;
 use dvizh\shop\models\Product;
 // use common\models\Category;
 use dvizh\shop\models\Category;
@@ -102,6 +103,16 @@ class CatalogController extends Controller
             $modificationsOldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
             $productsSizes = array_unique(ArrayHelper::map($modificationsSizes, 'id', 'value'));
             $productsPrices = array_unique($modificationsPrices);
+            
+            $wishlist = Wishlist::find()
+                ->select(['product_id'])
+                ->where([
+                    'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
+                    // 'product_id' => $productsIDs,
+                ])
+                ->asArray()
+                ->all();
+// print_r($wishlist);
 
             $goods = Product::find()
                 ->where([
@@ -133,6 +144,7 @@ class CatalogController extends Controller
                         'price' => (float)$modificationsPrices[$product->id],
                         'oldPrice' => (float)$modificationsOldPrices[$product->id],
                         'sizes' => ArrayHelper::map($productSizes, 'id', 'id'), // $productSizes ?: [],
+                        'wishlist' => in_array($product->id, $wishlist) ? 'remove' : 'add',
                     ];
                 }
             }

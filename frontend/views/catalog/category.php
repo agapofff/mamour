@@ -59,6 +59,11 @@ if (!$this->title) {
             foreach ($products as $product) {
         ?>
                 <div class="col-sm-6 col-xl-4">
+                        <?= $this->render('@frontend/views/wishlist/product', [
+                                'product_id' => $product['model']->id,
+                                'action' => $product['wishlist']
+                            ])
+                        ?>
                     <?= $this->render('@frontend/views/catalog/_product', [
                             'product' => $product['model'],
                             'productName' => $product['name'],
