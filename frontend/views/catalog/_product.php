@@ -13,7 +13,7 @@
             ?>
             <img data-src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('x500') ?>" class="img-fluid lazyload" alt="<?= $image->alt ? $image->alt : $productName ?>" loading="lazy">
         </a>
-        <p class="text-center montserrat font-weight-bold mt-1_5 mb-0_5">
+        <p class="text-center montserrat font-weight-bold mt-1 mb-0_5">
             <?= $productName ?>
         </p>
         <p class="price text-center montserrat font-weight-light">
