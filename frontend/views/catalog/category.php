@@ -39,13 +39,18 @@ if (!$this->title) {
             Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase mb-0_5', 'text-decoration-underline') ?>
         </div>
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6">
-            <div class="row justify-content-center">
-                <div class="col-xxl-10">
-                    <h1 class="gotham font-weight-bold text-uppercase headline mb-3 mb-md-5">
-                        <?= json_decode($category->name)->{Yii::$app->language} ?>
-                    </h1>
-                </div>
+            <h1 class="gotham font-weight-bold text-uppercase headline mb-2 mb-lg-3">
+                <?= json_decode($category->name)->{Yii::$app->language} ?>
+            </h1>
+    <?php
+        if ($categoryDescription = json_decode($category->text)->{Yii::$app->language}) {
+    ?>
+            <div class="mb-2 mb-lg-3">
+                <?= json_decode($category->text)->{Yii::$app->language} ?></p>
             </div>
+    <?php
+        }
+    ?>
     <?php
         if ($products) {
     ?>
