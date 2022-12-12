@@ -4,8 +4,8 @@
     use yii\helpers\HtmlPurifier;
 ?>
 
-<div class="card bg-transparent border-0 product">
-    <div class="card-body position-relative p-0">
+<div class="card bg-transparent border-0 product mb-1 mb-lg-1_5">
+    <div class="card-body position-relative p-0 text-center">
         <a href="<?= Url::to(['/product/' . $product->slug]) ?>">
             <?php
                 $image = $product->getImage();
