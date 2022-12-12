@@ -550,12 +550,12 @@ form[disabled] {
 .btn-wishlist[data-action="remove"] div:last-child {
 	display: inline;
 }
-.category-product1 .btn-wishlist {
+.category-product .btn-wishlist {
     position: absolute;
     top: -0.5em;
     right: 0.5em;    
 }
-.category-product1 .btn-wishlist img {
+.category-product .btn-wishlist img {
     width: 0.5em;
 }
 
