@@ -198,4 +198,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<?php // echo \yii\helpers\VarDumper::dump(Yii::$app->params, 99, true); ?>
+<?php echo \yii\helpers\VarDumper::dump(Yii::$app->params, 99, true); ?>

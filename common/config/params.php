@@ -18,7 +18,7 @@ return [
     ],
     'default_store_type' => 0,
     'store_type' => 0,
-    'default_store' => 1,
+    'default_store_id' => 1,
     'store_id' => 1,
     'currency' => 'RUB',
     
