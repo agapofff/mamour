@@ -13,18 +13,18 @@ $images = $model->getImages();
 
 if ($images) {
     $image = $images[0];
-    $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_x600.jpg';
+    $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_400x600.jpg';
     $this->registerMetaTag([
         'property' => 'og:image',
-        'content' => Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('x600'), true)
+        'content' => Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('400x600'), true)
     ]);
 }
 
 $product_name = json_decode($model->name)->{Yii::$app->language};
-$h1 = Yii::$app->params['h1'] ?: $product_name;
-$this->title = Yii::$app->params['title'] ?: $product_name . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
 
-$sizes = json_decode($model->sizes)->{Yii::$app->language};
+if (!$this->title) {
+    $this->title = $product_name . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
+}
 ?>
 
 <div class="product-content container-fluid mb-3 md-md-5 px-lg-2 px-xl-3 px-xxl-5" itemscope itemtype="http://schema.org/Product">

@@ -318,7 +318,7 @@ class Product extends \yii\db\ActiveRecord implements \dvizh\relations\interface
         $modifications = [];
         foreach ($this->modifications as $key => $modification)
         {
-            if ($modification->lang == Yii::$app->language && $modification->store_type == Yii::$app->params['store_type'])
+            if ($modification->store_id == Yii::$app->params['store_id'])
             {
                 $modifications[$key] = $modification;
             }
@@ -431,7 +431,7 @@ class Product extends \yii\db\ActiveRecord implements \dvizh\relations\interface
             ])
             ->where([
                 'm.available' => 1,
-                'm.store_id' => Yii::$app->params['store'],
+                'm.store_id' => Yii::$app->params['store_id'],
             ])
             ->andWhere('m.id = p.item_id')
             ->andFilterWhere([
@@ -461,7 +461,7 @@ class Product extends \yii\db\ActiveRecord implements \dvizh\relations\interface
             ])
             ->where([
                 'm.available' => 1,
-                'm.store_id' => Yii::$app->params['store_type'],
+                'm.store_id' => Yii::$app->params['store_id'],
                 'f.filter_id' => 2,
             ])
             ->andWhere('m.id = o.modification_id')
