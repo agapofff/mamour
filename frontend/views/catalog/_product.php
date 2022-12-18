@@ -2,6 +2,8 @@
     use yii\helpers\Html;
     use yii\helpers\Url;
     use yii\helpers\HtmlPurifier;
+    
+    $size = Yii::$app->params['productImageSizes']['M'];
 ?>
 
 <div class="card bg-transparent border-0 product mb-1 mb-lg-1_5">
@@ -9,9 +11,9 @@
         <a href="<?= Url::to(['/product/' . $product->slug]) ?>">
             <?php
                 $image = $product->getImage();
-                $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_x500.' . $image->extension;
+                $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . $size . '.' . $image->extension;
             ?>
-            <img data-src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('x500') ?>" class="img-fluid lazyload" alt="<?= $image->alt ? $image->alt : $productName ?>" loading="lazy">
+            <img data-src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl($size) ?>" class="img-fluid lazyload" alt="<?= $image->alt ? $image->alt : $productName ?>" loading="lazy">
         </a>
         <p class="text-center montserrat font-weight-bold mt-1 mb-0_5">
             <?= $productName ?>
