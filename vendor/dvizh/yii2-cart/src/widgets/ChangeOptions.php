@@ -132,25 +132,24 @@ class ChangeOptions extends \yii\base\Widget
                     $disabled = [];
                     if ($this->disabledItems) {
                         foreach ($this->disabledItems as $disabledItem) {
-                            foreach ($optionsArray as $optionKey => $optionVal) {
-                                if ($optionVal == $disabledItem) {
-                                    $disabled[] = $optionKey;
-                                }
+                            foreach ($disabledItem as $k => $v) {
+                                $disabled[] = $v;
                             }
                         }
                     }
+
                     $list = Html::radioList('cart_options' . $id . '-' . $i,
                         0,
                         $optionsArray,
                         [
-                            'item' => function ($index, $label, $name, $checked, $value) use ($optionId, $cssClass, $id, $optionData) {
+                            'item' => function ($index, $label, $name, $checked, $value) use ($optionId, $cssClass, $id, $optionData, $disabled) {
                                 return Html::radio($name, $checked, [
                                     'value' => $value,
                                     'label' => Html::encode($label),
-                                    'disabled' => in_array($value, $this->disabledItems[0]),
+                                    'disabled' => in_array($value, $disabled),
                                     'labelOptions' => [
-                                        'class' => 'btn btn-lg rounded-0 btn-outline-warning courier text-uppercase mr-0_5 mb-0_5 p-0 d-flex justify-content-center align-items-center float-left ' . (in_array($value, $this->disabledItems[0]) ? 'disabled text-muted border-gray-500 pointer-events-none' : ''),
-                                        'disabled' => in_array($value, $this->disabledItems[0]),
+                                        'class' => 'btn btn-lg rounded-0 btn-outline-warning courier text-uppercase mr-0_5 mb-0_5 p-0 d-flex justify-content-center align-items-center float-left ' . (in_array($value, $disabled) ? 'disabled text-muted border-gray-500 pointer-events-none' : ''),
+                                        'disabled' => in_array($value, $disabled),
                                         'style' => '
                                             width: 40px;
                                             height: 40px;
