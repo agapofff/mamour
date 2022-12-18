@@ -79,9 +79,9 @@ class Config extends Component
                     foreach ($arr as $key => $val) {
                         $v = explode(' = ', $val);
                         if (count($v) == 2) {
-                            $value[$v[0]] = $v[1];
+                            $value[trim($v[0])] = trim($v[1]);
                         } else {
-                            $value[] = $val;
+                            $value[] = trim($val);
                         }
                     }
                 }
