@@ -9,173 +9,173 @@ use dvizh\cart\widgets\ChangeOptions;
 use yii\web\View;
 use yii\widgets\Pjax;
 
-$images = $model->getImages();
+$images = $product->getImages();
 
-if ($images) {
-    $image = $images[0];
-    $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_400x600.jpg';
-    $this->registerMetaTag([
-        'property' => 'og:image',
-        'content' => Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('400x600'), true)
-    ]);
-}
+// if ($images) {
+    // $image = $images[0];
+    // $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_400x600.' . $image->extension;
+    // $mainImage = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('400x600'), true);
+    // $this->registerMetaTag([
+        // 'property' => 'og:image',
+        // 'content' => $mainImage
+    // ]);
+// }
 
-$product_name = json_decode($model->name)->{Yii::$app->language};
+$productName = json_decode($product->name)->{Yii::$app->language};
+$productDescription = json_decode($product->short_text)->{Yii::$app->language};
+$productText = json_decode($product->text)->{Yii::$app->language};
 
 if (!$this->title) {
-    $this->title = $product_name . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
+    $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
 }
 ?>
 
-<div class="product-content container-fluid mb-3 md-md-5 px-lg-2 px-xl-3 px-xxl-5" itemscope itemtype="http://schema.org/Product">
-    
-    <div class="row justify-content-center">
-
-        <div class="col-12 col-md-6">
-        
-            <div class="row d-none d-md-flex">
+<div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
+    <div class="row">
+        <div class="col-md-5 mt-1">
+            <div class="row overflow-hidden">
+                <div class="col-9">
+                    <div id="product-gallery" class="owl-carousel owl-theme owl-fade">
+                <?php
+                    foreach ($images as $key => $image) {
+                        $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['M'] . '.' . $image->extension;
+                        $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['M']), true);
+                ?>
+                        <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload" alt="<?= $image->alt ?: $productName ?>">
+                <?php
+                    }
+                ?>
+                    </div>
+                </div>
+                <div class="col-3 pl-0">
+                    <div class="position-relative h-100">
+                <?php
+                    /*
+                    foreach ($images as $key => $image) {
+                        if ($key < 3) {
+                            $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_200x295.' . $image->extension;
+                            $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('200x295'), true);
+                ?>
+                        <div class="col-12 overflow-hidden align-self-<?= $key ? ($key == 1 ? 'center' : 'end') : 'start' ?>">
+                            <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
+                        </div>
+                <?php
+                        }
+                    }
+                    */
+                ?>
+                        <div class="product-thumbnails position-absolute top-0 left-0 bottom-0 roght-0">
+                    <?php
+                        foreach ($images as $key => $image) {
+                            $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['S'] . '.' . $image->extension;
+                            $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['S']), true);
+                    ?>
+                            <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)" style="margin-bottom: 15px">
+                    <?php
+                        }
+                    ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="col-12 col-md-7">
+            <div class="row">
+                <div class="col-1">
+                    <?= $this->render('@frontend/views/wishlist/product', [
+                            'product_id' => $product->id,
+                            'action' => $wishlist,
+                        ])
+                    ?>
+                </div>
+                <div class="col-11">
+                    <h1 class="montserrat font-weight-bold text-uppercase mt-0_5" itemprop="name">
+                        <?= $productName ?>
+                    </h1>
+            <?php
+                if ($product->sku) {
+            ?>
+                    <p class="font-weight-light small text-muted">
+                        <?= $product->sku ?>
+                    </p>
+            <?php
+                }
+            ?>
             
             <?php
-                foreach ($images as $key => $image) {
-                    $cachedImageMin = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_x1500.jpg';
+                if ($productDescription) {
             ?>
-                    <div class="col-12 mt-1 overflow-hidden">
-                        <img <?php if ($key == 0) {?> itemprop="image" <?php } ?> src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImageMin) ? $cachedImageMin : $image->getUrl('x1500') ?>" class="d-block w-100" alt="<?= $image->alt ? $image->alt : $product_name ?>" loading="lazy">
+                    <div class="mb-1">
+                        <small>
+                            <?= $productDescription ?>
+                        </small>
                     </div>
             <?php
                 }
             ?>
             
-            </div>
-            
-            <div class="row d-md-none">
-            
-                <div class="col-12 mb-2">
-                
-                    <div class="owl-carousel owl-theme owl-dots">
-                    
-                <?php
-                    foreach ($images as $key => $image) {
-                        $cachedImageMin = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_x1000.jpg';
-                        $cachedImageMax = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_x1500.jpg';
-                ?>
-                        <a href="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImageMax) ? $cachedImageMax : $image->getUrl('x1500') ?>" class="fancybox" data-width="100" data-height="100">
-                            <img src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImageMin) ? $cachedImageMin : $image->getUrl('x1000') ?>" class="img-fluid rounded" alt="<?= $image->alt ? $image->alt : $product_name ?>" loading="lazy">
-                        </a>
-                <?php
-                    }
-                ?>
-                    
-                    </div>
-                
-                </div>
-            
-            </div>
-            
-        </div>
-        
-        <div class="col-12 col-md-6">
-        
-            <div class="sticky-top" style="top:100px">
-            
-                <h1 class="ttfirsneue font-weight-light mb-2 mb-md-3" itemprop="name">
-                    <?= $h1 ?>
-                </h1>
-                
-        <?php
-            if ($price && $model->available) {
-        ?>
-                <div class="product-price mb-2 mb-md-3" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                    <meta itemprop="price" content="<?= $price ?>">
-                    <meta itemprop="priceCurrency" content="<?= Yii::$app->params['currency'] ?>">
-                    <?= ShowPrice::widget([
-                            'htmlTag' => 'p',
-                            'cssClass' => 'lead font-weight-normal ttfirsneue',
-                            'model' => $model,
-                            'price' => $price,
-                            // 'priceOld' => $priceOld,
-                        ])
-                    ?>
-                </div>
-                
-                <div class="row">
-                    <div class="price-options col-sm-6 col-md-12 col-lg-6" data-id="<?= $model->id ?>">
-                        <?= ChangeOptions::widget([
-                                'model' => $model,
-                                'type' => 'radio',
-                                // 'cssClass' => 'd-none'
-                            ]);
-                        ?>
-                        
-                    </div>
-                    <div class="product-buy col-sm-6 col-md-12 col-lg-6 mb-1 mb-md-0_5" data-id="<?= $model->id ?>">
-                        <?= BuyButton::widget([
-                                'model' => $model,
-                                'htmlTag' => 'button',
-                                'cssClass' => 'btn btn-lg btn-outline-secondary btn-block py-1 text-uppercase ttfirsneue text-nowrap',
-                            ]);
-                        ?>
-                        <span class="select-size-note" style="display:none">
-                            <?= Yii::t('front', 'Выберите размер') ?>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="row mb-2 align-items-center">
-                    <div class="col-sm-6 col-md-12 col-lg-6 mb-0_5">
-                        <?php
-                            if ($sizes) {
-                        ?>
-                                <a href="#sizes" data-toggle="modal" title="<?= Yii::t('front', 'Размерная сетка') ?>" class="btn btn-link bg-transparent border-0 px-0 text-uppercase">
-                                    <?= Yii::t('front', 'Размерная сетка') ?>
-                                </a>
-                        <?php
-                            }
-                        ?>
-                    </div>
-                    <div id="product-wishlist-container" class="col-sm-6 col-md-12 col-lg-6 mb-0_5">
-                        <?= $this->render('@frontend/views/wishlist/product', [
-                                'product_id' => $model->id
+            <?php
+                if ($price && $product->available) {
+            ?>
+                    <div class="product-price mb-2" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="price" content="<?= $price ?>">
+                        <meta itemprop="priceCurrency" content="<?= Yii::$app->params['currency'] ?>">
+                        <?= ShowPrice::widget([
+                                'htmlTag' => 'p',
+                                'cssClass' => 'h1 font-weight-light montserrat',
+                                'cssClassOld' => 'h4 font-weight-light montserrat text-muted',
+                                'model' => $product,
+                                'price' => $price,
+                                'priceOld' => $priceOld,
                             ])
                         ?>
                     </div>
-                </div>
-        <?php
-            }
-        ?>
-        
-        <?php
-            if ($model->code) {
-        ?>
-                <div class="my-3 my-md-5 d-none">
-                    <p class="lead"><?= $model->code ?></p>
-                </div>
-        <?php
-            }
-        ?>
-                <div class="row mb-1">
-                    <div class="product-features col-sm-6 col-md-12 col-lg-6 mb-1 mb-md-2">
-                        <p class="text-uppercase font-weight-normal mb-1_5"><?= Yii::t('front', 'Характеристики') ?></p>
-                        <div id="product-characteristics" style="opacity: 0.6">
-                            <?= json_decode($model->short_text)->{Yii::$app->language} ?>
-                        </div>
+                    
+                    <div class="price-options" data-id="<?= $product->id ?>">
+                        <?= ChangeOptions::widget([
+                                'model' => $product,
+                                'type' => 'radio',
+                                'disabledItems' => $disabledItems,
+                                // 'cssClass' => 'd-none'
+                            ]);
+                        ?>
                     </div>
-                    <div class="product-description col-sm-6 col-md-12 col-lg-6 mb-1 mb-md-2">
-                        <p class="text-uppercase font-weight-normal mb-1_5"><?= Yii::t('front', 'Описание') ?></p>
-                        <div id="product-description" itemprop="description" style="opacity: 0.6">
-                            <?= json_decode($model->text)->{Yii::$app->language} ?>
-                        </div>
+                    <p class="mb-2">
+                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-scrollable modal-xl" class="btn btn-link p-0 font-weight-light">
+                            <small>
+                                <?= Yii::t('front', 'Показать таблицу размеров') ?>
+                            </small>
+                        </button>
+                    </p>
+                    
+                    <div class="product-buy mb-2" data-id="<?= $product->id ?>">
+                        <?= BuyButton::widget([
+                                'model' => $product,
+                                'htmlTag' => 'button',
+                                'cssClass' => 'btn btn-primary btn-sm-block montserrat px-3 py-0_5 py-sm-1',
+                            ]);
+                        ?>
                     </div>
-                </div>
-                
-            </div>
+            <?php
+                }
+            ?>
             
+            <?php
+                if ($productText) {
+            ?>
+                    <div class="product-text font-weight-light" class="mb-2">
+                        <?= $productText ?>
+                    </div>
+            <?php
+                }
+            ?>
+                </div>
+            </div>
         </div>
-        
     </div>
     
 <?php
-    if ($relations) {
+    if ($relations = $product->getRelations()) {
 ?>
     <div class="row mt-12">
         <div class="col-12">
@@ -262,18 +262,11 @@ if (!$this->title) {
 
 <?php
     $this->registerJS("
-            // function setProductOptionsOnLoad() {
-                // $($('.dvizh-option-values-before').get().reverse()).each(function () {
-                    // $(this).trigger('change');
-                // });
-            // }
-        
-            // setProductOptionsOnLoad();
-            
             var id,
                 options = {};
+                
             $('.dvizh-option').each(function () {
-                var option = $(this).find('.dvizh-option-values-before:first'),
+                var option = $(this).find('.dvizh-option-values-before:not(:disabled)').eq(0),
                     optionId = $(option).data('filter-id'),
                     optionVal = $(option).val();
                 options[optionId] = optionVal;
@@ -283,44 +276,10 @@ if (!$this->title) {
             $('.dvizh-cart-buy-button').data('options', options);
             $('.dvizh-cart-buy-button').attr('data-options', options);
             
-            $('.dvizh-option-values-before:first').trigger('click');
-            
-            // $('#option1 option:first').trigger('click');
-            // $(document).trigger('beforeChangeCartElementOptions', id);
+            $(this).find('.dvizh-option-values-before:not(:disabled)').eq(0).trigger('click');
         ",
         View::POS_READY,
         'set-product-options-on-load'
     );
 ?>
 
-
-<?php // Yandex Ecommerce
-    $this->registerJs("
-        var id = $('.dvizh-cart-buy-button').attr('data-comment'),
-            name = '" . $product_name . "',
-            price = '" . round($price) . "',
-            // category = '" . json_decode($categoryName)->{Yii::$app->language} . "',
-            variant = $('.dvizh-option:first').find('.dvizh-option-values-before:checked').closest('label').text().trim(),
-            currency = '" . Yii::$app->params['currency'] . "';
-            
-        ymDetail(id, name, price, variant, currency);
-        fbqViewContent(id, name, price, variant, currency);
-    ", View::POS_READY);
-?>
-
-<?php
-    $this->registerJs("
-        $(document).on('click', '.dvizh-cart-buy-button', function () {
-            var id = $('.dvizh-cart-buy-button').attr('data-comment'),
-                name = '" . $product_name . "',
-                quantity = 1,
-                price = '" . round($price) . "',
-                // category = '" . json_decode($categoryName)->{Yii::$app->language} . "',
-                variant = $('.dvizh-option:first').find('.dvizh-option-values-before:checked').closest('label').text().trim(),
-                currency = '" . Yii::$app->params['currency'] . "';
-                
-            ymAdd(id, name, price, variant, currency);
-            fbqAddToCart(id, name, price, variant, currency);
-        });
-    ", View::POS_READY);
-?>

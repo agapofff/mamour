@@ -10,6 +10,7 @@ class ShowPrice extends \yii\base\Widget
     public $model = NULL;
     public $htmlTag = 'span';
     public $cssClass = '';
+    public $cssClassOld = '';
     public $price = NULL;
     public $priceOld = NULL;
 
@@ -24,8 +25,7 @@ class ShowPrice extends \yii\base\Widget
     {
         $js = 'dvizh.modificationconstruct.dvizhShopUpdatePriceUrl = "' .Url::toRoute([
             '/shop/tools/get-modification-by-options/',
-            'lang' => Yii::$app->language,
-            'store_type' => Yii::$app->params['store_type'],
+            'store_id' => Yii::$app->params['store_id'],
         ]). '";';
         
         // $js = 'dvizh.modificationconstruct.dvizhShopUpdatePriceUrl = "' .Url::to('shop/tools/get-modification-by-options', true). '";';
@@ -37,9 +37,8 @@ class ShowPrice extends \yii\base\Widget
 
         return Html::tag('div',
             Html::tag('del',
-                Yii::$app->formatter->asCurrency($priceOld, Yii::$app->params['currency']),
-                [
-                    'class' => 'dvizh-shop-price-old dvizh-shop-price-old-{$this->model->id} {$this->cssClass} ttfirsneue mr-2 ' . ($priceOld > 0 ? 'd-inline': 'd-none'),
+                Yii::$app->formatter->asCurrency($priceOld, Yii::$app->params['currency']),[
+                    'class' => 'dvizh-shop-price-old dvizh-shop-price-old-' . $this->model->id . ' ' . $this->cssClassOld . ' mr-2 ' . ($priceOld > 0 ? 'd-inline': 'd-none'),
                 ]
             )
             .

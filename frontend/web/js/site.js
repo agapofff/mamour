@@ -307,7 +307,23 @@ jQuery(document).ready(function ($) {
     }
     
 
-    
+    // SLICK
+    $('.product-thumbnails')
+        .slick({
+            slidesToShow: 3,
+            vertical: true,
+            verticalSwiping: true,
+            infinite: false,
+            swipeToSlide: false,
+            arrows: false,
+        }).on('wheel', (function(e) {
+            e.preventDefault();
+            if (e.originalEvent.deltaY < 0) {
+                $(this).slick('slickPrev');
+            } else {
+                $(this).slick('slickNext');
+            }
+        }));
 
 
     // выпадающее меню

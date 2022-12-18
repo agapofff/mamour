@@ -145,6 +145,9 @@
     
     $cart = Yii::$app->cart;
 
+    $this->registerJs("
+        CART_ADD_SUCCESS = '" . Yii::t('front', 'Товар добавлен в корзину') . "';
+    ");
 ?>
 
 <?php $this->beginPage() ?>

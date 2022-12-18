@@ -32,9 +32,10 @@ use PELock\ImgOpt\ImgOpt;
     $images = $model->getImages();
     foreach ($images as $image) {
         foreach (Yii::$app->params['productImageSizes'] as $key => $size) {
-            echo ImgOpt::widget([
-                'src' => $image->getUrl($size . 'x'), 
-            ]);
+            echo Html::img($image->getUrl($size));
+            // echo ImgOpt::widget([
+                // 'src' => $image->getUrl($size), 
+            // ]);
         }
     }
 ?>

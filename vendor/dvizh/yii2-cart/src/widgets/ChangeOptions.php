@@ -14,6 +14,7 @@ class ChangeOptions extends \yii\base\Widget
     public $type = NULL;
     public $cssClass = '';
     public $defaultValues = [];
+    public $disabledItems = [];
 
     public function init()
     {
@@ -59,16 +60,7 @@ class ChangeOptions extends \yii\base\Widget
                 // $optionsArray = ['' => $optionData['name']];
                 if (isset($optionData['variants'])) {
                     foreach ($optionData['variants'] as $variantId => $value) {
-                        
-                        if ($optionId == 3 && $value != Yii::$app->language){
-                            continue;
-                        }
-                        
-                        if ($optionId == 4 && $value != Yii::$app->params['store_types'][Yii::$app->params['store_type']]){
-                            continue;
-                        }
-                        
-                        $optionsArray[$variantId] = $value;
+                        $optionsArray[$variantId] = json_decode($value)->{Yii::$app->language};
                     }
                 }
 				
@@ -86,7 +78,7 @@ class ChangeOptions extends \yii\base\Widget
 
                     if ($optionId == 1){
                         $list = Html::dropDownList('cart_options' . $id . '-' . $i,
-                            array_key_first($optionsArray),
+                            ($optionId == 1 ? 0 : array_key_first($optionsArray)),
                             $optionsArray,
                             [
                                 'data-href' => Url::toRoute([
@@ -136,28 +128,62 @@ class ChangeOptions extends \yii\base\Widget
                     $optionLabel = Html::tag('div', $optionName, [
                         'class' => 'dvizh-option-heading d-none',
                     ]);
+
+                    $disabled = [];
+                    if ($this->disabledItems) {
+                        foreach ($this->disabledItems as $disabledItem) {
+                            foreach ($optionsArray as $optionKey => $optionVal) {
+                                if ($optionVal == $disabledItem) {
+                                    $disabled[] = $optionKey;
+                                }
+                            }
+                        }
+                    }
                     $list = Html::radioList('cart_options' . $id . '-' . $i,
-                        ($optionId == 1 ? 0 : array_key_first($optionsArray)),
+                        0,
                         $optionsArray,
                         [
-                            'itemOptions' => [
-                                'data-href' => Url::toRoute([
-                                    'cart/element/update',
-                                    'lang' => Yii::$app->language,
-                                    'store_type' => Yii::$app->params['store_type'],
-                                ]),
-                                'data-filter-id' => $optionId,
-                                'data-name' => Html::encode($optionData['name']),
-                                'data-id' => $id,
-                                'class' => $cssClass,
-                                'labelOptions' => [
-                                    'class' => 'btn btn-lg rounded-0 btn-outline-primary mr-1 mb-1 p-0 d-flex justify-content-center align-items-center float-left',
-                                    'style' => '
-                                        width: 58px;
-                                        height: 58px;
-                                    ',
-                                ],
-                            ],
+                            'item' => function ($index, $label, $name, $checked, $value) use ($optionId, $cssClass, $id, $optionData) {
+                                return Html::radio($name, $checked, [
+                                    'value' => $value,
+                                    'label' => Html::encode($label),
+                                    'disabled' => in_array($value, $this->disabledItems[0]),
+                                    'labelOptions' => [
+                                        'class' => 'btn btn-lg rounded-0 btn-outline-warning courier text-uppercase mr-0_5 mb-0_5 p-0 d-flex justify-content-center align-items-center float-left ' . (in_array($value, $this->disabledItems[0]) ? 'disabled text-muted border-gray-500 pointer-events-none' : ''),
+                                        'disabled' => in_array($value, $this->disabledItems[0]),
+                                        'style' => '
+                                            width: 40px;
+                                            height: 40px;
+                                        ',
+                                    ],
+                                    'data-href' => Url::toRoute([
+                                        'cart/element/update',
+                                        'store_id' => Yii::$app->params['store_id'],
+                                    ]),
+                                    'data-filter-id' => $optionId,
+                                    'data-name' => Html::encode($optionData['name']),
+                                    'data-id' => $id,
+                                    'data-data' => $optionData,
+                                    'class' => $cssClass,
+                                ]);
+                            },
+                            // 'itemOptions' => [
+                                // 'data-href' => Url::toRoute([
+                                    // 'cart/element/update',
+                                    // 'store_id' => Yii::$app->params['store_id'],
+                                // ]),
+                                // 'data-filter-id' => $optionId,
+                                // 'data-name' => Html::encode($optionData['name']),
+                                // 'data-id' => $id,
+                                // 'class' => $cssClass,
+                                // 'labelOptions' => [
+                                    // 'class' => 'btn btn-lg rounded-0 btn-outline-primary mr-1 mb-1 p-0 d-flex justify-content-center align-items-center float-left',
+                                    // 'style' => '
+                                        // width: 58px;
+                                        // height: 58px;
+                                    // ',
+                                // ],
+                            // ],
                         ]
                     );
                 }
@@ -173,7 +199,7 @@ class ChangeOptions extends \yii\base\Widget
                             'toggle' => 'buttons',
                         ],
                     ]), [
-                        'class' => ($optionId != 1 ? 'd-none' : '')
+                        'class' => ''
                      ]);
                 }
                 $i++;

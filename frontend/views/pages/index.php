@@ -1,10 +1,10 @@
 <?php
-    use yii\helpers\Html;
-    use yii\web\View;
+use yii\helpers\Html;
+use yii\web\View;
 
-    if (!$this->title) {
-        $this->title = json_decode($model->name)->{Yii::$app->language};
-    }
+if (!$this->title) {
+    $this->title = json_decode($model->name)->{Yii::$app->language};
+}
 ?>
 
 <div class="container-xxl mt-3">    

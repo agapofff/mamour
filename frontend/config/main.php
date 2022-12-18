@@ -214,7 +214,7 @@ return [
                 'dvizh\filter\assets\FrontendAsset' => false,
                 'dvizh\filter\assets\FrontendAjaxAsset' => false,
             ],
-            'linkAssets' => false,
+            'linkAssets' => true,
         ],
 
         'session' => [

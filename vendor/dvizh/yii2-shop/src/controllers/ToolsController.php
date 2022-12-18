@@ -5,8 +5,9 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use dvizh\shop\models\Product;
-
 use common\models\Languages;
+use common\models\Countries;
+use common\models\Stores;
 
 class ToolsController extends Controller
 {
@@ -49,52 +50,45 @@ class ToolsController extends Controller
         // $this->enableCsrfValidation = false;
         
         $productId = Yii::$app->request->post('productId');
-        $lang = Yii::$app->request->get('lang');
-        
-        Yii::$app->language = $lang;
-        
-        $store_type = Yii::$app->request->get('store_type');
+
+        $store_id = Yii::$app->request->get('store_id');
+        $store = Stores::findOne($store_id);
+        $country = $store->country;
         
         $product = Product::findOne($productId);
 
-        if ($product)
-        {
+        if ($product){
             $modifications = $product->getModifications()->andWhere([
                 'available' => 1,
-                'lang' => $lang,
-                'store_type' => $store_type,
+                'store_id' => $store_id,
             ])->all();
 
             $options = Yii::$app->request->post('options');
             
-            $language = Languages::find()->where([
-                'code' => $lang
-            ])->one();
-            
 // print_r($options);
 // echo '<hr>';
-            foreach($modifications as $modification) {
+            foreach ($modifications as $modification) {
 // print_r($modification->filtervariants);
 // echo '<br>';
                 $suitable = true;
-                foreach($options as $optionId => $variantId) {
-                    if(!in_array($variantId, $modification->filtervariants)) {
+                foreach ($options as $optionId => $variantId) {
+                    if (!in_array($variantId, $modification->filtervariants)) {
                         $suitable = false;
                         break;
                     }
                 }
 
-                if($suitable) {
+                if ($suitable) {
                     return $this->asJson([
                         'modification' => [
                             'id' => $modification->id,
                             'price' => [
                                 (int)$modification->price,
-                                Yii::$app->formatter->asCurrency($modification->price, $language->currency)
+                                Yii::$app->formatter->asCurrency($modification->price, $country->currency)
                             ],
                             'price_old' => [
                                 (int)$modification->getOldprice(),
-                                Yii::$app->formatter->asCurrency($modification->getOldprice(), $language->currency)
+                                Yii::$app->formatter->asCurrency($modification->getOldprice(), $country->currency)
                             ],
                             'name' => $modification->name,
                             'code' => $modification->code,

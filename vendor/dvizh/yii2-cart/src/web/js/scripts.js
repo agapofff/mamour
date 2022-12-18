@@ -270,9 +270,9 @@ dvizh.cart = {
             data: data,
             type: 'post',
             dataType: 'json',
-            async: false,
+            // async: false,
             beforeSend: function(){
-                NProgress.start();
+                loading();
             },
             success: function (json) {
                 // jQuery('.dvizh-cart-block').css({'opacity': '1'});
@@ -293,7 +293,7 @@ console.log(response);
                 // dvizh.cart.sendData(data, link);
             },
             complete: function(){
-                NProgress.done();
+                loading(false);
             },
         });
 
@@ -310,7 +310,7 @@ console.log(response);
                 },
                 dataType: 'json',
                 beforeSend: function(){
-                    NProgress.start();
+                    loading();
                 },
                 success: function(answer) {
                     json = answer;
@@ -319,7 +319,7 @@ console.log(response);
                     console.log(answer);
                 },
                 complete: function(){
-                    NProgress.done();
+                    loading(false);
                 },
             });
         }
@@ -332,7 +332,7 @@ console.log(response);
         jQuery('.dvizh-cart-price').html(json.price);
 
         if (parseFloat(json.count) > parseFloat(qty) && !location.href.includes('checkout')){
-            $('a[href="#cart-widget"]').click();
+            toastr.success(CART_ADD_SUCCESS);
         }
 
         if (parseFloat(json.count) === 0 && location.href.includes('checkout')){

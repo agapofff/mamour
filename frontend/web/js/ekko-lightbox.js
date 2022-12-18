@@ -43,7 +43,7 @@ var Lightbox = (function ($) {
         modalFooterClass: '',
         modalTitleTag: 'h4',
         closeButtonClass: '',
-        closeButtonContent: '<span aria-hidden="true">&times;</span>',
+        closeButtonContent: '<img src="/images/close.svg">',
 		doc: document, // if in an iframe can specify top.document
 		onShow: function onShow() {},
 		onShown: function onShown() {},

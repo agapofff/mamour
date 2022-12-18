@@ -296,7 +296,7 @@ class Product extends \yii\db\ActiveRecord implements \dvizh\relations\interface
         $modifications = [];
         foreach ($this->modifications as $key => $modification)
         {
-            if ($modification->lang == Yii::$app->language && $modification->store_type == Yii::$app->params['store_type'])
+            if ($modification->store_id == Yii::$app->params['store_id'])
             {
                 $modifications[$key] = $modification;
             }
@@ -351,7 +351,7 @@ class Product extends \yii\db\ActiveRecord implements \dvizh\relations\interface
     {
         $return = $this->hasMany(Modification::className(), [
             'product_id' => 'id'
-        ])->orderBy('sort DESC, id DESC');
+        ])->orderBy('id');
 
         return $return;
     }

@@ -1,11 +1,11 @@
 .toast-title {
-    font-size: 1.7rem !important;
+    font-size: 1.5rem !important;
     line-height: 1 !important;
 	font-weight: bold !important;
 }
 
 .toast-message {
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
     font-weight: 400 !important;
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;
@@ -183,19 +183,19 @@ button.toast-close-button {
 }
 
 .toast-success {
-	background-color: #465077;
+	background-color: #000;
 }
 
 .toast-error {
-	background-color: #B89646;
+	background-color: #dc3545;
 }
 
 .toast-info {
-	background-color: #474F73;
+	background-color: #6c757d;
 }
 
 .toast-warning {
-	background-color: #999079;
+	background-color: #B8994F;
 }
 
 .toast-progress {

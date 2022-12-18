@@ -1,7 +1,7 @@
-AuthType Basic
-AuthName "Protected Area"
-AuthUserFile /var/www/www-root/data/www/mamour-enfants.com/frontend/web/.htpasswd
-Require valid-user
+# AuthType Basic
+# AuthName "Protected Area"
+# AuthUserFile /var/www/www-root/data/www/mamour-enfants.com/frontend/web/.htpasswd
+# Require valid-user
 
 RewriteEngine On
 

@@ -26,7 +26,7 @@ dvizh.modificationconstruct = {
             // cache: false,
             dataType: 'json',
             beforeSend: function(){
-                NProgress.start();
+                loading();
             },
             data: {
                 options: options,
@@ -34,9 +34,12 @@ dvizh.modificationconstruct = {
                 _csrf : csrfToken
             },
             success: function(data){
-                if (data.modification && (data.modification.amount > 0 | data.modification.amount == null) && data.modification.price[0] > 0) {
-                    $('.dvizh-shop-price')
-                        .html(data.modification.price[1]);
+                if (
+                    data.modification 
+                    && (data.modification.amount > 0 | data.modification.amount == null) 
+                    && data.modification.price[0] > 0
+                ) {
+                    $('.dvizh-shop-price').html(data.modification.price[1]);
                         
                     $('.dvizh-cart-buy-button')
                         .attr('data-price', data.modification.price[0])
@@ -44,17 +47,6 @@ dvizh.modificationconstruct = {
                         .removeClass('btn-outline-secondary')
                         .addClass('btn-primary btn-hover-warning')
                         .removeAttr('disabled');
-						
-					$('.btn-wishlist')
-						.attr('data-size', data.modification.name.split(' | ')[0])
-                        .addClass('text-hover-warning')
-						.removeAttr('disabled');
-                        
-                    // $('#product-wishlist-container').find('svg').attr('fill', '#D6751C');
-						
-					$('.select-size-note').hide();
-						
-					wishlistCheck();
                 } else {
                     $('.dvizh-shop-price').html(data.product_price);
 					
@@ -63,37 +55,25 @@ dvizh.modificationconstruct = {
                         .removeClass('btn-primary btn-hover-warning')
                         .addClass('btn-outline-secondary')
                         .attr('disabled', true);
-						
-					$('.btn-wishlist')
-                        .removeClass('text-hover-warning')
-                        .attr('disabled', true);
 					
-					$('.select-size-note').show();
-
                     outOfStock();
-					
-
                 }
-                // $('.dvizh-shop-price-' + modelId).css('opacity', 1);
-                // $('.dvizh-change-options').removeClass('d-none');
-
             },
             error: function(data){
-console.log(data);
-                // $('.dvizh-option:first .dvizh-option-values-before').trigger('click');
+                console.log(data);
             },
             complete: function(){
-                NProgress.done();
-                
+                loading(false);
             },
         });
     },
     generateName: function() {
         var name = '',
             nameArr = [];
+            
         $('.product-add-modification-form .filters select').each(function(i, el) {
             var val = $(this).find('option:selected').text();
-            if(val) {
+            if (val) {
                 nameArr.push(val);
             }
         });
