@@ -536,13 +536,14 @@ use PELock\ImgOpt\ImgOpt;
                                             }
                                         }
                                     },
+                                        'displayValue' => function ($model) {
+                                            return $model->oldPrice;
+                                        },
                                     'editableOptions' => [
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
-                                        'source' => function ($model) {
-                                            return $model->oldPrice;
-                                        },
+
                                     ],
                                     'headerOptions' => [
                                         'class' => 'text-center',
