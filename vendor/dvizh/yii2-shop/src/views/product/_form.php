@@ -540,7 +540,9 @@ use PELock\ImgOpt\ImgOpt;
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
-                                        'source' => $model->oldPrice,
+                                        'source' => function ($model) {
+                                            return $model->oldPrice;
+                                        },
                                     ],
                                     'headerOptions' => [
                                         'class' => 'text-center',
