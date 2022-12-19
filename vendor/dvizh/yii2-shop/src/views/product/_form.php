@@ -529,7 +529,7 @@ use PELock\ImgOpt\ImgOpt;
                                     'url' => ['/shop/modification/edit-field'],
                                     // 'type' => 'text',
                                     'label' => Yii::t('back', 'Старая цена'),
-                                    'editableButtonOptions' => [
+                                    'options' => [
                                         'valueIfNull' => ' ',
                                     ],
                                     'editableOptions' => [
