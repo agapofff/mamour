@@ -529,13 +529,14 @@ use PELock\ImgOpt\ImgOpt;
                                     'url' => ['/shop/modification/edit-field'],
                                     'type' => 'number',
                                     'label' => Yii::t('back', 'Старая цена'),
+                                        'value' => function ($model) {
+                                            return $model->oldPrice;
+                                        },
                                     'editableOptions' => [
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
-                                        'value' => function ($model) {
-                                            return $model->oldPrice;
-                                        },
+
                                         // 'displayValue' => function ($model) use ($stores) {
                                             // foreach ($stores as $store) {
                                                 // if ($store->id == $model->store_id) {
