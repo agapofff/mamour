@@ -527,7 +527,7 @@ use PELock\ImgOpt\ImgOpt;
                                     'attribute' => 'oldPrice',
                                     'format' => 'integer',
                                     'url' => ['/shop/modification/edit-field'],
-                                    'type' => 'number',
+                                    'type' => 'text',
                                     'label' => Yii::t('back', 'Старая цена'),
                                     'value' => function ($model) use ($stores) {
                                         foreach ($stores as $store) {
