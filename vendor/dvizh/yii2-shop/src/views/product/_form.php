@@ -456,9 +456,9 @@ use PELock\ImgOpt\ImgOpt;
                                 [
                                     'class' => EditableColumn::className(),
                                     'attribute' => 'sku',
-                                    'format' => 'html',
+                                    // 'format' => 'html',
                                     'url' => ['/shop/modification/edit-field'],
-                                    // 'type' => 'text',
+                                    'type' => 'number',
                                     'label' => Yii::t('back', 'Артикул'),
                                     'editableOptions' => [
                                         'mode' => 'popup',
