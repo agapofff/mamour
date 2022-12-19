@@ -533,7 +533,7 @@ use PELock\ImgOpt\ImgOpt;
                                     'editableOptions' => [
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
-                                        'valueIfNull' => '',
+                                        'valueIfNull' => ' ',
                                         // 'displayValue' => function ($model) use ($stores) {
                                             // foreach ($stores as $store) {
                                                 // if ($store->id == $model->store_id) {
