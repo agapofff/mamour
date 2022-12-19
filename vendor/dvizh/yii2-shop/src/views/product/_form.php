@@ -535,7 +535,7 @@ use PELock\ImgOpt\ImgOpt;
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
-                                        'displayValue' => function ($attribute) use ($stores) {
+                                        'displayValue' => function ($attribute) {
                                             return $attribute;
                                             // foreach ($stores as $store) {
                                                 // if ($store->id == $model->store_id) {
