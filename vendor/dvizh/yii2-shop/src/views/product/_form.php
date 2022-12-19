@@ -358,9 +358,8 @@ use PELock\ImgOpt\ImgOpt;
 
                     <?= GridView::widget([
                             'dataProvider' => $modificationDataProvider,
-                            'filterModel' => $searchModificationModel,
+                            // 'filterModel' => $searchModificationModel,
                             'summary' => false,
-                            'filter' => false,
                             'tableOptions' => [
                                 'class' => 'table table-bordered',
                                 'style' => 'margin-bottom: 0;'
