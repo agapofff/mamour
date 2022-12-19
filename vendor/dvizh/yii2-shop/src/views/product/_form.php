@@ -525,9 +525,9 @@ use PELock\ImgOpt\ImgOpt;
                                 [
                                     'class' => EditableColumn::className(),
                                     'attribute' => 'oldPrice',
-                                    // 'format' => 'integer',
+                                    'format' => 'integer',
                                     'url' => ['/shop/modification/edit-field'],
-                                    // 'type' => 'text',
+                                    'type' => 'number',
                                     'label' => Yii::t('back', 'Старая цена'),
                                     'options' => [
                                         'valueIfNull' => ' ',
@@ -535,7 +535,7 @@ use PELock\ImgOpt\ImgOpt;
                                     'editableOptions' => [
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
-                                        
+                                        'valueIfNull' => '<em>empty</em>',
                                         // 'displayValue' => function ($model) use ($stores) {
                                             // foreach ($stores as $store) {
                                                 // if ($store->id == $model->store_id) {
