@@ -535,14 +535,16 @@ use PELock\ImgOpt\ImgOpt;
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
-                                        'displayValue' => function ($attribute) {
-                                            return $attribute;
-                                            // foreach ($stores as $store) {
-                                                // if ($store->id == $model->store_id) {
-                                                    // return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
+                                        'options' => [
+                                            'displayValue' => function ($attribute) {
+                                                return $attribute;
+                                                // foreach ($stores as $store) {
+                                                    // if ($store->id == $model->store_id) {
+                                                        // return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
+                                                    // }
                                                 // }
-                                            // }
-                                        },
+                                            },
+                                        ],
                                     ],
                                     'headerOptions' => [
                                         'class' => 'text-center',
