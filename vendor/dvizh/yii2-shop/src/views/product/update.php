@@ -221,6 +221,22 @@ $this->params['breadcrumbs'][] = Yii::t('back', 'Обновить');
                                     ],
                                     [
                                         // 'class' => EditableColumn::className(),
+                                        'attribute' => 'amount',
+                                        // 'url' => ['price/edit-field'],
+                                        // 'type' => 'text',
+                                        'filter' => false,
+                                        // 'editableOptions' => [
+                                            // 'mode' => 'inline',
+                                        // ],
+                                        'headerOptions' => [
+                                            'class' => 'text-center',
+                                        ],
+                                        'contentOptions' => [
+                                            'class' => 'text-center text-nowrap',
+                                        ],
+                                    ],
+                                    [
+                                        // 'class' => EditableColumn::className(),
                                         'attribute' => 'price',
                                         // 'url' => ['price/edit-field'],
                                         // 'type' => 'text',

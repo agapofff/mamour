@@ -360,6 +360,7 @@ use PELock\ImgOpt\ImgOpt;
                             'dataProvider' => $modificationDataProvider,
                             'filterModel' => $searchModificationModel,
                             'summary' => false,
+                            'filter' => false,
                             'tableOptions' => [
                                 'class' => 'table table-bordered',
                                 'style' => 'margin-bottom: 0;'

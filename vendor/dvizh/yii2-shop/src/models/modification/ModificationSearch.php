@@ -11,7 +11,7 @@ class ModificationSearch extends Modification
     public function rules()
     {
         return [
-            [['id', 'product_id', 'sort', 'available', 'synchro', 'store_id'], 'integer'],
+            [['id', 'product_id', 'sort', 'available', 'synchro', 'store_id', 'amount'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -45,6 +45,7 @@ class ModificationSearch extends Modification
             'available' => $this->available,
             'store_id' => $this->store_id,
             'synchro' => $this->synchro,
+            'amount' => $this->amount,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
