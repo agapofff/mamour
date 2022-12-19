@@ -348,3 +348,12 @@ section.content h1 {
     box-sizing: content-box;
 }
 /* LOADING */
+
+
+.editableform-loading {
+    display: none !important;
+}
+.form-inline.editableform,
+.form-inline.editableform .form-control.input-mini {
+    display: block !important;
+}
