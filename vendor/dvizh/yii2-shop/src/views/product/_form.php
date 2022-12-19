@@ -535,7 +535,7 @@ use PELock\ImgOpt\ImgOpt;
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
-                                        'options' => [
+                                        // 'options' => [
                                             'value' => function ($model) {
                                                 return '#' . $model->oldPrice;
                                                 // foreach ($stores as $store) {
@@ -544,7 +544,7 @@ use PELock\ImgOpt\ImgOpt;
                                                     // }
                                                 // }
                                             },
-                                        ],
+                                        // ],
                                     ],
                                     'headerOptions' => [
                                         'class' => 'text-center',
