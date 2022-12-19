@@ -438,14 +438,14 @@ use PELock\ImgOpt\ImgOpt;
                                     },
                                 ],
                                 [
-                                    // 'class' => EditableColumn::className(),
+                                    'class' => EditableColumn::className(),
                                     'attribute' => 'name',
-                                    // 'url' => ['/shop/modification/edit-field'],
-                                    // 'type' => 'text',
+                                    'url' => ['/shop/modification/edit-field'],
+                                    'type' => 'text',
                                     'label' => Yii::t('back', 'Размер'),
-                                    // 'editableOptions' => [
-                                        // 'mode' => 'popup',
-                                    // ],
+                                    'editableOptions' => [
+                                        'mode' => 'popup',
+                                    ],
                                     'contentOptions' => [
                                         'class' => 'text-center',
                                     ],
