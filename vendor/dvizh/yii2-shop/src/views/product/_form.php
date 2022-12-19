@@ -542,6 +542,24 @@ use PELock\ImgOpt\ImgOpt;
                                 ],
                                 
                                 [
+                                    'class' => EditableColumn::className(),
+                                    'attribute' => 'amount',
+                                    'format' => 'integer',
+                                    'label' => Yii::t('back', 'Кол-во'),
+                                    'url' => ['/shop/modification/edit-field'],
+                                    'type' => 'number',
+                                    'editableOptions' => [
+                                        'mode' => 'popup',
+                                    ],
+                                    'headerOptions' => [
+                                        'class' => 'text-center',
+                                    ],
+                                    'contentOptions' => [
+                                        'class' => 'text-right text-nowrap',
+                                    ],
+                                ],
+                                
+                                [
                                     'label' => Yii::t('back', 'Валюта'),
                                     'format' => 'raw',
                                     'value' => function ($model) use ($stores) {
@@ -559,23 +577,7 @@ use PELock\ImgOpt\ImgOpt;
                                     ],
                                 ],
                                 
-                                [
-                                    'class' => EditableColumn::className(),
-                                    'attribute' => 'amount',
-                                    'format' => 'integer',
-                                    'label' => Yii::t('back', 'Кол-во'),
-                                    'url' => ['/shop/modification/edit-field'],
-                                    'type' => 'number',
-                                    'editableOptions' => [
-                                        'mode' => 'popup',
-                                    ],
-                                    'headerOptions' => [
-                                        'class' => 'text-center',
-                                    ],
-                                    'contentOptions' => [
-                                        'class' => 'text-right text-nowrap',
-                                    ],
-                                ],
+
                                 
                                 [
                                     'class' => 'yii\grid\ActionColumn',
