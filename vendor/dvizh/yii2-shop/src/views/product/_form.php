@@ -537,7 +537,7 @@ use PELock\ImgOpt\ImgOpt;
                                         'valueIfNull' => '<em>empty</em>',
                                         'options' => [
                                             'displayValue' => function ($model) {
-                                                return $model->oldPrice;
+                                                return '#' . $model->oldPrice;
                                                 // foreach ($stores as $store) {
                                                     // if ($store->id == $model->store_id) {
                                                         // return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
