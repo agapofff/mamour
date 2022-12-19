@@ -549,6 +549,9 @@ use PELock\ImgOpt\ImgOpt;
                                     'label' => Yii::t('back', 'Кол-во'),
                                     'url' => ['/shop/modification/edit-field'],
                                     'type' => 'number',
+                                    'value' => function ($model) {
+                                        return Yii::$app->formatter->asText($model->amount);
+                                    },
                                     'editableOptions' => [
                                         'mode' => 'popup',
                                     ],
