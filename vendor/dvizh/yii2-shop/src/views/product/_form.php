@@ -529,17 +529,20 @@ use PELock\ImgOpt\ImgOpt;
                                     'url' => ['/shop/modification/edit-field'],
                                     'type' => 'number',
                                     'label' => Yii::t('back', 'Старая цена'),
-                                    'value' => function ($model) use ($stores) {
-                                        foreach ($stores as $store) {
-                                            if ($store->id == $model->store_id) {
-                                                return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
-                                            }
-                                        }
-                                    },
                                     'editableOptions' => [
                                         'mode' => 'popup',
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
+                                        'displayValue' => function ($model) {
+                                            return $model->oldPrice;
+                                        },
+                                        'value' => function ($model) use ($stores) {
+                                            foreach ($stores as $store) {
+                                                if ($store->id == $model->store_id) {
+                                                    return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
+                                                }
+                                            }
+                                        },
                                     ],
                                     'headerOptions' => [
                                         'class' => 'text-center',
