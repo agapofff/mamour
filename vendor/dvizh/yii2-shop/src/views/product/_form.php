@@ -541,7 +541,7 @@ use PELock\ImgOpt\ImgOpt;
                                                 // if ($store->id == $model->store_id) {
                                                     // return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
                                                 // }
-                                            }
+                                            // }
                                         },
                                     ],
                                     'headerOptions' => [
