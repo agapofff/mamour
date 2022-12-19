@@ -537,13 +537,13 @@ use PELock\ImgOpt\ImgOpt;
                                         'emptytext' => ' ',
                                         'valueIfNull' => '<em>empty</em>',
 
-                                        // 'displayValue' => function ($model) use ($stores) {
-                                            // foreach ($stores as $store) {
-                                                // if ($store->id == $model->store_id) {
-                                                    // return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
-                                                // }
-                                            // }
-                                        // },
+                                        'displayValue' => function ($model) use ($stores) {
+                                            foreach ($stores as $store) {
+                                                if ($store->id == $model->store_id) {
+                                                    return Yii::$app->formatter->asCurrency($model->oldPrice, $store->country->currency);
+                                                }
+                                            }
+                                        },
                                     ],
                                     'headerOptions' => [
                                         'class' => 'text-center',
