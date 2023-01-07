@@ -8,58 +8,56 @@ $this->title = Yii::$app->name;
 
 ?>
 
-<div class="container-xxl">
-    <div id="mainpage-slider" class="owl-carousel owl-theme" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
-    <?php
-    foreach ($slides as $slide) {
+<div id="mainpage-slider" class="owl-carousel owl-theme" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
+<?php
+foreach ($slides as $slide) {
+?>
+    <div class="position-relative">
+<?php
+    if ($slide->link) {
+        $image = $slide->getImage();
+        $cachedImage = '/images/cache/Slides/Slide' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
+        $imageUrl = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl();
+?>
+        <a href="<?= Url::to([$slide->link]) ?>">
+            <?= ImgOpt::widget([
+                    'src' => $imageUrl, 
+                    'alt' => $image->alt ?: $this->title,
+                    'loading' => 'lazy',
+                ])
+            ?>
+        </a>
+<?php
+    } else {
+?>
+    <?= ImgOpt::widget([
+            'src' => $imageUrl, 
+            'alt' => $image->alt ?: $this->title,
+            'loading' => 'lazy',
+        ])
     ?>
-        <div class="position-relative">
-    <?php
-        if ($slide->link) {
-            $image = $slide->getImage();
-            $cachedImage = '/images/cache/Slides/Slide' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
-            $imageUrl = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl();
-    ?>
-            <a href="<?= Url::to([$slide->link]) ?>">
-                <?= ImgOpt::widget([
-                        'src' => $imageUrl, 
-                        'alt' => $image->alt ?: $this->title,
-                        'loading' => 'lazy',
-                    ])
-                ?>
-            </a>
-    <?php
-        } else {
-    ?>
-        <?= ImgOpt::widget([
-                'src' => $imageUrl, 
-                'alt' => $image->alt ?: $this->title,
-                'loading' => 'lazy',
-            ])
-        ?>
-    <?php
-        }
-    ?>
-    <?php
-        if ($slide->show_button){
-    ?>
-            <a href="<?= Url::to([$slide->link]) ?>" class="d-md-none btn btn btn-primary position-absolute right-0 bottom-0 mr-1 mb-1 gotham font-weight-light px-2 py-0_5">
-                <?= json_decode($slide->button_text)->{Yii::$app->language} ?>
-            </a>
-            <a href="<?= Url::to([$slide->link]) ?>" class="d-none d-md-inline-block d-lg-none btn btn-primary position-absolute right-0 bottom-0 mr-1 mb-1 gotham font-weight-light px-3 py-1">
-                <?= json_decode($slide->button_text)->{Yii::$app->language} ?>
-            </a>
-            <a href="<?= Url::to([$slide->link]) ?>" class="d-none d-lg-inline-block btn btn-lg btn-primary position-absolute right-0 bottom-0 mr-3 mb-3 gotham font-weight-light px-8 py-1_5">
-                <?= json_decode($slide->button_text)->{Yii::$app->language} ?>
-            </a>
-    <?php
-        }
-    ?>
-        </div>
-    <?php
+<?php
     }
-    ?>
+?>
+<?php
+    if ($slide->show_button){
+?>
+        <a href="<?= Url::to([$slide->link]) ?>" class="d-md-none btn btn btn-primary position-absolute right-0 bottom-0 mr-1 mb-1 gotham font-weight-light px-2 py-0_5">
+            <?= json_decode($slide->button_text)->{Yii::$app->language} ?>
+        </a>
+        <a href="<?= Url::to([$slide->link]) ?>" class="d-none d-md-inline-block d-lg-none btn btn-primary position-absolute right-0 bottom-0 mr-1 mb-1 gotham font-weight-light px-3 py-1">
+            <?= json_decode($slide->button_text)->{Yii::$app->language} ?>
+        </a>
+        <a href="<?= Url::to([$slide->link]) ?>" class="d-none d-lg-inline-block btn btn-lg btn-primary position-absolute right-0 bottom-0 mr-3 mb-3 gotham font-weight-light px-8 py-1_5">
+            <?= json_decode($slide->button_text)->{Yii::$app->language} ?>
+        </a>
+<?php
+    }
+?>
     </div>
+<?php
+}
+?>
 </div>
 
 <div class="container-xxl mt-8">

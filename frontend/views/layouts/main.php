@@ -191,12 +191,89 @@
 
     <?php $this->beginBody() ?>
             
-        <nav id="nav" class="py-1 transition">
+        <nav id="nav" class="py-1 transition <?= $isMainPage ? 'position-absolute w-100' : '' ?>">
             <div id="nav-container" class="container-xxl">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
+                <div class="row align-items-center justify-content-between flex-nowrap">
+                    <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                        <a id="logo" href="<?= Url::home(true) ?><?= Yii::$app->language ?>">
+                            <img src="/images/logo_nav_<?= $isMainPage ? 'light' : 'dark' ?>.svg" class="img-fluid" alt="<?= Yii::$app->name ?>">
+                        </a>
+                    </div>
+                    <div class="col-md-7 col-lg-6 col-xl-6 d-none d-lg-block">
+                        <div id="mainmenu" class="row justify-content-between flex-nowrap">
+                    <?php
+
+                        foreach (Yii::$app->params['menu'] as $menuItem) {
+                            $menuChilds = [];
+                            $menuChilds = Category::getAllChilds(Yii::$app->params['menu'], $menuItem['id']);
+                            if (!$menuItem['parent_id']) {
+                    ?>
+                                <div class="col-auto dropdown hover px-0 px-lg-0_5">
+                                    <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
+                                        <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
+                                    </a>
+                            <?php
+                                if (!empty($menuChilds)) {
+                            ?>
+                                    <div class="dropdown-menu mt-0">
+                                        <ul class="list-unstyled">
+                                    <?php
+                                        foreach (Yii::$app->params['menu'] as $menuItemChild) {
+                                            if ($menuItemChild['parent_id'] == $menuItem['id']) {
+                                    ?>
+                                                <li>
+                                                    <a href="<?= Url::to([$menuItemChild['url']]) ?>" class="dropdown-item">
+                                                        <?= json_decode($menuItemChild['name'])->{Yii::$app->language} ?>
+                                                    </a>
+                                                    <?php Category::renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id']), 'list-unstyled pl-2', '', 'dropdown-item') ?>
+                                                </li>
+                                                <div class="dropdown-divider"></div>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+                                        </ul>
+                                    </div>
+                            <?php
+                                }
+                            ?>
+                                </div>
+                    <?php
+                            }
+                        }
+                    ?>
+                        </div>
+                    </div>
+
+                    <div class="col-auto col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div class="row align-items-center justify-content-end flex-nowrap">
+                            <div class="col-auto d-none d-sm-block pl-0">
+                                <a href="<?= Url::to(['/search']) ?>" class="search">
+                                    <img src="/images/search.svg">
+                                </a>
+                            </div>
+                            <div class="col-auto d-none d-sm-block pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1">
+                                <a href="<?= Url::to(['/wishlist']) ?>">
+                                    <img src="/images/wishlist.svg">
+                                </a>
+                            </div>
+                            <div class="col-auto d-none d-sm-block pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1">
+                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>">
+                                    <img src="/images/<?= Yii::$app->user->isGuest ? 'guest' : 'user' ?>.svg">
+                                </a>
+                            </div>
+                            <div class="col-auto d-none d-sm-block pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1 pr-md-0_5 pr-lg-0_5">
+                                <a href="<?= Url::to(['/cart']) ?>" class="d-flex align-items-center text-decoration-none">
+                                    <img src="/images/cart.svg">
+                                    <?= CartInformer::widget([
+                                            'htmlTag' => 'span',
+                                            'cssClass' => 'mt-1',
+                                            'text' => '{c}'
+                                        ]);
+                                    ?>
+                                </a>
+                            </div>
+                            <div class="col-auto pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1">
                                 <button id="language" type="button" class="btn btn-link text-dark text-uppercase text-decoration-none gotham px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= Yii::$app->language ?>
                                 </button>
@@ -212,100 +289,10 @@
                             ?>
                                 </div>
                             </div>
-                            <div class="col-auto d-none d-md-block">
-                                <a href="<?= Url::to(['/search']) ?>" class="btn btn-link text-dark text-decoration-none search">
-                                    <img src="/images/search.svg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <a id="logo" href="<?= Url::home(true) ?><?= Yii::$app->language ?>">
-                            <?= Html::img('/images/logo.svg') ?>
-                        </a>
-                    </div>
-                    
-                    <div class="col-auto">
-                        <div class="row align-items-center">
-                            <div class="col-auto d-none d-md-block">
-                                <a href="<?= Url::to(['/wishlist']) ?>">
-                                    <img src="/images/wishlist.svg">
-                                </a>
-                            </div>
-                            <div class="col-auto d-none d-md-block">
-                                <a href="<?= Yii::$app->user->isGuest ? Url::to(['/login']) : Url::to(['/account']) ?>">
-                                    <img src="/images/<?= Yii::$app->user->isGuest ? 'guest' : 'user' ?>.svg">
-                                </a>
-                            </div>
-                            <div class="col-auto d-none d-md-block">
-                                <a href="<?= Url::to(['/cart']) ?>" class="d-flex align-items-center text-decoration-none">
-                                    <img src="/images/cart.svg">
-                                    <?= CartInformer::widget([
-                                            'htmlTag' => 'span',
-                                            'cssClass' => 'mt-1',
-                                            'text' => '{c}'
-                                        ]);
-                                    ?>
-                                </a>
-                            </div>
-                            <div class="col-auto d-md-none">
+                            <div class="col-auto d-lg-none">
                                 <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#menu" aria-label="<?= Yii::t('front', 'Меню') ?>">
                                     <img src="/images/menu.svg">
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-xxl">
-                <div class="row justify-content-center mt-1 mb-0_5 d-none d-md-flex">
-                    <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
-                        <div class="row justify-content-center">
-                            <div class="col-xxl-10">
-                                <div id="mainmenu" class="row justify-content-between flex-nowrap">
-                            <?php
-
-                                foreach (Yii::$app->params['menu'] as $menuItem) {
-                                    $menuChilds = [];
-                                    $menuChilds = Category::getAllChilds(Yii::$app->params['menu'], $menuItem['id']);
-                                    if (!$menuItem['parent_id']) {
-                            ?>
-                                        <div class="col-auto dropdown hover px-0_5">
-                                            <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
-                                                <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
-                                            </a>
-                                    <?php
-                                        if (!empty($menuChilds)) {
-                                    ?>
-                                            <div class="dropdown-menu mt-0">
-                                                <ul class="list-unstyled">
-                                            <?php
-                                                foreach (Yii::$app->params['menu'] as $menuItemChild) {
-                                                    if ($menuItemChild['parent_id'] == $menuItem['id']) {
-                                            ?>
-                                                        <li>
-                                                            <a href="<?= Url::to([$menuItemChild['url']]) ?>" class="dropdown-item">
-                                                                <?= json_decode($menuItemChild['name'])->{Yii::$app->language} ?>
-                                                            </a>
-                                                            <?php Category::renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id']), 'list-unstyled pl-2', '', 'dropdown-item') ?>
-                                                        </li>
-                                                        <div class="dropdown-divider"></div>
-                                            <?php
-                                                    }
-                                                }
-                                            ?>
-                                                </ul>
-                                            </div>
-                                    <?php
-                                        }
-                                    ?>
-                                        </div>
-                            <?php
-                                    }
-                                }
-                            ?>
-                                </div>
                             </div>
                         </div>
                     </div>
