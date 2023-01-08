@@ -50,6 +50,9 @@
                 '',
                 'Bold',
             ],
+            'CourierNewCyr' => [
+                '',
+            ],            
             // 'GothamPro' => [
                 // '',
                 // 'Bold',

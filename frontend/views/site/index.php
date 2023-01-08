@@ -60,20 +60,20 @@ foreach ($slides as $slide) {
 ?>
 </div>
 
-<div class="container-xxl mt-8">
+<div class="container-xxl mt-8 mt-lg-11">
     <div class="row mt-5">
         <div class="col-lg-4 mb-3">
-            <h1 class="gotham font-weight-bold ml-5 text-uppercase">“<span class="headline">Mamour</span>”?</h1>
+            <h1 class="gotham font-weight-bold ml-5 text-uppercase text-howrap">“<span class="headline">Mamour</span>”?</h1>
         </div>
-        <div class="col-lg-7 col-xl-6 courier letter-spacing-10">
+        <div class="col-lg-7 col-xl-6 h5 courier letter-spacing-10">
             <?= Yii::t('front', 'Французское слово “Mamour” означает «моя любовь, любимый, любимая». Это сокращенная форма известного всем “mon amour”. Однако, “Mamour” отличается более «теплым» звучанием, нежностью. “Mamour” выбирают только для самых дорогих, близких, любимых людей. Долго выбирая среди множества вариантов, мы решили, что это самое подходящее название для нашего бренда, выражающее в полной мере концепцию марки.') ?>
         </div>
     </div>
 </div>
 
-<div class="container mt-8" style="max-width: 1120px">
+<div class="container mt-8 mt-lg-11" style="max-width: 1120px">
     <div class="row">
-        <div class="col-6 mb-1_5">
+        <div class="col-6 mb-0_625 px-0_625">
             <a href="<?= Url::to(['/catalog/girls']) ?>">
                 <?= ImgOpt::widget([
                         'src' => '/images/main/mainpage_category_1.jpg', 
@@ -83,7 +83,7 @@ foreach ($slides as $slide) {
                 ?>
             </a>
         </div>
-        <div class="col-6 mb-1_5">
+        <div class="col-6 mb-0_625 px-0_625">
             <a href="<?= Url::to(['/catalog/boys']) ?>">
                 <?= ImgOpt::widget([
                         'src' => '/images/main/mainpage_category_2.jpg', 
@@ -94,7 +94,7 @@ foreach ($slides as $slide) {
             </a>
         </div>
         <div class="col-12">
-            <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="30" data-nav="true" data-dots="true" data-loop="true">
+            <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
                 <a href="<?= Url::to(['/catalog/girls/t-shirts']) ?>">
                     <?= ImgOpt::widget([
                             'src' => '/images/main/mainpage_category_3.jpg', 

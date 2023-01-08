@@ -49,7 +49,7 @@ use backend\widgets\MultilangField;
             <?= Gallery::widget([
                     'model' => $model,
                     'label' => Yii::t('back', 'Изображение'),
-                    'previewSize' => '1000x500',
+                    'previewSize' => '1000x',
                     'fileInputPluginOptions' => [
                         'showPreview' => false,
                     ],
@@ -80,7 +80,8 @@ use backend\widgets\MultilangField;
                     ->field($model, 'link')
                     ->textInput([
                         'maxlength' => true
-                    ]) 
+                    ])
+                    ->hint('Относительная ссылка, после языковой метки, начинается со слеша')
             ?>
 
             <?= MultilangField::widget([
