@@ -49,7 +49,7 @@ use backend\widgets\MultilangField;
             <?= Gallery::widget([
                     'model' => $model,
                     'label' => Yii::t('back', 'Изображение'),
-                    'previewSize' => '1000x',
+                    'previewSize' => '500x',
                     'fileInputPluginOptions' => [
                         'showPreview' => false,
                     ],
