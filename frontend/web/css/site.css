@@ -478,6 +478,8 @@ form[disabled] {
     background: url('../images/right_arrow.svg') center center / cover no-repeat !important;
 }
 .owl-dots {
+    position: absolute;
+    width: 100%;
     margin-top: 1em;
 }
 .owl-dot {

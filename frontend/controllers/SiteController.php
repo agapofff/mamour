@@ -100,9 +100,31 @@ class SiteController extends Controller
             ])
             ->all();
             
+        $categories = Slides::find()
+            ->where([
+                'active' => 1,
+                'category' => 'Категории на Главной',
+            ])
+            ->orderBy([
+                'sort' => SORT_ASC
+            ])
+            ->all();
+            
+        $subCategories = Slides::find()
+            ->where([
+                'active' => 1,
+                'category' => 'Подкатегории на Главной',
+            ])
+            ->orderBy([
+                'sort' => SORT_ASC
+            ])
+            ->all();
+            
         return $this->render('index', [
             'slides' => $slides,
             'banners' => $banners,
+            'categories' => $categories,
+            'subCategories' => $subCategories,
         ]);
         
     }

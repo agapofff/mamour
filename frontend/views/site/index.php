@@ -72,82 +72,67 @@ foreach ($slides as $slide) {
 </div>
 
 <div class="container mt-8 mt-lg-11" style="max-width: 1120px">
-    <div class="row">
-        <div class="col-6 mb-0_625 px-0_625">
-            <a href="<?= Url::to(['/catalog/girls']) ?>">
+<?php
+    if ($categories) {
+?>
+        <div class="owl-carousel owl-theme mb-1_25" data-items="2-2-2-2-2-2" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
+<?php
+        foreach ($categories as $category) {
+            $image = $category->getImage();
+            $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
+            $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
+?>
+            <a href="<?= Url::to([$category->link]) ?>">
                 <?= ImgOpt::widget([
-                        'src' => '/images/main/mainpage_category_1.jpg', 
+                        'src' => $imageSrc, 
                         'alt' => $this->title,
                         'loading' => 'lazy',
+                        'css' => 'img-fluid',
                     ])
                 ?>
             </a>
+<?php
+        }
+?>
         </div>
-        <div class="col-6 mb-0_625 px-0_625">
-            <a href="<?= Url::to(['/catalog/boys']) ?>">
+<?php
+    }
+
+    if ($subCategories) {
+?>
+        <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
+<?php
+        foreach ($subCategories as $subCategory) {
+            $image = $subCategory->getImage();
+            $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
+            $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
+?>
+            <a href="<?= Url::to([$subCategory->link]) ?>">
                 <?= ImgOpt::widget([
-                        'src' => '/images/main/mainpage_category_2.jpg', 
+                        'src' => $imageSrc, 
                         'alt' => $this->title,
                         'loading' => 'lazy',
+                        'css' => 'img-fluid',
                     ])
                 ?>
             </a>
+<?php
+        }
+?>
         </div>
-        <div class="col-12">
-            <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
-                <a href="<?= Url::to(['/catalog/girls/t-shirts']) ?>">
-                    <?= ImgOpt::widget([
-                            'src' => '/images/main/mainpage_category_3.jpg', 
-                            'alt' => $this->title,
-                            'loading' => 'lazy',
-                        ])
-                    ?>
-                </a>
-                <a href="<?= Url::to(['/catalog/girls/trousers']) ?>">
-                    <?= ImgOpt::widget([
-                            'src' => '/images/main/mainpage_category_4.jpg', 
-                            'alt' => $this->title,
-                            'loading' => 'lazy',
-                        ])
-                    ?>
-                </a>
-                <a href="<?= Url::to(['/catalog/girls/shorts']) ?>">
-                    <?= ImgOpt::widget([
-                            'src' => '/images/main/mainpage_category_5.jpg', 
-                            'alt' => $this->title,
-                            'loading' => 'lazy',
-                        ])
-                    ?>
-                </a>
-                <a href="<?= Url::to(['/catalog/girls/dresses']) ?>">
-                    <?= ImgOpt::widget([
-                            'src' => '/images/main/mainpage_category_6.jpg', 
-                            'alt' => $this->title,
-                            'loading' => 'lazy',
-                        ])
-                    ?>
-                </a>
-                <a href="<?= Url::to(['/catalog/girls/shorts']) ?>">
-                    <?= ImgOpt::widget([
-                            'src' => '/images/main/mainpage_category_5.jpg', 
-                            'alt' => $this->title,
-                            'loading' => 'lazy',
-                        ])
-                    ?>
-                </a>
-            </div>
-        </div>
-    </div>
+<?php
+    }
+?>
 </div>
 
-<div class="container mt-6">
+<div class="container mt-6 mt-lg-8">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-md-10 col-lg-9 col-xl-8">
             <h2 class="h1 gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-3">
                 <?= Yii::t('front', 'Заголовок') ?>
             </h2>
             <p class="text-center courier">
-                <?= Yii::t('front', 'Очень короткий текст, описывающий функционал данного раздела') ?>
+                <?= Yii::t('front', 'Текст поменяется на актуальный. Долго выбирая среди множества вариантов, мы решили, что это самое подходящее название для нашего бренда, выражающее в полной мере концепцию марки.') ?>
             </p>
         </div>
     </div>
