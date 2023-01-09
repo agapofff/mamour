@@ -508,6 +508,7 @@ form[disabled] {
     position: absolute;
 	bottom: 3rem;
     left: 3rem;
+    width: auto !important;
     margin: 0 !important;
 }
 @media (max-width: 991px) {

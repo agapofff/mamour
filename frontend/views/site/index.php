@@ -71,7 +71,7 @@ foreach ($slides as $slide) {
     </div>
 </div>
 
-<div class="container mt-8 mt-lg-11" style="max-width: 1120px">
+<div class="container mt-8 mt-lg-11">
 <?php
     if ($categories) {
 ?>
@@ -127,27 +127,24 @@ foreach ($slides as $slide) {
 
 <div class="container mt-6 mt-lg-8">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-9 col-xl-8">
+        <div class="col-md-10 col-lg-9 col-xl-9">
             <h2 class="h1 gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-3">
                 <?= Yii::t('front', 'Заголовок') ?>
             </h2>
-            <p class="text-center courier">
+            <p class="text-center lead courier">
                 <?= Yii::t('front', 'Текст поменяется на актуальный. Долго выбирая среди множества вариантов, мы решили, что это самое подходящее название для нашего бренда, выражающее в полной мере концепцию марки.') ?>
             </p>
         </div>
     </div>
 </div>
 
-<div class="container mt-4">
+<div class="container mt-4 mt-lg-6">
     <div class="row justify-content-center">
         <div class="col-6 col-md-3 text-center mb-1">
             <a href="<?= Url::to(['/service/delivery']) ?>" class="text-decoration-none">
                 <img src="/images/main/mainpage_icon_delivery.png" class="mb-2">
                 <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                     <?= Yii::t('front', 'Курьерская доставка') ?>
-                </p>
-                <p class="text-center courier small">
-                    <?= Yii::t('front', 'Совсем Небольшой сопроводительный текст две или может три ровных строки') ?>
                 </p>
             </a>
         </div>
@@ -157,9 +154,6 @@ foreach ($slides as $slide) {
                 <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                     <?= Yii::t('front', 'Оплата') ?>
                 </p>
-                <p class="text-center courier small">
-                    <?= Yii::t('front', 'Совсем Небольшой сопроводительный текст две или может три ровных строки') ?>
-                </p>
             </a>
         </div>
         <div class="col-6 col-md-3 text-center mb-1">
@@ -168,9 +162,6 @@ foreach ($slides as $slide) {
                 <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                     <?= Yii::t('front', 'Упаковка') ?>
                 </p>
-                <p class="text-center courier small">
-                    <?= Yii::t('front', 'Совсем Небольшой сопроводительный текст две или может три ровных строки') ?>
-                </p>
             </a>
         </div>
         <div class="col-6 col-md-3 text-center mb-1">
@@ -178,9 +169,6 @@ foreach ($slides as $slide) {
                 <img src="/images/main/mainpage_icon_service.png" class="mb-2">
                 <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                     <?= Yii::t('front', 'Клиентский сервис') ?>
-                </p>
-                <p class="text-center courier small">
-                    <?= Yii::t('front', 'Совсем Небольшой сопроводительный текст две или может три ровных строки') ?>
                 </p>
             </a>
         </div>
