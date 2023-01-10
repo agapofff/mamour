@@ -270,7 +270,7 @@
                                     <img src="/images/cart.svg">
                                     <?= CartInformer::widget([
                                             'htmlTag' => 'span',
-                                            'cssClass' => 'mt-1',
+                                            'cssClass' => 'mt-1 small',
                                             'text' => '{c}'
                                         ]);
                                     ?>
