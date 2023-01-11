@@ -6,6 +6,7 @@ use Yii;
 use common\models\Stores;
 use common\models\Languages;
 use common\models\Wishlist;
+use common\models\Slides;
 use dvizh\shop\models\Product;
 // use common\models\Category;
 use dvizh\shop\models\Category;
@@ -21,9 +22,20 @@ class CatalogController extends Controller
 {
     public function actionIndex()
     {
-        $categories = Category::find()
+        $categories = Slides::find()
             ->where([
-                'active' => 1
+                'active' => 1,
+                'category' => 'Категории на Главной',
+            ])
+            ->orderBy([
+                'sort' => SORT_ASC
+            ])
+            ->all();
+            
+        $subCategories = Slides::find()
+            ->where([
+                'active' => 1,
+                'category' => 'Подкатегории на Главной',
             ])
             ->orderBy([
                 'sort' => SORT_ASC
@@ -31,7 +43,8 @@ class CatalogController extends Controller
             ->all();
         
         return $this->render('index', [
-            'categories' => $categories
+            'categories' => $categories,
+            'subCategories' => $subCategories,
         ]);
     }
     

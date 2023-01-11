@@ -252,6 +252,10 @@ button,
     font-family: 'Courier New';
 }
 
+.fs15px {
+    font-size: 15px !important;
+}
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;

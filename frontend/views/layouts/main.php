@@ -212,7 +212,7 @@
                             if (!$menuItem['parent_id']) {
                     ?>
                                 <div class="col-auto dropdown hover px-0 px-lg-0_5">
-                                    <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 gotham font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
+                                    <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 montserrat fs15px font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
                                         <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
                                     </a>
                             <?php
@@ -225,10 +225,10 @@
                                             if ($menuItemChild['parent_id'] == $menuItem['id']) {
                                     ?>
                                                 <li>
-                                                    <a href="<?= Url::to([$menuItemChild['url']]) ?>" class="dropdown-item">
+                                                    <a href="<?= Url::to([$menuItemChild['url']]) ?>" class="dropdown-item montserrat fs15px">
                                                         <?= json_decode($menuItemChild['name'])->{Yii::$app->language} ?>
                                                     </a>
-                                                    <?php Category::renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id']), 'list-unstyled pl-2', '', 'dropdown-item') ?>
+                                                    <?php Category::renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id']), 'list-unstyled pl-2', 'montserrat fs15px', 'dropdown-item') ?>
                                                 </li>
                                                 <div class="dropdown-divider"></div>
                                     <?php
@@ -277,7 +277,7 @@
                                 </a>
                             </div>
                             <div class="col-auto pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1">
-                                <button id="language" type="button" class="btn btn-link text-dark text-uppercase text-decoration-none gotham px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button id="language" type="button" class="btn btn-link text-dark text-uppercase text-decoration-none montserrat fs15px px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= Yii::$app->language ?>
                                 </button>
                                 <div class="dropdown-menu bg-transparent m-0 py-0 px-1 border-0" aria-labelledby="language">
@@ -285,7 +285,7 @@
                                 foreach ($langs as $key => $lang) {
                                     if ($lang['label'] !== Yii::$app->language) {
                                         echo Html::a($lang['label'], urldecode($lang['url']), [
-                                            'class' => 'd-block bg-transparent px-0 text-uppercase text-decoration-none gotham',
+                                            'class' => 'd-block bg-transparent px-0 text-uppercase text-decoration-none montserrat fs15px',
                                         ]);
                                     }
                                 }
