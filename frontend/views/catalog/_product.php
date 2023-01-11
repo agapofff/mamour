@@ -6,7 +6,7 @@
     $size = Yii::$app->params['productImageSizes']['M'];
 ?>
 
-<div class="card bg-transparent border-0 product mb-1 mb-lg-1_5 category-product">
+<div class="card h-100 bg-transparent border-0 product mb-1 mb-lg-1_5 category-product">
     <div class="card-body position-relative p-0 text-center">
         <a href="<?= Url::to(['/product/' . $product->slug]) ?>">
             <?php
@@ -15,7 +15,7 @@
             ?>
             <img data-src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl($size) ?>" class="img-fluid lazyload" alt="<?= $image->alt ? $image->alt : $productName ?>" loading="lazy">
         </a>
-        <p class="text-center montserrat font-weight-light mt-1_5 mb-1">
+        <p class="text-center montserrat font-weight-light mt-1_5 mb-0">
             <?= $productName ?>
         </p>
         <?= $this->render('@frontend/views/wishlist/product', [

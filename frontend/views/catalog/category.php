@@ -26,13 +26,13 @@ if (!$this->title) {
             Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase fs15px mb-0_5', 'text-decoration-underline') ?>
         </div>
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6">
-            <h1 class="gotham font-weight-bold text-uppercase headline mb-2 mb-lg-3">
+            <h1 class="gotham font-weight-bold text-uppercase headline mb-3 mb-lg-5">
                 <?= json_decode($category->name)->{Yii::$app->language} ?>
             </h1>
     <?php
         if ($categoryDescription = json_decode($category->text)->{Yii::$app->language}) {
     ?>
-            <div class="mb-2 mb-lg-3">
+            <div class="mb-3 mb-lg-5 lead">
                 <?= json_decode($category->text)->{Yii::$app->language} ?></p>
             </div>
     <?php
@@ -41,12 +41,11 @@ if (!$this->title) {
     <?php
         if ($products) {
     ?>
-            <div class="card-deck">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 justify-content-center">
         <?php
             foreach ($products as $product) {
         ?>
-                
-
+                <div class="col mb-3">
                     <?= $this->render('@frontend/views/catalog/_product', [
                             'product' => $product['model'],
                             'productName' => $product['name'],
@@ -56,7 +55,7 @@ if (!$this->title) {
                             'wishlist' => $product['wishlist'],
                         ])
                     ?> 
-                
+                </div>
         <?php
             }
         ?>
