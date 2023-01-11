@@ -572,12 +572,9 @@ form[disabled] {
 }
 .category-product .btn-wishlist {
     position: absolute;
-    top: -0.5em;
-    right: 1.5em;    
+    top: 0;
+    right: 0;    
     z-index: 1;
-}
-.category-product .btn-wishlist img {
-    width: 1.5em;
 }
 
 
