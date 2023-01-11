@@ -259,6 +259,10 @@ button,
     font-size: 15px !important;
 }
 
+.block-max-width {
+    max-width: 1120px !important;
+}
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;

@@ -195,7 +195,7 @@
     <?php $this->beginBody() ?>
             
         <nav id="nav" class="py-1 transition <?= $isMainPage ? 'position-absolute w-100' : '' ?>">
-            <div id="nav-container" class="container-xxl">
+            <div id="nav-container" class="container-fluid">
                 <div class="row align-items-center justify-content-between flex-nowrap">
                     <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-3">
                         <a id="logo" href="<?= Url::home(true) ?><?= Yii::$app->language ?>">
