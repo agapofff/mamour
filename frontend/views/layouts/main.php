@@ -337,6 +337,56 @@
                 <?= $content ?>
             </div>
             
+            <div class="container mt-6 mt-lg-8">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-9 col-xl-9">
+                        <h2 class="h1 gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-3">
+                            <?= Yii::t('front', 'Заголовок') ?>
+                        </h2>
+                        <p class="text-center lead courier">
+                            <?= Yii::t('front', 'Текст поменяется на актуальный. Долго выбирая среди множества вариантов, мы решили, что это самое подходящее название для нашего бренда, выражающее в полной мере концепцию марки.') ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-4 mt-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-6 col-md-3 text-center mb-1">
+                        <a href="<?= Url::to(['/service/delivery']) ?>" class="text-decoration-none">
+                            <img src="/images/main/mainpage_icon_delivery.png" class="mb-2">
+                            <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
+                                <?= Yii::t('front', 'Курьерская доставка') ?>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 text-center mb-1">
+                        <a href="<?= Url::to(['/service/payment']) ?>" class="text-decoration-none">
+                            <img src="/images/main/mainpage_icon_payment.png" class="mb-2">
+                            <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
+                                <?= Yii::t('front', 'Оплата') ?>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 text-center mb-1">
+                        <a href="<?= Url::to(['/service/package']) ?>" class="text-decoration-none">
+                            <img src="/images/main/mainpage_icon_package.png" class="mb-2">
+                            <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
+                                <?= Yii::t('front', 'Упаковка') ?>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 text-center mb-1">
+                        <a href="<?= Url::to(['/service']) ?>" class="text-decoration-none">
+                            <img src="/images/main/mainpage_icon_service.png" class="mb-2">
+                            <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
+                                <?= Yii::t('front', 'Клиентский сервис') ?>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
         <footer class="mt-5 mt-sm-7 pt-4 pt-lg-7 pb-1 pb-lg-4 bg-gray-300">
