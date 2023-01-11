@@ -85,6 +85,9 @@ button,
 .text-decoration-underline {
     text-decoration: underline;
 }
+.text-decoration-underline:hover {
+    text-decoration: none;
+}
 .text-underline {
     display: inline-block;
     position: relative;

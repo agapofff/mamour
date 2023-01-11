@@ -41,25 +41,22 @@ if (!$this->title) {
     <?php
         if ($products) {
     ?>
-            <div class="row justify-content-center">
+            <div class="card-deck">
         <?php
             foreach ($products as $product) {
         ?>
-                <div class="col-sm-6 col-xl-4 category-product">
-                    <?= $this->render('@frontend/views/wishlist/product', [
-                            'product_id' => $product['model']->id,
-                            'action' => $product['wishlist']
-                        ])
-                    ?>
+                
+
                     <?= $this->render('@frontend/views/catalog/_product', [
                             'product' => $product['model'],
                             'productName' => $product['name'],
                             'oldPrice' => $product['oldPrice'],
                             'price' => $product['price'],
                             'sizes' => $product['sizes'],
+                            'wishlist' => $product['wishlist'],
                         ])
                     ?> 
-                </div>
+                
         <?php
             }
         ?>
