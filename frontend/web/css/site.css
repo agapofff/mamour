@@ -231,8 +231,22 @@ button,
 .opacity-100 {
     opacity: 1 !important;
 }
-.letter-spacing-10 {
+.letter-spacing-10,
+.ls10 {
     letter-spacing: 0.1rem;
+}
+.line-height-150,
+.line-height-1_5,
+.lh15 {
+    line-height: 1.5;
+}
+.font-size-15px,
+.fs15px,
+.fs15 {
+    font-size: 15px !important;
+}
+.block-max-width {
+    max-width: 1120px !important;
 }
 .transition {
     -webkit-transition: all 0.5s ease;
@@ -253,14 +267,6 @@ button,
 .font-courier,
 .courier {
     font-family: 'Courier New';
-}
-
-.fs15px {
-    font-size: 15px !important;
-}
-
-.block-max-width {
-    max-width: 1120px !important;
 }
 
 select {

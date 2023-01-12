@@ -32,7 +32,7 @@ if (!$this->title) {
     <?php
         if ($categoryDescription = json_decode($category->text)->{Yii::$app->language}) {
     ?>
-            <div class="mb-3 mb-lg-5 lead">
+            <div class="mb-3 mb-lg-5 lead courier letter-spacing-10 line-height-150">
                 <?= json_decode($category->text)->{Yii::$app->language} ?></p>
             </div>
     <?php

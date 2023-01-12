@@ -339,11 +339,11 @@
             
             <div class="container mt-6 mt-lg-8">
                 <div class="row justify-content-center">
-                    <div class="col-md-10 col-lg-9 col-xl-9">
+                    <div class="col-md-11 col-lg-10">
                         <h2 class="h1 gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-3">
                             <?= Yii::t('front', 'Заголовок') ?>
                         </h2>
-                        <p class="text-center lead courier">
+                        <p class="text-center lead courier letter-spacing-10 line-height-150">
                             <?= Yii::t('front', 'Текст поменяется на актуальный. Долго выбирая среди множества вариантов, мы решили, что это самое подходящее название для нашего бренда, выражающее в полной мере концепцию марки.') ?>
                         </p>
                     </div>

@@ -65,7 +65,7 @@ foreach ($slides as $slide) {
         <div class="col-lg-4 mb-3">
             <h1 class="gotham font-weight-bold ml-5 text-uppercase text-howrap">“<span class="headline">Mamour</span>”?</h1>
         </div>
-        <div class="col-lg-7 col-xl-6 h5 courier letter-spacing-10">
+        <div class="col-lg-7 col-xl-6 lead courier letter-spacing-10 line-height-150">
             <?= Yii::t('front', 'Французское слово “Mamour” означает «моя любовь, любимый, любимая». Это сокращенная форма известного всем “mon amour”. Однако, “Mamour” отличается более «теплым» звучанием, нежностью. “Mamour” выбирают только для самых дорогих, близких, любимых людей. Долго выбирая среди множества вариантов, мы решили, что это самое подходящее название для нашего бренда, выражающее в полной мере концепцию марки.') ?>
         </div>
     </div>
