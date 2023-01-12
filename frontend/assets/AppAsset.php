@@ -18,7 +18,6 @@ class AppAsset extends AssetBundle
         // 'bootstrap4/bootstrap4-grid.scss',
         // 'css/bootstrap4/bootstrap4.scss',
         
-        'fonts/CourierNewCyr/stylesheet.css',
         'fonts/CourierNew/stylesheet.css',
         // 'fonts/GothamPro/stylesheet.css',
         
