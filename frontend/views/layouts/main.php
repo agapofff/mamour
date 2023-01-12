@@ -49,10 +49,9 @@
             'CourierNew' => [
                 '',
                 'Bold',
-            ],
-            'CourierNewCyr' => [
-                '',
-            ],            
+                'Italic',
+                'BoldItalic',
+            ],         
             // 'GothamPro' => [
                 // '',
                 // 'Bold',
