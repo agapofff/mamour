@@ -8,6 +8,7 @@ use dvizh\cart\widgets\ChangeCount;
 use dvizh\cart\widgets\ChangeOptions;
 use yii\web\View;
 use yii\widgets\Pjax;
+use PELock\ImgOpt\ImgOpt;
 
 $images = $product->getImages();
 
@@ -32,7 +33,7 @@ if (!$this->title) {
 
 <div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
     <div class="row">
-        <div class="col-md-5 mt-1">
+        <div class="col-md-6 mt-1">
             <div class="row overflow-hidden">
                 <div class="col-9">
                     <div id="product-gallery" class="owl-carousel owl-theme owl-fade">
@@ -41,7 +42,14 @@ if (!$this->title) {
                         $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['M'] . '.' . $image->extension;
                         $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['M']), true);
                 ?>
-                        <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload" alt="<?= $image->alt ?: $productName ?>">
+                        <div class="product-bg">
+                            <?= ImgOpt::widget([
+                                    'src' => $imageSrc, 
+                                    'alt' => $image->alt ?: $productName,
+                                    'loading' => 'lazy',
+                                ])
+                            ?>
+                        </div>
                 <?php
                     }
                 ?>
@@ -70,7 +78,16 @@ if (!$this->title) {
                             $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['S'] . '.' . $image->extension;
                             $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['S']), true);
                     ?>
-                            <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)" style="margin-bottom: 15px">
+                            <div class="product-bg mb-1_5" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
+                                <div class="product-bg">
+                                    <?= ImgOpt::widget([
+                                            'src' => $imageSrc, 
+                                            'alt' => $image->alt ?: $productName,
+                                            'loading' => 'lazy',
+                                        ])
+                                    ?>
+                                </div>
+                            </div>
                     <?php
                         }
                     ?>
@@ -79,7 +96,7 @@ if (!$this->title) {
                 </div>
             </div>
         </div>        
-        <div class="col-12 col-md-7">
+        <div class="col-md-6">
             <div class="row">
                 <div class="col-1">
                     <?= $this->render('@frontend/views/wishlist/product', [
