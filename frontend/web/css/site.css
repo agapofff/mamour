@@ -571,8 +571,8 @@ form[disabled] {
     opacity: 1;
 }
 
-.category-product-image {
-    background: url('/images/product_back.jpg') bottom center / cover no-repeat;
+.product-bg {
+    background: url('/images/product_back.jpg') center center / cover no-repeat;
 }
 
 /* WISHLIST */
