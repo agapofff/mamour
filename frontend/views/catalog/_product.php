@@ -35,7 +35,7 @@
         </p>
         
         <div class="text-center small">
-            <a href="#" class="courier font-weight-light text-warning text-decoration-underline small">
+            <a href="<?= Url::to(['/product/' . $product->slug]) ?>" class="courier font-weight-light text-warning text-decoration-underline small">
                 <?= Yii::t('front', 'Просмотр') ?>
             </a>
         </div>
