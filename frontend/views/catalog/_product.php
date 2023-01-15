@@ -2,6 +2,7 @@
     use yii\helpers\Html;
     use yii\helpers\Url;
     use yii\helpers\HtmlPurifier;
+    use PELock\ImgOpt\ImgOpt;
     
     $size = Yii::$app->params['productImageSizes']['M'];
 ?>
@@ -12,8 +13,14 @@
             <?php
                 $image = $product->getImage();
                 $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . $size . '.' . $image->extension;
+                $imageUrl = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl($size);
             ?>
-            <img data-src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl($size) ?>" class="img-fluid lazyload" alt="<?= $image->alt ? $image->alt : $productName ?>" loading="lazy">
+            <?= ImgOpt::widget([
+                    'src' => $imageUrl, 
+                    'alt' => $image->alt ?: $productName,
+                    'loading' => 'lazy',
+                ])
+            ?>
         </a>
         <p class="text-center montserrat font-weight-light mt-1_5 mb-0">
             <?= $productName ?>
