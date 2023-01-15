@@ -275,7 +275,7 @@
                                     ?>
                                 </a>
                             </div>
-                            <div class="col-auto pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1">
+                            <div class="col-auto pl-0 pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1 mr-lg-2">
                                 <button id="language" type="button" class="btn btn-link text-dark text-uppercase text-decoration-none montserrat fs15px px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= Yii::$app->language ?>
                                 </button>
@@ -291,7 +291,7 @@
                             ?>
                                 </div>
                             </div>
-                            <div class="col-auto d-lg-none">
+                            <div class="col-auto d-lg-none mr-2">
                                 <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#menu" aria-label="<?= Yii::t('front', 'Меню') ?>">
                                     <img src="/images/menu.svg">
                                 </button>

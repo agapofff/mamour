@@ -11,9 +11,12 @@ if (!$this->title) {
 }
 ?>
 
-<div class="container-xxl mt-2">    
+<div class="container-fluid mt-5 mt-lg-8">    
     <div class="row justify-content-center justify-content-lg-start">
-        <div id="category-menu" class="col-sm-3 col-md-3 col-lg-2 col-xl-3 d-none d-md-block">
+        <div id="category-menu" class="col-md-3 pl-lg-2 pl-xl-6 d-none d-md-block">
+            <h1 class="montserrat font-weight-bold text-uppercase headline mb-4 mb-lg-6">
+                <?= json_decode($category->name)->{Yii::$app->language} ?>
+            </h1>
         <?php 
             $menu = ArrayHelper::index(Yii::$app->params['menu'], 'id');
             $rootID = 0;
@@ -22,13 +25,12 @@ if (!$this->title) {
                     $rootID = $item['parent_id'] == '0' ? $item['id'] : $item['parent_id'];
                 }
             }
-
-            Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase fs15px mb-0_5', 'text-decoration-underline') ?>
+        ?>
+            <div class="ml-n2">
+                <?php Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase fs15px mb-1', 'text-decoration-underline') ?>
+            </div>
         </div>
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6">
-            <h1 class="gotham font-weight-bold text-uppercase headline mb-3 mb-lg-5">
-                <?= json_decode($category->name)->{Yii::$app->language} ?>
-            </h1>
     <?php
         if ($categoryDescription = json_decode($category->text)->{Yii::$app->language}) {
     ?>
