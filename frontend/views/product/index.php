@@ -78,16 +78,7 @@ if (!$this->title) {
                             $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['S'] . '.' . $image->extension;
                             $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['S']), true);
                     ?>
-                            <div class="product-bg mb-1_5" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
-                                <div class="product-bg">
-                                    <?= ImgOpt::widget([
-                                            'src' => $imageSrc, 
-                                            'alt' => $image->alt ?: $productName,
-                                            'loading' => 'lazy',
-                                        ])
-                                    ?>
-                                </div>
-                            </div>
+                            <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)" style="margin-bottom: 15px">
                     <?php
                         }
                     ?>
