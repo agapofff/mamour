@@ -8,7 +8,7 @@
 
 <div class="card h-100 bg-transparent border-0 product mb-1 mb-lg-1_5 category-product">
     <div class="card-body position-relative p-0 text-center">
-        <a href="<?= Url::to(['/product/' . $product->slug]) ?>">
+        <a href="<?= Url::to(['/product/' . $product->slug]) ?>" class="d-block category-product-image">
             <?php
                 $image = $product->getImage();
                 $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . $size . '.' . $image->extension;
