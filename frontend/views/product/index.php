@@ -35,7 +35,7 @@ if (!$this->title) {
     <div class="row">
         <div class="col-md-6 mt-1">
             <div class="row overflow-hidden">
-                <div class="col-9">
+                <div class="col-8">
                     <div id="product-gallery" class="owl-carousel owl-theme owl-fade">
                 <?php
                     foreach ($images as $key => $image) {
@@ -55,7 +55,7 @@ if (!$this->title) {
                 ?>
                     </div>
                 </div>
-                <div class="col-3 pl-0">
+                <div class="col-4 pl-0">
                     <div class="position-relative h-100">
                 <?php
                     /*
