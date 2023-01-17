@@ -571,6 +571,12 @@ form[disabled] {
     opacity: 1;
 }
 
+#product-gallery .owl-dots {
+    position: inherit;
+    text-align: left;
+    margin-left: -0.4em;
+}
+
 .product-bg {
     background: url('/images/product_back.jpg') center center / cover no-repeat;
 }

@@ -35,8 +35,8 @@ if (!$this->title) {
     <div class="row">
         <div class="col-md-6 mt-1">
             <div class="row overflow-hidden">
-                <div class="col-8">
-                    <div id="product-gallery" class="owl-carousel owl-theme owl-fade">
+                <div class="col-8 pr-0_5">
+                    <div id="product-gallery" class="owl-carousel owl-theme owl-fade" data-dots="true">
                 <?php
                     foreach ($images as $key => $image) {
                         $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['M'] . '.' . $image->extension;
@@ -55,7 +55,7 @@ if (!$this->title) {
                 ?>
                     </div>
                 </div>
-                <div class="col-4 pl-0">
+                <div class="col-4 pl-0_5">
                     <div class="position-relative h-100">
                 <?php
                     /*
@@ -78,7 +78,9 @@ if (!$this->title) {
                             $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['S'] . '.' . $image->extension;
                             $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['S']), true);
                     ?>
-                            <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)" style="margin-bottom: 15px">
+                            <div class="product-bg mb-0_5">
+                                <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
+                            </div>
                     <?php
                         }
                     ?>
@@ -103,21 +105,9 @@ if (!$this->title) {
             <?php
                 if ($product->sku) {
             ?>
-                    <p class="font-weight-light small text-muted">
+                    <p class="montserrat font-weight-light text-muted fs15">
                         <?= $product->sku ?>
                     </p>
-            <?php
-                }
-            ?>
-            
-            <?php
-                if ($productDescription) {
-            ?>
-                    <div class="mb-1">
-                        <small>
-                            <?= $productDescription ?>
-                        </small>
-                    </div>
             <?php
                 }
             ?>
@@ -149,7 +139,7 @@ if (!$this->title) {
                         ?>
                     </div>
                     <p class="mb-2">
-                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-scrollable modal-xl" class="btn btn-link p-0 font-weight-light">
+                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-scrollable modal-xl" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
                             <small>
                                 <?= Yii::t('front', 'Показать таблицу размеров') ?>
                             </small>
