@@ -78,8 +78,8 @@ if (!$this->title) {
                             $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['S'] . '.' . $image->extension;
                             $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['S']), true);
                     ?>
-                            <div class="product-bg mb-0_5">
-                                <img data-src="<?= $imageSrc ?>" class="img-fluid lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
+                            <div class="mb-0_5 cursor-pointer" style="background: url('<?= $imageSrc ?>') center center / contain no-repeat" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
+                                <img src="/images/product_back_small.jpg" class="img-fluid">
                             </div>
                     <?php
                         }
@@ -158,6 +158,12 @@ if (!$this->title) {
             <?php
                 }
             ?>
+            
+                    <div class="mt-2 mb-2">
+                        <div class="row">
+                            
+                        </div>
+                    </div>
             
             <?php
                 if ($price && $product->available) {
