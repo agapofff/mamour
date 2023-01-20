@@ -151,8 +151,10 @@ class ChangeOptions extends \yii\base\Widget
                                         'class' => 'btn btn-lg rounded-0 btn-outline-warning courier text-uppercase mr-0_5 mb-0_5 p-0 d-flex justify-content-center align-items-center float-left ' . (in_array($value, $disabled) ? 'disabled text-muted border-gray-500 pointer-events-none' : ''),
                                         'disabled' => in_array($value, $disabled),
                                         'style' => '
-                                            width: 40px;
-                                            height: 40px;
+                                            width: 32px;
+                                            height: 32px;
+                                            font-size: 13px;
+                                            border-width: 2px;
                                         ',
                                     ],
                                     'data-href' => Url::toRoute([
