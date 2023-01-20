@@ -588,6 +588,15 @@ form[disabled] {
     background: url('/images/product_back.jpg') center center / cover no-repeat;
 }
 
+.product-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    height: 100%;
+    transform: translateX(-50%) scale(1.2);
+}
+
 /* WISHLIST */
 
 .btn-wishlist div:last-child,
