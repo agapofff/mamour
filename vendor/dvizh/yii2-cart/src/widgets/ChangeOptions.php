@@ -148,14 +148,8 @@ class ChangeOptions extends \yii\base\Widget
                                     'label' => Html::encode($label),
                                     'disabled' => in_array($value, $disabled),
                                     'labelOptions' => [
-                                        'class' => 'btn btn-lg rounded-0 btn-outline-warning courier text-uppercase mr-0_5 mb-0_5 p-0 d-flex justify-content-center align-items-center float-left ' . (in_array($value, $disabled) ? 'disabled text-muted border-gray-500 pointer-events-none' : ''),
+                                        'class' => 'btn btn-lg btn-option rounded-0 btn-outline-warning courier text-uppercase mr-0_5 mb-0_5 p-0 d-flex justify-content-center align-items-center float-left ' . (in_array($value, $disabled) ? 'disabled text-muted border-gray-500 pointer-events-none' : ''),
                                         'disabled' => in_array($value, $disabled),
-                                        'style' => '
-                                            width: 32px;
-                                            height: 32px;
-                                            font-size: 13px;
-                                            border-width: 2px;
-                                        ',
                                     ],
                                     'data-href' => Url::toRoute([
                                         'cart/element/update',
