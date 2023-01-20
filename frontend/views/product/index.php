@@ -115,7 +115,7 @@ if (!$this->title) {
             <?php
                 if ($price && $product->available) {
             ?>
-                    <div class="product-price mb-2" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                    <div class="product-price mb-2 mt-1_5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <meta itemprop="price" content="<?= $price ?>">
                         <meta itemprop="priceCurrency" content="<?= Yii::$app->params['currency'] ?>">
                         <?= ShowPrice::widget([
@@ -145,15 +145,6 @@ if (!$this->title) {
                             </small>
                         </button>
                     </p>
-                    
-                    <div class="product-buy mb-2" data-id="<?= $product->id ?>">
-                        <?= BuyButton::widget([
-                                'model' => $product,
-                                'htmlTag' => 'button',
-                                'cssClass' => 'btn btn-primary btn-sm-block montserrat px-3 py-0_5 py-sm-1',
-                            ]);
-                        ?>
-                    </div>
             <?php
                 }
             ?>
@@ -161,8 +152,23 @@ if (!$this->title) {
             <?php
                 if ($productText) {
             ?>
-                    <div class="product-text font-weight-light" class="mb-2">
+                    <div class="product-text font-weight-light mt-2 mb-2">
                         <?= $productText ?>
+                    </div>
+            <?php
+                }
+            ?>
+            
+            <?php
+                if ($price && $product->available) {
+            ?>
+                    <div class="product-buy mb-2" data-id="<?= $product->id ?>">
+                        <?= BuyButton::widget([
+                                'model' => $product,
+                                'htmlTag' => 'button',
+                                'cssClass' => 'btn btn-primary btn-sm-block montserrat px-3 py-0_5 py-sm-1',
+                            ]);
+                        ?>
                     </div>
             <?php
                 }
