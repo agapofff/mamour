@@ -80,7 +80,7 @@ if (!$this->title) {
                     ?>
                             <div class="position-relative mb-0_5 cursor-pointer" onclick="owlGoTo('#product-gallery', <?= $key ?>)">
                                 <img src="/images/product_back_small.jpg" class="img-fluid">
-                                <div class="position-absolute top-0 left-0 w-100 h-100" style="background: url('<?= $imageSrc ?>') center center / contain no-repeat"></div>
+                                <img data-src="<?= $imageSrc ?>" class="position-absolute top-0 d-block h-100 lazyload cursor-pointer" alt="<?= $image->alt ?: $productName ?>" >
                             </div>
                     <?php
                         }
