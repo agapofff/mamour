@@ -577,6 +577,13 @@ form[disabled] {
     margin-left: -0.4em;
 }
 
+.btn-option {
+    width: 2em;
+    height: 2em;
+    font-size: 13px;
+    border-width: 2px;
+}
+
 .product-bg {
     background: url('/images/product_back.jpg') center center / cover no-repeat;
 }
