@@ -100,6 +100,7 @@ jQuery(document).ready(function ($) {
         html: true,
         trigger: 'focus',
         container: 'body',
+        placement: 'auto',
         content: function () {
             if ($(this).is('[data-element]')) {
                 return $($(this).attr('data-element')).html();

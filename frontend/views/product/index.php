@@ -104,10 +104,10 @@ if (!$this->title) {
                         <?= $productName ?>
                     </h1>
             <?php
-                if ($product->sku) {
+                if ($productDescription) {
             ?>
                     <p class="montserrat font-weight-light text-muted fs15">
-                        <?= $product->sku ?>
+                        <?= $productDescription ?>
                     </p>
             <?php
                 }
@@ -162,7 +162,17 @@ if (!$this->title) {
             
                     <div class="mt-2 mb-2">
                         <div class="row">
-                            
+                    <?php
+                        if ($product->compound) {
+                    ?>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-link" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= $product->compound ?>">
+                                    <?= Yii::t('front', 'Состав') ?>
+                                </button>
+                            </div>
+                    <?php
+                        }
+                    ?>
                         </div>
                     </div>
             
