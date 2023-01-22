@@ -33,12 +33,6 @@ if (!$this->title) {
     $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
 }
 
-$this->registerCss("
-    .owl-carousel .owl-nav.disabled, .owl-carousel .owl-dots.disabled {
-        display: block !important;
-    }
-");
-
 ?>
 
 <div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
@@ -234,7 +228,7 @@ $this->registerCss("
                     </h4>
                 </div>
                 <div class="col-12">
-                    <div class="owl-carousel owl-theme owlArrows" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
+                    <div id="product-relations" class="owl-carousel owl-theme owlArrows" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
                 <?php
                     foreach ($relations->all() as $related) {
                 ?>
