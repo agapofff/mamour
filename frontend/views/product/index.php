@@ -150,7 +150,7 @@ $this->registerCss("
                         ?>
                     </div>
                     <p class="mb-1_5">
-                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
+                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered modal-dialog-scrollable" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
                             <small>
                                 <?= Yii::t('front', 'Показать таблицу размеров') ?>
                             </small>
