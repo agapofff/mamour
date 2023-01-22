@@ -43,8 +43,7 @@ class ProductController extends \yii\web\Controller
         }
         
         $wishlist = Wishlist::findAll([
-            'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
-            'product_id' => $product->id,
+            'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id)
         ]);
         $wishlist = ArrayHelper::getColumn($wishlist, 'product_id');
             
