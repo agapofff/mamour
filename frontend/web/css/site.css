@@ -467,7 +467,28 @@ form[disabled] {
     display: none !important;
 }
 
+.btn-option {
+    width: 2em;
+    height: 2em;
+    font-size: 13px;
+    border-width: 2px;
+}
 
+.product-bg {
+    background: url('/images/product_back.jpg') center center / cover no-repeat;
+}
+
+.product-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    height: 100%;
+    transform: translateX(-50%) scale(1.2);
+}
+.product-thumbnails.slick-vertical .slick-slide {
+    border: none !important;
+}
 
 
 /* OWL */
@@ -578,25 +599,11 @@ form[disabled] {
     margin-left: -0.4em;
 }
 
-.btn-option {
-    width: 2em;
-    height: 2em;
-    font-size: 13px;
-    border-width: 2px;
+#product-relations .owl-carousel .owl-nav.disabled, 
+#product-relations .owl-carousel .owl-dots.disabled {
+    display: block !important;
 }
 
-.product-bg {
-    background: url('/images/product_back.jpg') center center / cover no-repeat;
-}
-
-.product-thumbnail {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    display: block;
-    height: 100%;
-    transform: translateX(-50%) scale(1.2);
-}
 
 /* WISHLIST */
 
@@ -620,6 +627,3 @@ form[disabled] {
 }
 
 
-.product-thumbnails.slick-vertical .slick-slide {
-    border: none !important;
-}
