@@ -11,8 +11,6 @@ use yii\web\View;
 use yii\widgets\Pjax;
 use PELock\ImgOpt\ImgOpt;
 
-echo VarDumper::dump($wishlist, 99, true);
-
 $images = $product->getImages();
 
 // if ($images) {
@@ -119,7 +117,7 @@ if (!$this->title) {
             ?>
             
             <?php
-                if ($price && $product->available) {
+                if ($prices[$product->id] && $product->available) {
             ?>
                     <div class="product-price mb-1_5 mt-1_5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <meta itemprop="price" content="<?= $price ?>">
@@ -194,7 +192,7 @@ if (!$this->title) {
                     </div>
             
             <?php
-                if ($price && $product->available) {
+                if ($prices[$product->id] && $product->available) {
             ?>
                     <div class="product-buy mb-1_5" data-id="<?= $product->id ?>">
                         <?= BuyButton::widget([
@@ -231,7 +229,7 @@ if (!$this->title) {
                 'productName' => json_decode($related->name)->{Yii::$app->language},
                 'oldPrice' => $oldPrices[$related->id],
                 'price' => $prices[$related->id],
-                'wishlist' => $wishlist[$related->id] ? 'remove' : 'add',
+                'wishlist' => in_array($related->id, $wishlist) ? 'remove' : 'add',
             ])
         ?> 
     <?php
