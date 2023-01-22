@@ -47,8 +47,6 @@ class ProductController extends \yii\web\Controller
             'product_id' => $product->id,
         ]);
         $wishlist = ArrayHelper::getColumn($wishlist, 'product_id');
-        
-echo VarDumper::dump($wishlist, 99, true);
             
         $modifications = Product::getAllProductsPrices();
         $prices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price'));

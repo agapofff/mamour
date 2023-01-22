@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\helpers\VarDumper;
 use dvizh\shop\widgets\ShowPrice;
 use dvizh\cart\widgets\BuyButton;
 use dvizh\cart\widgets\ChangeCount;
@@ -9,6 +10,8 @@ use dvizh\cart\widgets\ChangeOptions;
 use yii\web\View;
 use yii\widgets\Pjax;
 use PELock\ImgOpt\ImgOpt;
+
+echo VarDumper::dump($wishlist, 99, true);
 
 $images = $product->getImages();
 
@@ -94,7 +97,7 @@ if (!$this->title) {
         </div>        
         <div class="col-md-6">
             <div class="row">
-                <div class="col-sm-1"><?= $wishlist[$product->id] ?>
+                <div class="col-sm-1">
                     <?= $this->render('@frontend/views/wishlist/product', [
                             'product_id' => $product->id,
                             'action' => isset($wishlist[$product->id]) ? 'remove' : 'add',
