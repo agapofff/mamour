@@ -98,9 +98,10 @@ jQuery(document).ready(function ($) {
     // popover
     $('[data-toggle="popover"]').popover({
         html: true,
-        // trigger: 'focus',
+        trigger: 'focus',
         container: 'body',
         placement: 'auto',
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header px-1 py-0_7"></h3><div class="popover-body pl-1 pt-1 pr-1 pb-0"></div></div>',
         content: function () {
             if ($(this).is('[data-element]')) {
                 return $($(this).attr('data-element')).html();
