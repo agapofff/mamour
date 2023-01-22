@@ -46,6 +46,7 @@ class ProductController extends \yii\web\Controller
             'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
             'product_id' => $product->id,
         ]);
+        $wishlist = ArrayHelper::getColumn($wishlist, 'product_id');
             
         $modifications = Product::getAllProductsPrices();
         $prices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price'));
