@@ -195,6 +195,11 @@ $this->registerCss("
                     <?php
                         }
                     ?>
+                            <div class="col-auto">
+                                <a href="<?= Url::to(['/delivery-and-return']) ?>" target="_blank" class="btn btn-link px-0 text-decoration-underline">
+                                    <?= Yii::t('front', 'Доставка и возврат') ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
             
