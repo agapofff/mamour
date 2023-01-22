@@ -26,6 +26,7 @@ $productName = json_decode($product->name)->{Yii::$app->language};
 $productDescription = json_decode($product->short_text)->{Yii::$app->language};
 $productText = json_decode($product->text)->{Yii::$app->language};
 $productCompound = json_decode($product->compound)->{Yii::$app->language};
+$productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
 
 if (!$this->title) {
     $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
@@ -169,6 +170,18 @@ if (!$this->title) {
                             <div class="col-auto">
                         <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($productCompound) ?>">
                                     <?= Yii::t('front', 'Состав') ?>
+                                </button>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                    
+                    <?php
+                        if ($productHoToUse) {
+                    ?>
+                            <div class="col-auto">
+                        <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Уход') ?>" data-content="<?= Html::encode($productHoToUse) ?>">
+                                    <?= Yii::t('front', 'Уход') ?>
                                 </button>
                             </div>
                     <?php
