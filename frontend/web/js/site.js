@@ -398,7 +398,7 @@ jQuery(document).ready(function ($) {
                 'product_id': product_id
             }, 
             success: function (data) {
-                $btn.replaceWith(data);
+                $('.btn-wishlist[data-product="' + product_id + '"]').replaceWith(data);
             },
             complete: function () {
                 loading(false);
