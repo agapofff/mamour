@@ -74,7 +74,7 @@ class SiteController extends Controller
             ],
             'image-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadFileAction',
-                'url' => Yii::$app->request->hostInfo . '/images/upload', // Url::home(true) . 'images/',
+                'url' => '/images/upload', // Url::home(true) . 'images/',
                 'path' => '@images/upload',
                 'uploadOnlyImage' => false,
                 'unique' => false,
