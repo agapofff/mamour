@@ -390,12 +390,19 @@ jQuery(document).ready(function ($) {
             lang = $(this).data('lang'),
             product_id = $(this).data('product'),
             action = $(this).data('action');
-        loading();
-        $.get('/' + lang + '/wishlist/' + action, {
-            'product_id': product_id
-        }, function (data) {
-            $btn.replaceWith(data);
-            loading(false);
+        
+        $.ajax({
+            url: '/' + lang + '/wishlist/' + action, 
+            beforeRequest: loading(),
+            data: {
+                'product_id': product_id
+            }, 
+            success: function (data) {
+                $btn.replaceWith(data);
+            },
+            complete: function () {
+                loading(false);
+            }
         });
     });
     
