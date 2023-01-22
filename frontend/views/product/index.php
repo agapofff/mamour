@@ -168,7 +168,7 @@ if (!$this->title) {
                         if ($productCompound) {
                     ?>
                             <div class="col-auto">
-                        <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($productCompound) ?>">
+                                <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($productCompound) ?>">
                                     <?= Yii::t('front', 'Состав') ?>
                                 </button>
                             </div>
@@ -180,7 +180,7 @@ if (!$this->title) {
                         if ($productHoToUse) {
                     ?>
                             <div class="col-auto">
-                        <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Уход') ?>" data-content="<?= Html::encode($productHoToUse) ?>">
+                                <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Уход') ?>" data-content="<?= Html::encode($productHoToUse) ?>">
                                     <?= Yii::t('front', 'Уход') ?>
                                 </button>
                             </div>

@@ -84,6 +84,7 @@ button,
 }
 .text-decoration-underline {
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 .text-decoration-underline:hover {
     text-decoration: none;
