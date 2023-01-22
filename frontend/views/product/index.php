@@ -154,7 +154,7 @@ if (!$this->title) {
             <?php
                 if ($productText) {
             ?>
-                    <div class="product-text font-weight-light mb-1_5">
+                    <div class="product-text font-weight-light mb-1">
                         <?= $productText ?>
                     </div>
             <?php
