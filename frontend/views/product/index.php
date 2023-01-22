@@ -100,7 +100,7 @@ if (!$this->title) {
                 <div class="col-sm-1">
                     <?= $this->render('@frontend/views/wishlist/product', [
                             'product_id' => $product->id,
-                            'action' => isset($wishlist[$product->id]) ? 'remove' : 'add',
+                            'action' => in_array($product->id, $wishlist) ? 'remove' : 'add',
                         ])
                     ?>
                 </div>
