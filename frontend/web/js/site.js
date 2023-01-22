@@ -214,12 +214,12 @@ jQuery(document).ready(function ($) {
 
     owlCarouselInit = function (item) {
         var itemCount = ($(item).attr('data-items')) ? $(item).attr('data-items').split('-') : [1,1,1,1,1,1],
-            owlAutoPlay = ($(item).attr('data-autoplay') == 'true' || $(item).hasClass('owl-autoplay')) ? true : false,
+            owlAutoPlay = ($(item).attr('data-autoplay') == 'true' || $(item).hasClass('owlautoplay')) ? true : false,
             owlAutoPlayTimeout = ($(item).attr('data-speed')) ? parseFloat($(item).attr('data-speed')) : 5000,
             owlAutoplayHoverPause = ($(item).attr('data-hoverstop') == 'true' || $(item).hasClass('owl-hoverstop')) ? true : false,
             owlAutoHeight = ($(item).attr('data-autoheight') == 'true' || $(item).hasClass('owl-autoheight')) ? true : false,
             owlAutoWidth = ($(item).attr('data-autowidth') == 'true' || $(item).hasClass('owl-autowidth')) ? true : false,
-            owlNav = ($(item).attr('data-nav') == 'true' || $(item).hasClass('owl-arrows')) ? true : false,
+            owlNav = ($(item).attr('data-nav') == 'true' || $(item).hasClass('owlArrows')) ? true : false,
             owlDots = ($(item).attr('data-dots') == 'true' || $(item).hasClass('owl-dots')) ? true : false,
             owlLazyLoad = ($(item).attr('data-lazy') == 'true' || $(item).hasClass('owl-lazyload')) ? true : false,
             owlAnimateIn = ($(item).attr('data-animatein')) ? $(item).attr('data-animatein') : false,
