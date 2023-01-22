@@ -117,7 +117,7 @@ if (!$this->title) {
             <?php
                 if ($price && $product->available) {
             ?>
-                    <div class="product-price mb-2 mt-1_5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                    <div class="product-price mb-1_5 mt-1_5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <meta itemprop="price" content="<?= $price ?>">
                         <meta itemprop="priceCurrency" content="<?= Yii::$app->params['currency'] ?>">
                         <?= ShowPrice::widget([
@@ -140,7 +140,7 @@ if (!$this->title) {
                             ]);
                         ?>
                     </div>
-                    <p class="mb-2">
+                    <p class="mb-1_5">
                         <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-scrollable modal-xl" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
                             <small>
                                 <?= Yii::t('front', 'Показать таблицу размеров') ?>
@@ -154,14 +154,14 @@ if (!$this->title) {
             <?php
                 if ($productText) {
             ?>
-                    <div class="product-text font-weight-light mt-2 mb-2">
+                    <div class="product-text font-weight-light mb-1_5">
                         <?= $productText ?>
                     </div>
             <?php
                 }
             ?>
             
-                    <div class="mt-1_5 mb-1_5">
+                    <div class="mb-1_5">
                         <div class="row">
                     <?php
                         if ($productCompound) {
@@ -180,7 +180,7 @@ if (!$this->title) {
             <?php
                 if ($price && $product->available) {
             ?>
-                    <div class="product-buy mb-2" data-id="<?= $product->id ?>">
+                    <div class="product-buy mb-1_5" data-id="<?= $product->id ?>">
                         <?= BuyButton::widget([
                                 'model' => $product,
                                 'htmlTag' => 'button',
