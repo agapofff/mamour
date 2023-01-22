@@ -215,26 +215,27 @@ if (!$this->title) {
 ?>
     <div class="row mt-7 mt-md-10">
         <div class="col-12">
-            <hr>
-            <h4 class="h1 montserrat text-uppercase mb-3">
+            <h4 class="h1 montserrat text-uppercase text-center mb-3">
                 <?= Yii::t('front', 'Вам также понравится') ?>
             </h4>
         </div>
-        <div class="owl-carousel owl-theme" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
-    <?php
-        foreach ($relations->all() as $related) {
-    ?>
-        <?= $this->render('@frontend/views/catalog/_product', [
-                'product' => $related,
-                'productName' => json_decode($related->name)->{Yii::$app->language},
-                'oldPrice' => $oldPrices[$related->id],
-                'price' => $prices[$related->id],
-                'wishlist' => in_array($related->id, $wishlist) ? 'remove' : 'add',
-            ])
-        ?> 
-    <?php
-        }
-    ?>
+        <div class="col-12">
+            <div class="owl-carousel owl-theme" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
+        <?php
+            foreach ($relations->all() as $related) {
+        ?>
+            <?= $this->render('@frontend/views/catalog/_product', [
+                    'product' => $related,
+                    'productName' => json_decode($related->name)->{Yii::$app->language},
+                    'oldPrice' => $oldPrices[$related->id],
+                    'price' => $prices[$related->id],
+                    'wishlist' => in_array($related->id, $wishlist) ? 'remove' : 'add',
+                ])
+            ?> 
+        <?php
+            }
+        ?>
+            </div>
         </div>
     </div>
 <?php
@@ -242,35 +243,6 @@ if (!$this->title) {
 ?>
 
 </div>
-
-
-<?php
-    if ($sizes) {
-?>
-        <div id="sizes" class="modal p-0 fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog max-vw-50 border-0 mx-auto my-0" role="document">
-                <div class="modal-content m-0 border-0 vh-100 vw-50">
-                    <div class="modal-header align-items-center flex-nowrap py-md-2 px-md-1 px-lg-2 px-xl-3">
-                        <span class="ttfirsneue h5 m-0 font-weight-light">
-                            <?= Yii::t('front', 'Размерная сетка') ?> <small class="text-muted font-weight-light text-nowrap">(<?= Yii::t('front', 'в сантиметрах') ?>)</small>
-                        </span>
-                        <button type="button" class="close p-0 float-none" data-dismiss="modal">
-                            <svg width='53' height='53' viewBox='0 0 53 53' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='13.7891' y1='12.3744' x2='39.9521' y2='38.5373' stroke='black' stroke-width='2'></line><line x1='12.3749' y1='38.5379' x2='38.5379' y2='12.3749' stroke='black' stroke-width='2'></line></svg>
-                        </button>
-                    </div>
-                    <div class="modal-body h-100 overflow-y-scroll py-0 px-md-1 px-lg-2 px-xl-3 hide-h1">
-                        <div id="size-grid" class="table-responsive">
-                            <?= str_replace('<table>', '<table class="table product-sizes">', $sizes) ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-<?php
-    }
-?>
-
-
 
 <?php
     $this->registerJs("
