@@ -28,31 +28,41 @@ class ProductController extends \yii\web\Controller
             throw new NotFoundHttpException(Yii::t('front', 'Товар не найден'));
         }
         
-        $modifications = $product->modifications;
+        $productModifications = $product->modifications;
 
         $disabledItems = [];
-        foreach ($modifications as $modification) {
-            if (
-                $modification->store_id == Yii::$app->params['store_id'] 
-                && (!$modification->available || !$modification->amount)
-            ) {
-                $disabledItems[] = $modification->getFiltervariants();
+        if ($productModifications) {
+            foreach ($productModifications as $productModification) {
+                if (
+                    $productModification->store_id == Yii::$app->params['store_id'] 
+                    && (!$productModification->available || !$productModification->amount)
+                ) {
+                    $disabledItems[] = $productModification->getFiltervariants();
+                }
             }
         }
         
-        $wishlist = Wishlist::findOne([
+        $wishlist = Wishlist::findAll([
             'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
             'product_id' => $product->id,
         ]);
+            
+        $modifications = Product::getAllProductsPrices();
+        $prices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price'));
+        $oldPrices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price_old'));
         
         $this->view->params['model'] = $product;
         
+        
+        
         return $this->render('index', [
             'product' => $product,
-            'price' => (float)$modifications[0]->price,
-            'priceOld' => (float)$modifications[0]->oldPrice,
+            'prices' => $prices,
+            'oldPrices' => $oldPrices,
+            // 'price' => (float)$productModifications[0]->price,
+            // 'priceOld' => (float)$productModifications[0]->oldPrice,
             // 'sizes' => $productSizes,
-            'wishlist' => $wishlist ? 'remove' : 'add',
+            'wishlist' => $wishlist,
             'disabledItems' => $disabledItems,
         ]);
     }

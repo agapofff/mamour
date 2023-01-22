@@ -97,7 +97,7 @@ if (!$this->title) {
                 <div class="col-sm-1">
                     <?= $this->render('@frontend/views/wishlist/product', [
                             'product_id' => $product->id,
-                            'action' => $wishlist,
+                            'action' => $wishlist[$product->id] ? 'remove' : 'add',
                         ])
                     ?>
                 </div>
@@ -126,8 +126,8 @@ if (!$this->title) {
                                 'cssClass' => 'h1 font-weight-light montserrat',
                                 'cssClassOld' => 'h4 font-weight-light montserrat text-muted',
                                 'model' => $product,
-                                'price' => $price,
-                                'priceOld' => $priceOld,
+                                'price' => $prices[$product->id],
+                                'priceOld' => $oldPrices[$product->id],
                             ])
                         ?>
                     </div>
@@ -212,41 +212,25 @@ if (!$this->title) {
 <?php
     if ($relations = $product->getRelations()) {
 ?>
-    <div class="row mt-12">
+    <div class="row mt-7 mt-md-10">
         <div class="col-12">
             <hr>
-            <h4 class="h1 ttfirsneue text-uppercase mb-6">
-                <?= Yii::t('front', 'Сопутствующие товары') ?>
+            <h4 class="h1 montserrat text-uppercase mb-3">
+                <?= Yii::t('front', 'Вам также понравится') ?>
             </h4>
         </div>
-        <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-nav="true" data-dots="true" data-margin="0">
+        <div class="owl-carousel owl-theme" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
     <?php
         foreach ($relations->all() as $related) {
     ?>
-        <div class="col-12">
-            <div class="card bg-transparent border-0 product">
-                <div class="card-body px-0">
-                    <a href="<?= Url::to(['/product/'.$related->slug]) ?>">
-                        <?php
-                            $image = $related->getImage();
-                            $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_x1000.jpg';
-                        ?>
-                        <img src="<?= file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('x1000') ?>" class="img-fluid" alt="<?= $image->alt ? $image->alt : $product_name ?>" loading="lazy">
-                    </a>
-                    <p class="text-center mt-1_5 mb-0_5">
-                        <?= $product_name ?>
-                    </p>
-                    <p class="price text-center">
-                    <?php if (isset($prices_old[$related->id]) && (int)$prices_old[$related->id] > 0) { ?>
-                        <del class="text-muted"><?= Yii::$app->formatter->asCurrency((int)$prices_old[$related->id], Yii::$app->params['currency']) ?></del>&nbsp;
-                    <?php } ?>
-                    <?php if (isset($prices[$related->id]) && (int)$prices[$related->id] > 0) { ?>
-                        <?= Yii::$app->formatter->asCurrency((int)$prices[$related->id], Yii::$app->params['currency']) ?>
-                    <?php } ?>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <?= $this->render('@frontend/views/catalog/_product', [
+                'product' => $related,
+                'productName' => json_decode($related->name)->{Yii::$app->language},
+                'oldPrice' => $oldPrices[$related->id],
+                'price' => $prices[$related->id],
+                'wishlist' => $wishlist[$related->id] ? 'remove' : 'add',
+            ])
+        ?> 
     <?php
         }
     ?>

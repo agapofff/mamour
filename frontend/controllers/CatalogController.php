@@ -115,7 +115,6 @@ class CatalogController extends Controller
             $modificationsPrices = ArrayHelper::map($modifications, 'product_id', 'price');
             $modificationsOldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
             $productsSizes = array_unique(ArrayHelper::map($modificationsSizes, 'id', 'value'));
-            $productsPrices = array_unique($modificationsPrices);
             
             $wishlist = Wishlist::findAll([
                 'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
@@ -188,7 +187,8 @@ class CatalogController extends Controller
         return $this->render('category', [
             'products' => $products,
             'productsSizes' => $productsSizes,
-            'productsPrices' => $productsPrices,
+            'productsPrices' => array_unique($modificationsPrices),
+            'productsOldPrices' => array_unique($modificationsOldPrices),
             'category' => $category,
         ]);
     }
