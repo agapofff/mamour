@@ -160,13 +160,13 @@ if (!$this->title) {
                 }
             ?>
             
-                    <div class="mt-2 mb-2">
+                    <div class="mt-1_5 mb-1_5">
                         <div class="row">
                     <?php
                         if ($product->compound) {
                     ?>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-link" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($product->compound) ?>">
+                                <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($product->compound) ?>">
                                     <?= Yii::t('front', 'Состав') ?>
                                 </button>
                             </div>
