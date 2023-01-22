@@ -166,7 +166,7 @@ if (!$this->title) {
                         if ($product->compound) {
                     ?>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-link" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::escape($product->compound) ?>">
+                                <button type="button" class="btn btn-link" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($product->compound) ?>">
                                     <?= Yii::t('front', 'Состав') ?>
                                 </button>
                             </div>
