@@ -214,33 +214,33 @@ if (!$this->title) {
 <?php
     if ($relations = $product->getRelations()) {
 ?>
-    <div class="container-xl">
-        <div class="row mt-7 mt-md-10">
-            <div class="col-12">
-                <h4 class="h1 montserrat text-uppercase text-center mb-3">
-                    <?= Yii::t('front', 'Вам также понравится') ?>
-                </h4>
-            </div>
-            <div class="col-12">
-                <div class="owl-carousel owl-theme owlArrows" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
-            <?php
-                foreach ($relations->all() as $related) {
-            ?>
-                <?= $this->render('@frontend/views/catalog/_product', [
-                        'product' => $related,
-                        'productName' => json_decode($related->name)->{Yii::$app->language},
-                        'oldPrice' => $oldPrices[$related->id],
-                        'price' => $prices[$related->id],
-                        'wishlist' => in_array($related->id, $wishlist) ? 'remove' : 'add',
-                    ])
-                ?> 
-            <?php
-                }
-            ?>
+        <div class="container-xl">
+            <div class="row mt-7 mt-md-10">
+                <div class="col-12">
+                    <h4 class="h1 montserrat text-uppercase text-center mb-3">
+                        <?= Yii::t('front', 'Вам также понравится') ?>
+                    </h4>
+                </div>
+                <div class="col-12">
+                    <div class="owl-carousel owl-theme owlArrows" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
+                <?php
+                    foreach ($relations->all() as $related) {
+                ?>
+                        <?= $this->render('@frontend/views/catalog/_product', [
+                                'product' => $related,
+                                'productName' => json_decode($related->name)->{Yii::$app->language},
+                                'oldPrice' => $oldPrices[$related->id],
+                                'price' => $prices[$related->id],
+                                'wishlist' => in_array($related->id, $wishlist) ? 'remove' : 'add',
+                            ])
+                        ?> 
+                <?php
+                    }
+                ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 <?php
     }
 ?>
