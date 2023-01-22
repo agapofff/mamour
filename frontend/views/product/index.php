@@ -25,6 +25,7 @@ $images = $product->getImages();
 $productName = json_decode($product->name)->{Yii::$app->language};
 $productDescription = json_decode($product->short_text)->{Yii::$app->language};
 $productText = json_decode($product->text)->{Yii::$app->language};
+$productCompound = json_decode($product->compound)->{Yii::$app->language};
 
 if (!$this->title) {
     $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
@@ -163,10 +164,10 @@ if (!$this->title) {
                     <div class="mt-1_5 mb-1_5">
                         <div class="row">
                     <?php
-                        if ($product->compound) {
+                        if ($productCompound) {
                     ?>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($product->compound) ?>">
+                        <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Состав') ?>" data-content="<?= Html::encode($productCompound) ?>">
                                     <?= Yii::t('front', 'Состав') ?>
                                 </button>
                             </div>
