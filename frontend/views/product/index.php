@@ -32,6 +32,13 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
 if (!$this->title) {
     $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
 }
+
+$this->registerCss("
+    .owl-carousel .owl-nav.disabled, .owl-carousel .owl-dots.disabled {
+        display: block !important;
+    }
+");
+
 ?>
 
 <div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
