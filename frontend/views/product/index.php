@@ -94,10 +94,10 @@ if (!$this->title) {
         </div>        
         <div class="col-md-6">
             <div class="row">
-                <div class="col-sm-1">
+                <div class="col-sm-1"><?= $wishlist[$product->id] ?>
                     <?= $this->render('@frontend/views/wishlist/product', [
                             'product_id' => $product->id,
-                            'action' => $wishlist[$product->id] ? 'remove' : 'add',
+                            'action' => isset($wishlist[$product->id]) ? 'remove' : 'add',
                         ])
                     ?>
                 </div>
