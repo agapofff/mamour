@@ -94,6 +94,7 @@ return [
             Yii::$app->params['locale'] = $country->iso;
             Yii::$app->params['country_id'] = $country->id;
         }
+        Yii::$app->formatter->locale = strtolower(Yii::$app->params['locale']) . '-' . strtoupper(Yii::$app->params['locale']);
 
         // menu
         $menu = TreeMenu::find()
