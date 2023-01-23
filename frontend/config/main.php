@@ -89,10 +89,12 @@ return [
         // валюта
         $store = Stores::findOne(Yii::$app->params['store_id']);
         if ($store) {
-            Yii::$app->params['currency'] = $store->country->currency;
-            Yii::$app->params['locale'] = $store->country->iso;
+            $country = $store->country;
+            Yii::$app->params['currency'] = $country->currency;
+            Yii::$app->params['locale'] = $country->iso;
+            Yii::$app->params['country_id'] = $country->id;
         }
-echo VarDumper::dump(Yii::$app->params, 99, true);
+
         // menu
         $menu = TreeMenu::find()
             ->where([
