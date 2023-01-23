@@ -34,7 +34,7 @@
     <div class="card-footer bg-transparent border-0 p-0">
         <p class="price text-center montserrat font-weight-bold">
         <?php if ($oldPrice) { ?>
-            <del class="text-muted d-none"><?= Yii::$app->formatter->asCurrency($oldPrice, Yii::$app->params['currency']) ?></del>&nbsp;
+            <del class="text-muted d-none"><?= Yii::$app->formatter->asCurrency($oldPrice) ?></del>&nbsp;
         <?php } ?>
         <?php 
             if ($price) {
