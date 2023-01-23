@@ -50,7 +50,7 @@ class ProductController extends \yii\web\Controller
         $modifications = Product::getAllProductsPrices();
         $prices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price'));
         $oldPrices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price_old'));
-echo VarDumper::dump($pries, 99, true);        
+echo VarDumper::dump($prices, 99, true);        
         $this->view->params['model'] = $product;
         
         
