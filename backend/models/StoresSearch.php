@@ -13,7 +13,7 @@ class StoresSearch extends Stores
     {
         return [
             [['id', 'active', 'type', 'store_id', 'country_id'], 'integer'],
-            [['name', 'description', 'postcodes', 'currency'], 'safe'],
+            [['name', 'description', 'postcodes'], 'safe'],
         ];
     }
 
@@ -60,7 +60,6 @@ class StoresSearch extends Stores
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'description', $this->description]);
         $query->andFilterWhere(['like', 'postcodes', $this->postcodes]);
-        $query->andFilterWhere(['like', 'currency', $this->postcodes]);
 
         return $dataProvider;
     }

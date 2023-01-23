@@ -83,13 +83,6 @@ use kartik\select2\Select2;
             ?>
             
             <?= $form
-                    ->field($model, 'currency')
-                    ->textInput([
-                        'maxlength' => true
-                    ])
-            ?>
-            
-            <?= $form
                     ->field($model, 'postcodes')
                     ->widget(Select2::classname(), [ 
                         'data' => $postcodes,

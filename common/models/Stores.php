@@ -15,10 +15,10 @@ class Stores extends \yii\db\ActiveRecord
     {
         return [
             [['active', 'type', 'store_id', 'country_id', 'sort',], 'integer'],
-            [['type', 'store_id', 'country_id', 'currency'], 'required'],
+            [['type', 'store_id', 'country_id'], 'required'],
             [['name'], 'string', 'max' => 255],
-            [['description', 'currency'], 'string'],
-            [['postcodes', 'currency'], 'safe'],
+            [['description'], 'string'],
+            [['postcodes'], 'safe'],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::className(), 'targetAttribute' => ['country_id' => 'id']],
         ];
     }
@@ -34,7 +34,6 @@ class Stores extends \yii\db\ActiveRecord
             'description' => Yii::t('back', 'Описание'),
             'country_id' => Yii::t('back', 'Страна'),
             'postcodes' => Yii::t('back', 'Идентификаторы'),
-            'currency' => Yii::t('back', 'Валюта (ISO-4217)'),
             'sort' => Yii::t('back', 'Порядок'),
         ];
     }
