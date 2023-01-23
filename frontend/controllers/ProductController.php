@@ -48,8 +48,8 @@ class ProductController extends \yii\web\Controller
         $wishlist = ArrayHelper::getColumn($wishlist, 'product_id');
             
         $modifications = Product::getAllProductsPrices();
-        $prices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price'));
-        $oldPrices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price_old'));
+        $prices = ArrayHelper::map($modifications, 'product_id', 'price');
+        $oldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
 echo VarDumper::dump($prices, 99, true);        
         $this->view->params['model'] = $product;
         
