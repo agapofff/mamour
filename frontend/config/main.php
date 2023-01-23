@@ -84,7 +84,7 @@ return [
             Yii::$app->params['currency'] = $store->country->currency;
             Yii::$app->params['locale'] = $store->country->iso;
         }
-        
+echo VarDumper::dump(Yii::$app->params, 99, true);
         // menu
         $menu = TreeMenu::find()
             ->where([
