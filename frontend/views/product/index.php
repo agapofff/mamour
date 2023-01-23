@@ -228,7 +228,7 @@ if (!$this->title) {
                     </h4>
                 </div>
                 <div class="col-12">
-                    <div id="product-relations" class="owl-carousel owl-theme owlArrows" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true">
+                    <div id="product-relations" class="owl-carousel owl-theme owlArrows" data-items="2-2-3-4-5-5" data-nav="true" data-dots="true" data-margin="20" data-loop="true" data-autoheight="true">
                 <?php
                     foreach ($relations->all() as $related) {
                 ?>
