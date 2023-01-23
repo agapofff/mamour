@@ -20,12 +20,12 @@ $this->title = Yii::t('front', 'Избранное');
                 'enablePushState' => false,
             ]);
             
-            if ($wishlist) {
+            if ($products) {
         ?>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 justify-content-center">
 
             <?php
-                foreach ($wishlist as $product) {
+                foreach ($products as $product) {
             ?>
                     <div class="col mb-3">
                         <?= $this->render('@frontend/views/catalog/_product', [

@@ -52,14 +52,16 @@ class WishlistController extends \yii\web\Controller
             ])
             ->all();
         
-        $products = Product::find()->all();
+        $products = $wishlist ? Product::findAll(ArrayHelper::getColumn($wishlist, 'product_id')) : null;
             
         $modifications = Product::getAllProductsPrices();
         $prices = ArrayHelper::map($modifications, 'product_id', 'price');
         $oldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
+        
+        $this->view->params['model'] = $wishlist;
 
         return $this->render('index', [
-            'wishlist' => $wishlist,
+            'products' => $products,
             'prices' => $prices,
             'oldPrices' => $oldPrices,
         ]);
