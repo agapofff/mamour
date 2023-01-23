@@ -219,6 +219,16 @@ if (!$this->title) {
     
 <?php
     if ($relations = $product->getRelations()) {
+        $this->registerCss("
+            #product-relations .owl-stage {
+                display: flex;
+            }
+            #product-relations .owl-item {
+                display: flex;
+                flex: 1 0 auto;
+                height: 100%;
+            }
+        ");
 ?>
         <div class="container-xl">
             <div class="row mt-7 mt-md-10">
