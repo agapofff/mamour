@@ -59,7 +59,7 @@ class WishlistController extends \yii\web\Controller
         $oldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
 
         return $this->render('index', [
-            'wishlist' => $items,
+            'wishlist' => $wishlist,
             'prices' => $prices,
             'oldPrices' => $oldPrices,
         ]);
