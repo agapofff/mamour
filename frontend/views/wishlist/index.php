@@ -9,7 +9,7 @@ $this->title = Yii::t('front', 'Избранное');
 ?>
 
 <div class="container-fluid mt-5 mt-lg-8">    
-    <div class="row justify-content-center justify-content-lg-start">
+    <div class="row justify-content-center">
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6">
             <h1 class="montserrat font-weight-bold text-uppercase headline mb-4 mb-lg-6">
                 <?= $this->title ?>
@@ -19,6 +19,7 @@ $this->title = Yii::t('front', 'Избранное');
             Pjax::begin([
                 'enablePushState' => false,
             ]);
+            
             if ($wishlist) {
         ?>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 justify-content-center">
@@ -42,6 +43,7 @@ $this->title = Yii::t('front', 'Избранное');
                 </div>
         <?php
             }
+            
             Pjax::end();
         ?>
         </div>
