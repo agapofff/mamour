@@ -79,9 +79,10 @@ return [
         Yii::$app->params['store_id'] = Yii::$app->request->cookies->getValue('store_id', $store_id);
         
         // валюта
-        $currency = Stores::findOne(Yii::$app->params['store_id'])->currency;
+        $store = Stores::findOne(Yii::$app->params['store_id'])->currency;
         if ($currency) {
-            Yii::$app->params['currency'] = $currency;
+            Yii::$app->params['currency'] = $store->country->currency;
+            Yii::$app->params['locale'] = $store->country->iso;
         }
         
         // menu
