@@ -38,7 +38,7 @@
         <?php } ?>
         <?php 
             if ($price) {
-                Yii::$app->formatter->currencyCode = 'Yii::$app->params['currency']';
+                Yii::$app->formatter->currencyCode = Yii::$app->params['currency'];
                 echo Yii::$app->formatter->asCurrency($price);
             }
         ?>
