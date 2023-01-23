@@ -37,7 +37,7 @@
             <del class="text-muted d-none"><?= Yii::$app->formatter->asCurrency($oldPrice, Yii::$app->params['currency']) ?></del>&nbsp;
         <?php } ?>
         <?php if ($price) { ?>
-            <?= Yii::$app->formatter->asCurrency($price, Yii::$app->params['currency']) ?>
+            <?= $price ?>
         <?php } ?>
         </p>
         
