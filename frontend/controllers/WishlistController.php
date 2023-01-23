@@ -33,9 +33,11 @@ class WishlistController extends \yii\web\Controller
     
     public function actionIndex($product_id = null)
     {
-        if ($product_id && $size) {
+        $userID = Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id;
+        
+        if ($product_id) {
             $model = Wishlist::findOne([
-                'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
+                'user_id' => $userID,
                 'product_id' => $product_id,
             ]);
             $model->delete();
@@ -43,7 +45,7 @@ class WishlistController extends \yii\web\Controller
         
         $wishlist = Wishlist::find()
             ->where([
-                'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id)
+                'user_id' => $userID
             ])
             ->orderBy([
                 'id' => SORT_DESC
@@ -52,63 +54,14 @@ class WishlistController extends \yii\web\Controller
         
         $products = Product::find()->all();
             
-        $modifications = (new Query())
-            ->select([
-                'product_id' => 'm.product_id',
-                'price' => 'p.price',
-                'price_old' => 'p.price_old',
-            ])
-            ->from([
-                'm' => '{{%shop_product_modification}}',
-                'p' => '{{%shop_price}}',
-            ])
-            ->where([
-                'm.available' => 1,
-            ])
-            ->andWhere(['like', 'm.name', Yii::$app->language])
-            ->andWhere(['like', 'm.name', Yii::$app->params['store_types'][Yii::$app->params['store_type']]])
-            ->andWhere('m.id = p.item_id')
-            ->groupBy([
-                'product_id',
-                'price',
-                'price_old'
-            ])
-            ->all();
-            
-        Yii::$app->params['currency'] = \common\models\Languages::findOne([
-            'code' => Yii::$app->language
-        ])->currency;
-    
+        $modifications = Product::getAllProductsPrices();
         $prices = ArrayHelper::map($modifications, 'product_id', 'price');
-        $pricesOld = ArrayHelper::map($modifications, 'product_id', 'price_old');
-
-        $items = [];
-        
-        if ($wishlist) {
-            foreach ($wishlist as $wish) {
-                $product = array_values(array_filter($products, function ($prod) use ($wish) {
-                    return $prod->id == $wish->product_id;
-                }))[0];
-
-                $image = $product->getImage();
-                $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_200x200.jpg';
-                $productImage = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('200x200');
-                
-                $items[] = [
-                    'id' => $wish->id,
-                    'product_id' => $wish->product_id,
-                    'size' => $wish->size,
-                    'name' => json_decode($product->name)->{Yii::$app->language},
-                    'image' => $productImage,
-                    'slug' => $product->slug,
-                    'price' => $prices[$wish->product_id],
-                    'priceOld' => $pricesOld[$wish->product_id],
-                ];
-            }
-        }
+        $oldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
 
         return $this->render('index', [
-            'items' => $items,
+            'wishlist' => $items,
+            'prices' => $prices,
+            'oldPrices' => $oldPrices,
         ]);
     }
     
