@@ -61,14 +61,21 @@ return [
         $redirect = false;
         
         $store_id = Yii::$app->params['default_store_id'];
-        
-        // кладём дефолтный тип магазина в куки
-        if (!Yii::$app->request->cookies->has('store')) {
+        if (!Yii::$app->request->cookies->has('store_id')) {
             Yii::$app->response->cookies->add(new Cookie([
                 'name' => 'store_id',
                 'value' => $store_id,
             ]));
-            // $redirect = true;
+            $redirect = true;
+        }
+        
+        $store_type = Yii::$app->params['default_store_type'];
+        if (!Yii::$app->request->cookies->has('store_type')) {
+            Yii::$app->response->cookies->add(new Cookie([
+                'name' => 'store_type',
+                'value' => $store_type,
+            ]));
+            $redirect = true;
         }
         
         if ($redirect) {
@@ -77,9 +84,10 @@ return [
         }
 
         Yii::$app->params['store_id'] = Yii::$app->request->cookies->getValue('store_id', $store_id);
+        Yii::$app->params['store_type'] = Yii::$app->request->cookies->getValue('store_type', $store_type);
         
         // валюта
-        $store = Stores::findOne(Yii::$app->params['store_id'])->currency;
+        $store = Stores::findOne(Yii::$app->params['store_id']);
         if ($store) {
             Yii::$app->params['currency'] = $store->country->currency;
             Yii::$app->params['locale'] = $store->country->iso;
