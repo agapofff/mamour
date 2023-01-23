@@ -40,6 +40,8 @@ class ProductController extends \yii\web\Controller
                     $disabledItems[] = $productModification->getFiltervariants();
                 }
             }
+        } else {
+            echo 'not found'; exit;
         }
         
         $wishlist = Wishlist::findAll([
