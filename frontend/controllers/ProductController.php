@@ -40,8 +40,6 @@ class ProductController extends \yii\web\Controller
                     $disabledItems[] = $productModification->getFiltervariants();
                 }
             }
-        } else {
-            echo 'not found'; exit;
         }
         
         $wishlist = Wishlist::findAll([
@@ -52,7 +50,7 @@ class ProductController extends \yii\web\Controller
         $modifications = Product::getAllProductsPrices();
         $prices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price'));
         $oldPrices = array_unique(ArrayHelper::map($modifications, 'product_id', 'price_old'));
-        
+echo VarDumper::dump($pries, 99, true);        
         $this->view->params['model'] = $product;
         
         
