@@ -29,16 +29,16 @@ $productText = json_decode($product->text)->{Yii::$app->language};
 $productCompound = json_decode($product->compound)->{Yii::$app->language};
 $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
 
-if (!$this->title) {
-    $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
-}
+// if (!$this->title) {
+    // $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
+// }
 
-if (!Yii::$app->params['description'] && !$product->seo->description && $productDescription) {
-    $this->registerMetaTag([
-        'name' => 'description',
-        'content' => $productDescription
-    ]);
-}
+// if (!Yii::$app->params['description'] && !$product->seo->description && $productDescription) {
+    // $this->registerMetaTag([
+        // 'name' => 'description',
+        // 'content' => $productDescription
+    // ]);
+// }
 
 ?>
 
