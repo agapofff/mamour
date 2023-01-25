@@ -33,6 +33,13 @@ if (!$this->title) {
     $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
 }
 
+if (!$this->params['description'] && !$product->seo->description && $productDescription) {
+    $this->registerMetaTag([
+        'name' => 'description',
+        'content' => $productDescription
+    ]);
+}
+
 ?>
 
 <div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
