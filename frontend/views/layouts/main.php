@@ -36,7 +36,7 @@
         }
         
         if (
-            ($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language})
+            ($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language} && $modelDescription !== '')
             || (property_exists($model, 'text') && $modelDescription = json_decode($model->text)->{Yii::$app->language})
             || (property_exists($model, 'description') && $modelDescription = json_decode($model->description)->{Yii::$app->language})
         ) {
