@@ -92,7 +92,7 @@
     if ($modelDescription) {
         $this->registerMetaTag([
             'property' => 'og:description',
-            'content' => $modelDescription
+            'content' => strip_tags($modelDescription)
         ]);        
     }
     $this->registerMetaTag([
