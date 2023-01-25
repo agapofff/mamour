@@ -41,7 +41,7 @@
         } elseif (property_exists($model, 'text')) {
             $modelDescription = json_decode($model->text)->{Yii::$app->language};
         } elseif (property_exists($model, 'description')) {
-            $modelDescription = json_decode($model->description)->{Yii::$app->language}
+            $modelDescription = json_decode($model->description)->{Yii::$app->language};
         }
         $this->registerMetaTag([
             'name' => 'description',
