@@ -36,7 +36,7 @@
         }
         
 
-if ($model->seo->description) {
+if ($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language}) {
     echo $model->seo->description; exit;
 }
         if (
