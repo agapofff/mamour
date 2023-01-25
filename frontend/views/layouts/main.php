@@ -34,6 +34,8 @@
         } else {
             $this->title = json_decode($model->name)->{Yii::$app->language};
         }
+        
+echo $model->seo->description; exit;
 if (property_exists($model, 'text') && $modelDescription = json_decode($model->text)->{Yii::$app->language}) {
     echo $modelDescription; exit;
 }
