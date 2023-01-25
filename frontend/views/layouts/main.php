@@ -89,10 +89,10 @@
         'property' => 'og:title',
         'content' => $this->title
     ]);
-    if ($modelTitle) {
+    if ($modelDesciption) {
         $this->registerMetaTag([
             'property' => 'og:description',
-            'content' => $modelTitle
+            'content' => $modelDesciption
         ]);        
     }
     $this->registerMetaTag([
