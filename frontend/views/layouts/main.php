@@ -35,7 +35,7 @@
         }
         $this->registerMetaTag([
             'name' => 'description',
-            'content' => strip_tags($modelDescription)
+            'content' => trim(strip_tags($modelDescription))
         ]);
 
         if ($model->seo->keywords) {
@@ -92,7 +92,7 @@
     if ($modelDescription) {
         $this->registerMetaTag([
             'property' => 'og:description',
-            'content' => strip_tags($modelDescription)
+            'content' => trim(strip_tags($modelDescription))
         ]);        
     }
     $this->registerMetaTag([
