@@ -29,7 +29,7 @@
         if ($model->seo->title) {
             $modelTitle = json_decode($model->seo->title)->{Yii::$app->language};
         }
-if (trim($modelTitle) === '') {
+if (trim($modelTitle) === '' && property_exists($model, 'name')) {
     exit;
 }
         if (trim($modelTitle) === '' && property_exists($model, 'name')) {
