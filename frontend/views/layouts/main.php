@@ -26,8 +26,9 @@
         $model = $this->params['model'];
         
         $modelTitle = '';
-        if ($model->seo->title && json_decode($model->seo->title)->{Yii::$app->language} != '') {
+        if ($model->seo->title && json_decode($model->seo->title)->{Yii::$app->language}) {
             $modelTitle = json_decode($model->seo->title)->{Yii::$app->language};
+echo $modelTitle; exit;
         } elseif (property_exists($model, 'name')) {
             $modelTitle = json_decode($model->name)->{Yii::$app->language};
         } elseif (property_exists($model, 'title')) {
