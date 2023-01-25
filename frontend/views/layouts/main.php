@@ -28,7 +28,7 @@
         if ($model->seo->title) {
             $this->title = json_decode($model->seo->title)->{Yii::$app->language};
         } else {
-            $this->title = json_decode($model->title)->{Yii::$app->language};
+            $this->title = json_decode($model->name)->{Yii::$app->language};
         }
         
         if ($model->seo->description) {
