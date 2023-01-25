@@ -33,7 +33,7 @@ if (!$this->title) {
     $this->title = $productName . ' - ' . Yii::t('front', 'Купить в интернет-магазине') . ' ' . Yii::$app->name;
 }
 
-if (!$this->params['description'] && !$product->seo->description && $productDescription) {
+if (!Yii::$app->params['description'] && !$product->seo->description && $productDescription) {
     $this->registerMetaTag([
         'name' => 'description',
         'content' => $productDescription
