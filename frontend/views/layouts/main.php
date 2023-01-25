@@ -31,7 +31,7 @@
         $this->title = $modelTitle;
         
         if (!($model->seo->description && $modelDesciption = json_decode($model->seo->description)->{Yii::$app->language})) {
-            $modelDescription = json_decode($model->text)->{Yii::$app->language}
+            $modelDescription = json_decode($model->text)->{Yii::$app->language};
         }
         $this->registerMetaTag([
             'name' => 'description',
