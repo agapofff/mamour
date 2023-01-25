@@ -127,7 +127,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
             <?php
                 if ($prices[$product->id] && $product->available) {
             ?>
-                    <div class="product-price mb-1_5 mt-1_5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                    <div class="product-price mb-1_5 mt-1" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <meta itemprop="price" content="<?= $price ?>">
                         <meta itemprop="priceCurrency" content="<?= Yii::$app->params['currency'] ?>">
                         <?= ShowPrice::widget([
