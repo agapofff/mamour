@@ -30,7 +30,7 @@
         }
         $this->title = $modelTitle;
         
-        if (!($model->seo->description && $modelDesciption = json_decode($model->seo->description)->{Yii::$app->language})) {
+        if (!($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language})) {
             $modelDescription = json_decode($model->text)->{Yii::$app->language};
         }
         $this->registerMetaTag([
@@ -89,10 +89,10 @@
         'property' => 'og:title',
         'content' => $this->title
     ]);
-    if ($modelDesciption) {
+    if ($modelDescription) {
         $this->registerMetaTag([
             'property' => 'og:description',
-            'content' => $modelDesciption
+            'content' => $modelDescription
         ]);        
     }
     $this->registerMetaTag([
