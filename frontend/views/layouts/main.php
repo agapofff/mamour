@@ -25,23 +25,18 @@
     if ($this->params['model']) {
         $model = $this->params['model'];
         
-        if ($model->seo->title && $modelTitle = json_decode($model->seo->title)->{Yii::$app->language}) {
-            $this->title = $modelTitle;
-        } else {
-            $this->title = json_decode($model->name)->{Yii::$app->language};
+        if (!($model->seo->title && $modelTitle = json_decode($model->seo->title)->{Yii::$app->language})) {
+            $modelTitle = json_decode($model->name)->{Yii::$app->language};
         }
+        $this->title = $modelTitle;
         
-        if ($model->seo->description && $modelDesciption = json_decode($model->seo->description)->{Yii::$app->language}) {
-            $this->registerMetaTag([
-                'name' => 'description',
-                'content' => $modelDescription
-            ]);
-        } else {
-            $this->registerMetaTag([
-                'name' => 'description',
-                'content' => json_decode($model->text)->{Yii::$app->language}
-            ]);
+        if (!($model->seo->description && $modelDesciption = json_decode($model->seo->description)->{Yii::$app->language})) {
+            $modelDescription = json_decode($model->text)->{Yii::$app->language}
         }
+        $this->registerMetaTag([
+            'name' => 'description',
+            'content' => strip_tags($modelDescription)
+        ]);
 
         if ($model->seo->keywords) {
             $this->registerMetaTag([
