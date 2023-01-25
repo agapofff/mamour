@@ -108,10 +108,10 @@ if (!$this->title) {
                         <?= $productName ?>
                     </h1>
             <?php
-                if ($productDescription) {
+                if ($product->sku) {
             ?>
                     <p class="montserrat font-weight-light text-muted fs15">
-                        <?= $productDescription ?>
+                        <?= $product->sku ?>
                     </p>
             <?php
                 }
