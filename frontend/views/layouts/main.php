@@ -34,9 +34,11 @@
         } else {
             $this->title = json_decode($model->name)->{Yii::$app->language};
         }
-        
 
-if ($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language}) {
+$modelDescription = json_decode($model->seo->description)->{Yii::$app->language};
+echo $modelDescription; exit;
+
+if ($model->seo->description) {
     echo $model->seo->description; exit;
 }
         if (
