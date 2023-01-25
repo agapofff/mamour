@@ -25,34 +25,24 @@
     if ($this->params['model']) {
         $model = $this->params['model'];
         
-        $modelTitle = '';
         if ($model->seo->title) {
-            $modelTitle = json_decode($model->seo->title)->{Yii::$app->language};
+            $this->title = json_decode($model->seo->title)->{Yii::$app->language};
+        } else {
+            $this->title = json_decode($model->title)->{Yii::$app->language};
         }
-if (!$modelTitle && $model->name) {
-    exit;
-}
-        if (trim($modelTitle) === '' && property_exists($model, 'name')) {
-            $modelTitle = json_decode($model->name)->{Yii::$app->language};
-        }
-        if (trim($modelTitle) === '' && property_exists($model, 'title')) {
-            $modelTitle = json_decode($model->title)->{Yii::$app->language};
-        }
-        $this->title = $modelTitle;
         
-        $modelDescription = '';
         if ($model->seo->description) {
-            $modelDescription = json_decode($model->seo->description)->{Yii::$app->language};
-        } elseif (property_exists($model, 'text')) {
-            $modelDescription = json_decode($model->text)->{Yii::$app->language};
-        } elseif (property_exists($model, 'description')) {
-            $modelDescription = json_decode($model->description)->{Yii::$app->language};
+            $this->registerMetaTag([
+                'name' => 'description',
+                'content' => json_decode($model->seo->description)->{Yii::$app->language}
+            ]);
+        } else {
+            $this->registerMetaTag([
+                'name' => 'description',
+                'content' => json_decode($model->text)->{Yii::$app->language}
+            ]);
         }
-        $this->registerMetaTag([
-            'name' => 'description',
-            'content' => $modelDescription
-        ]);
-        
+
         if ($model->seo->keywords) {
             $this->registerMetaTag([
                 'name' => 'keywords',
