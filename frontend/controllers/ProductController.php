@@ -51,6 +51,9 @@ class ProductController extends \yii\web\Controller
         $modifications = Product::getAllProductsPrices();
         $prices = ArrayHelper::map($modifications, 'product_id', 'price');
         $oldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
+        
+        $sizes = Pages::findOne(14)->text;
+        $care = Pages::findOne(16)->text;
      
         $this->view->params['model'] = $product;
         
@@ -60,6 +63,8 @@ class ProductController extends \yii\web\Controller
             'oldPrices' => $oldPrices,
             'wishlist' => $wishlist,
             'disabledItems' => $disabledItems,
+            'sizes' => $sizes,
+            'care' => $care,
         ]);
     }
 }

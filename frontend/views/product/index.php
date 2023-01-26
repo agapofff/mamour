@@ -151,7 +151,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                         ?>
                     </div>
                     <p class="mb-1_5">
-                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered modal-dialog-scrollable" data-max-height="420" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
+                        <button type="button" data-toggle="modal" data-target="#sizes" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
                             <small>
                                 <?= Yii::t('front', 'Показать таблицу размеров') ?>
                             </small>
@@ -198,7 +198,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                         } */
                     ?>
                             <div class="col-auto">
-                                <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Правила ухода за одеждой') ?>" data-remote="<?= Url::to(['/care'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered modal-dialog-scrollable" data-max-height="600" class="btn btn-link px-0 text-decoration-underline">
+                                <button type="button" data-toggle="modal" data-target="#care" class="btn btn-link px-0 text-decoration-underline">
                                     <?= Yii::t('front', 'Уход') ?>
                                 </button>
                             </div>
@@ -268,6 +268,42 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
 <?php
     }
 ?>
+
+<div class="modal fade" id="sizes" tabindex="-1" aria-labelledby="sizesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sizesLabel">
+                    <?= Yii::t('front', 'Таблица размеров') ?>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= $sizes ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="care" tabindex="-1" aria-labelledby="careLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="careLabel">
+                    <?= Yii::t('front', 'Правила ухода за одеждой') ?>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= $care ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
     $this->registerJs("
