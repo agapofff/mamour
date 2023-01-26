@@ -189,7 +189,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                         if ($productHoToUse) {
                     ?>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Уход') ?>" data-content="<?= Html::encode($productHoToUse) ?>">
+                                <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Уход') ?>" data-content='<?= Html::encode($productHoToUse) ?>'>
                                     <?= Yii::t('front', 'Уход') ?>
                                 </button>
                             </div>
