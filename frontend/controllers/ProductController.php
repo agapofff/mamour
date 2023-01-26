@@ -5,6 +5,7 @@ use Yii;
 use yii\web\Controller;
 use common\models\Stores;
 use common\models\Wishlist;
+use common\models\Pages;
 use dvizh\shop\models\Product;
 use dvizh\shop\models\Modification;
 use yii\db\Query;
@@ -50,6 +51,9 @@ class ProductController extends \yii\web\Controller
         $modifications = Product::getAllProductsPrices();
         $prices = ArrayHelper::map($modifications, 'product_id', 'price');
         $oldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
+        
+        $sizes = Pages::findOne(14)->text;
+        $care = Pages::findOne(16)->text;
      
         $this->view->params['model'] = $product;
         
@@ -57,11 +61,10 @@ class ProductController extends \yii\web\Controller
             'product' => $product,
             'prices' => $prices,
             'oldPrices' => $oldPrices,
-            // 'price' => (float)$productModifications[0]->price,
-            // 'priceOld' => (float)$productModifications[0]->oldPrice,
-            // 'sizes' => $productSizes,
             'wishlist' => $wishlist,
             'disabledItems' => $disabledItems,
+            'sizes' => $sizes,
+            'care' => $care,
         ]);
     }
 }
