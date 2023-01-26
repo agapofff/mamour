@@ -98,7 +98,7 @@ jQuery(document).ready(function ($) {
     // popover
     $('[data-toggle="popover"]').popover({
         html: true,
-        // trigger: 'focus',
+        trigger: 'focus',
         sanitize: false,
         container: 'body',
         placement: 'auto',
