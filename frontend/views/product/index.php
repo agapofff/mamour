@@ -281,7 +281,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                 </button>
             </div>
             <div class="modal-body">
-                <?= $sizes ?>
+                <?= json_decode($sizes)->{Yii::$app->language} ?>
             </div>
         </div>
     </div>
@@ -299,7 +299,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                 </button>
             </div>
             <div class="modal-body">
-                <?= $care ?>
+                <?= json_decode($care)->{Yii::$app->language} ?>
             </div>
         </div>
     </div>
