@@ -277,7 +277,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                     <?= Yii::t('front', 'Таблица размеров') ?>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <img src="/images/close.svg">
                 </button>
             </div>
             <div class="modal-body">
@@ -295,7 +295,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                     <?= Yii::t('front', 'Правила ухода за одеждой') ?>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <img src="/images/close.svg">
                 </button>
             </div>
             <div class="modal-body">
