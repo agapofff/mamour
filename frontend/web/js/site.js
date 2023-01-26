@@ -83,14 +83,14 @@ jQuery(document).ready(function ($) {
             alwaysShowClose: true,
             loadingMessage: false,
             disableExternalCheck: false,
-            // onShow: function () {
-                // this._$modalDialog.prepend('<div class="modal-loader position-absolute top-0 left-0 right-0 bottom-0 d-flex align-items-center justify-content-center bg-white" style="z-index: 3"><div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"><span class="sr-only">Загрузка...</span></div></div>');
-            // },
-            // onShown: function () {
-                // setTimeout(function () {
-                    // $('.modal-loader').remove();
-                // }, 500);
-            // }
+            onShow: function () {
+                this._$modalDialog.prepend('<div class="modal-loader position-absolute top-0 left-0 right-0 bottom-0 d-flex align-items-center justify-content-center bg-white" style="z-index: 3"><div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"><span class="sr-only">Загрузка...</span></div></div>');
+            },
+            onShown: function () {
+                setTimeout(function () {
+                    $('.modal-loader').remove();
+                }, 500);
+            }
         });
     });
 
