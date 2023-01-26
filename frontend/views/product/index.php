@@ -192,7 +192,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                                 <button type="button" class="btn btn-link px-0 text-decoration-underline" data-toggle="popover" title="<?= Yii::t('front', 'Уход') ?>" data-element="#howToUse">
                                     <?= Yii::t('front', 'Уход') ?>
                                 </button>
-                                <div id="howToUse" class="d-none"><?= Html::encode($productHoToUse) ?></div>
+                                <div id="howToUse" class="d-none"><?= $productHoToUse ?></div>
                             </div>
                     <?php
                         }
