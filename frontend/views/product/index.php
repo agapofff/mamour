@@ -151,7 +151,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                         ?>
                     </div>
                     <p class="mb-1_5">
-                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered modal-dialog-scrollable" data-max-height="450" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
+                        <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Таблица размеров') ?>" data-remote="<?= Url::to(['/sizes'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered modal-dialog-scrollable" data-max-height="420" class="btn btn-link p-0 font-weight-light text-warning text-decoration-underline">
                             <small>
                                 <?= Yii::t('front', 'Показать таблицу размеров') ?>
                             </small>
