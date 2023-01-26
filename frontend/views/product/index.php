@@ -185,7 +185,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                         }
                     ?>
                     
-                    <?php
+                    <?php /*
                         if ($productHoToUse) {
                     ?>
                             <div class="col-auto">
@@ -195,8 +195,13 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                                 <div id="howToUse" class="d-none"><?= $productHoToUse ?></div>
                             </div>
                     <?php
-                        }
+                        } */
                     ?>
+                            <div class="col-auto">
+                                <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Правила ухода за одеждой') ?>" data-remote="<?= Url::to(['/care'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered modal-dialog-scrollable" data-max-height="450" class="btn btn-link px-0 text-decoration-underline">
+                                    <?= Yii::t('front', 'Уход') ?>
+                                </button>
+                            </div>
                             <div class="col-auto">
                                 <a href="<?= Url::to(['/delivery-and-return']) ?>" target="_blank" class="btn btn-link px-0 text-decoration-underline">
                                     <?= Yii::t('front', 'Доставка и возврат') ?>
