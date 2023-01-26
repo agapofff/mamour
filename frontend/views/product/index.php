@@ -198,7 +198,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                         } */
                     ?>
                             <div class="col-auto">
-                                <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Правила ухода за одеждой') ?>" data-remote="<?= Url::to(['/care'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered" data-max-height="600" class="btn btn-link px-0 text-decoration-underline">
+                                <button type="button" data-toggle="lightbox" data-title="<?= Yii::t('front', 'Правила ухода за одеждой') ?>" data-remote="<?= Url::to(['/care'], true) ?> #page-content" data-modal-dialog-class="modal-dialog-centered" data-max-height="510" class="btn btn-link px-0 text-decoration-underline">
                                     <?= Yii::t('front', 'Уход') ?>
                                 </button>
                             </div>
