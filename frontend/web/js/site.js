@@ -99,6 +99,7 @@ jQuery(document).ready(function ($) {
     $('[data-toggle="popover"]').popover({
         html: true,
         // trigger: 'focus',
+        sanitize: false,
         container: 'body',
         placement: 'auto',
         template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header px-1 py-0_7"></h3><div class="popover-body pl-1 pt-1 pr-1 pb-0"></div></div>',
