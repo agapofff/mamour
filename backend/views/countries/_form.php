@@ -63,6 +63,13 @@ use backend\widgets\MultilangField;
                         'maxlength' => true
                     ])
             ?>
+            
+            <?= $form
+                    ->field($model, 'phone')
+                    ->textInput([
+                        'maxlength' => true
+                    ])
+            ?>            
 
             <?= $form
                     ->field($model, 'sort')

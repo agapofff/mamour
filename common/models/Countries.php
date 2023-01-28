@@ -43,7 +43,7 @@ class Countries extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['active', 'sort'], 'integer'],
-            [['name', 'slug', 'iso', 'currency',], 'string'],
+            [['name', 'slug', 'iso', 'currency', 'phone'], 'string'],
         ];
     }
 
@@ -60,6 +60,7 @@ class Countries extends \yii\db\ActiveRecord
             'slug' => Yii::t('back', 'Алиас'),
             'iso' => Yii::t('back', 'ISO'),
             'currency' => Yii::t('back', 'Код валюты'),
+            'phone' => Yii::t('back', 'Маска номера телефона'),
         ];
     }
 
