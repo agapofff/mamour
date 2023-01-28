@@ -69,18 +69,18 @@ class Countries extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCities()
-    {
-        return $this->hasMany(Cities::className(), ['country_id' => 'id']);
-    }
+    // public function getCities()
+    // {
+        // return $this->hasMany(Cities::className(), ['country_id' => 'id']);
+    // }
 
     /**
      * Gets query for [[Registrations]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getRegistrations()
-    {
-        return $this->hasMany(Registration::className(), ['country' => 'id']);
-    }
+    // public function getRegistrations()
+    // {
+        // return $this->hasMany(Registration::className(), ['country' => 'id']);
+    // }
 }
