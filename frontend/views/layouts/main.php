@@ -354,7 +354,7 @@ $this->registerJs("
             <div class="container mt-4 mt-lg-6">
                 <div class="row justify-content-center">
                     <div class="col-6 col-md-3 text-center mb-1">
-                        <a href="<?= Url::to(['/service/delivery']) ?>" class="text-decoration-none">
+                        <a href="<?= Url::to(['/delivery']) ?>" class="text-decoration-none">
                             <img src="/images/main/mainpage_icon_delivery.png" class="mb-2">
                             <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                                 <?= Yii::t('front', 'Курьерская доставка') ?>
@@ -362,7 +362,7 @@ $this->registerJs("
                         </a>
                     </div>
                     <div class="col-6 col-md-3 text-center mb-1">
-                        <a href="<?= Url::to(['/service/payment']) ?>" class="text-decoration-none">
+                        <a href="<?= Url::to(['/payment']) ?>" class="text-decoration-none">
                             <img src="/images/main/mainpage_icon_payment.png" class="mb-2">
                             <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                                 <?= Yii::t('front', 'Оплата') ?>
@@ -370,7 +370,7 @@ $this->registerJs("
                         </a>
                     </div>
                     <div class="col-6 col-md-3 text-center mb-1">
-                        <a href="<?= Url::to(['/service/package']) ?>" class="text-decoration-none">
+                        <a href="<?= Url::to(['/package']) ?>" class="text-decoration-none">
                             <img src="/images/main/mainpage_icon_package.png" class="mb-2">
                             <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                                 <?= Yii::t('front', 'Упаковка') ?>
@@ -400,12 +400,12 @@ $this->registerJs("
                                     <?= Yii::t('front', 'О бренде') ?>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/about/history']) ?>">
+                                    <a href="<?= Url::to(['/history']) ?>">
                                         <?= Yii::t('front', 'История') ?>
                                     </a>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/about/philosophy']) ?>">
+                                    <a href="<?= Url::to(['/philosophy']) ?>">
                                         <?= Yii::t('front', 'Философия') ?>
                                     </a>
                                 </p>
@@ -415,7 +415,7 @@ $this->registerJs("
                                     </a>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/about/publications']) ?>">
+                                    <a href="<?= Url::to(['/publications']) ?>">
                                         <?= Yii::t('front', 'Публикации') ?>
                                     </a>
                                 </p>
@@ -425,22 +425,22 @@ $this->registerJs("
                                     <?= Yii::t('front', 'Клиентский сервис') ?>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/service/payment']) ?>">
+                                    <a href="<?= Url::to(['/payment']) ?>">
                                         <?= Yii::t('front', 'Способы оплаты') ?>
                                     </a>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/service/shipping']) ?>">
+                                    <a href="<?= Url::to(['/shipping']) ?>">
                                         <?= Yii::t('front', 'Доставка') ?>
                                     </a>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/service/exchange-refund']) ?>">
+                                    <a href="<?= Url::to(['/exchange-refund']) ?>">
                                         <?= Yii::t('front', 'Обмен') ?>-<?= Yii::t('front', 'Возврат') ?>
                                     </a>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/service/sizes']) ?>">
+                                    <a href="<?= Url::to(['/sizes']) ?>">
                                         <?= Yii::t('front', 'Размерная сетка') ?>
                                     </a>
                                 </p>
