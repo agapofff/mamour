@@ -209,6 +209,31 @@ jQuery(document).ready(function ($) {
         $.post(url, data);
         loading(false);
     });
+    
+    
+    productImageZoom = function () {
+        $('.zoom').each(function () {
+            var url = $(this).data('url'),
+                img = $(this).find('.product-image');
+            $(this).zoom({
+                url: url,
+                target: $('body').is('.desktop') ? '#product-zoom-container' : false,
+                onZoomIn: function () {
+                    $('#product-zoom-container').css('opacity', 1);
+                    if ($('body').is('.mobile')) {
+                        $('.product-image').css('opacity', 0);
+                    }
+                },
+                onZoomOut: function () {
+                    $('#product-zoom-container').css('opacity', 0);
+                    if ($('body').is('.mobile')) {
+                        $('.product-image').css('opacity', 1);
+                    }
+                }
+            });
+        });
+    }
+    productImageZoom();
 
 
     // OWL
@@ -228,7 +253,11 @@ jQuery(document).ready(function ($) {
             owlCenter = ($(item).attr('data-center') == 'true' || $(item).hasClass('owl-center')) ? true : false,
             owlLoop = ($(item).attr('data-loop') == 'true' || $(item).hasClass('owl-loop')) ? true : false,
             owlMargin = ($(item).attr('data-margin')) ? parseFloat($(item).attr('data-margin')) : false,
-            owlRandom = ($(item).attr('data-random') == 'true' || $(item).hasClass('owl-random')) ? true : false;
+            owlRandom = ($(item).attr('data-random') == 'true' || $(item).hasClass('owl-random')) ? true : false,
+            owlMouseDrag = ($(item).attr('data-mouse-drag') == 'false' || $(item).hasClass('noMouseDrag')) ? false : true,
+            owlTouchDrag = ($(item).attr('data-touch-drag') == 'false' || $(item).hasClass('noTouchDrag')) ? false : true,
+            owlPullDrag = ($(item).attr('data-pull-drag') == 'false' || $(item).hasClass('noPullDrag')) ? false : true,
+            owlFreeDrag = ($(item).attr('data-free-drag') == 'true' || $(item).hasClass('freeDrag')) ? true : false;
             if ($(item).hasClass('owl-fade')) {
                 owlAnimateIn = 'fadeIn';
                 owlAnimateOut = 'fadeOut';
@@ -273,6 +302,10 @@ jQuery(document).ready(function ($) {
             loop: owlLoop,
             margin: owlMargin,
             checkVisibility: false,
+            mouseDrag: owlMouseDrag,
+            touchDrag: owlTouchDrag,
+            pullDrag: owlPullDrag,
+            freeDrag: owlFreeDrag,
             navText: [
                 '',
                 '',

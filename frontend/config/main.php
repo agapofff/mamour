@@ -89,7 +89,9 @@ return [
         // валюта
         $store = Stores::findOne(Yii::$app->params['store_id']);
         if ($store) {
+            Yii::$app->params['store'] = $store;
             $country = $store->country;
+            Yii::$app->params['country'] = $country;
             Yii::$app->params['currency'] = $country->currency;
             Yii::$app->params['locale'] = $country->iso;
             Yii::$app->params['country_id'] = $country->id;

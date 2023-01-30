@@ -45,19 +45,20 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
 <div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
     <div class="row">
         <div class="col-md-6 mt-1">
-            <div class="row overflow-hidden">
+            <div class="row overflow-hidden mt-0_5">
                 <div class="col-8 pr-0_5">
-                    <div id="product-gallery" class="owl-carousel owl-theme owl-fade" data-dots="true">
+                    <div id="product-gallery" class="owl-carousel owl-theme owl-fade" data-dots="true" data-touch-drag="false" data-mouse-drag="false" data-pull-drag="false">
                 <?php
                     foreach ($images as $key => $image) {
                         $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_' . Yii::$app->params['productImageSizes']['M'] . '.' . $image->extension;
                         $imageSrc = Url::to(file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl(Yii::$app->params['productImageSizes']['M']), true);
                 ?>
-                        <div class="product-bg">
+                        <div class="product-bg zoom" data-url="<?= $image->getUrl() ?>">
                             <?= ImgOpt::widget([
                                     'src' => $imageSrc, 
                                     'alt' => $image->alt ?: $productName,
                                     'loading' => 'lazy',
+                                    'css' => 'product-image'
                                 ])
                             ?>
                         </div>
@@ -101,9 +102,9 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                 </div>
             </div>
         </div>        
-        <div class="col-md-6">
+        <div class="col-md-6 mt-1 position-relative">
             <div class="row">
-                <div class="col-sm-1">
+                <div class="col-sm-1 mt-n1 pt-0_5">
                     <?= $this->render('@frontend/views/wishlist/product', [
                             'product_id' => $product->id,
                             'action' => in_array($product->id, $wishlist) ? 'remove' : 'add',
@@ -111,7 +112,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                     ?>
                 </div>
                 <div class="col-sm-11">
-                    <h1 class="montserrat font-weight-bold text-uppercase mt-0_5" itemprop="name">
+                    <h1 class="montserrat font-weight-bold text-uppercase" itemprop="name">
                         <?= $productName ?>
                     </h1>
             <?php
@@ -225,6 +226,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                 }
             ?>
                 </div>
+                <div id="product-zoom-container" class="position-absolute top-0 left-0 right-0 bottom-0 bg-gray-300 mt-0_5 d-none d-md-block"></div>
             </div>
         </div>
     </div>

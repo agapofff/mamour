@@ -490,6 +490,11 @@ form[disabled] {
     border: none !important;
 }
 
+#product-zoom-container {
+    z-index: 3;
+    opacity: 0;
+}
+
 
 /* OWL */
 .owl-nav {

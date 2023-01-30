@@ -1,7 +1,7 @@
-/*
-	jQuery Zoom v1.7.0 - 2013-01-31
-	(c) 2013 Jack Moore - jacklmoore.com/zoom
-	license: http://www.opensource.org/licenses/mit-license.php
+/*!
+	Zoom 1.7.21
+	license: MIT
+	http://www.jacklmoore.com/zoom
 */
 (function ($) {
 	var defaults = {
@@ -9,23 +9,30 @@
 		callback: false,
 		target: false,
 		duration: 120,
-		on: 'mouseover' // other options: 'grab', 'click', 'toggle'
+		on: 'mouseover', // other options: grab, click, toggle
+		touch: true, // enables a touch fallback
+		onZoomIn: false,
+		onZoomOut: false,
+		magnify: 1
 	};
 
 	// Core Zoom Logic, independent of event listeners.
-	$.zoom = function(target, source, img) {
-		var outerWidth,
-			outerHeight,
+	$.zoom = function(target, source, img, magnify) {
+		var targetHeight,
+			targetWidth,
+			sourceHeight,
+			sourceWidth,
 			xRatio,
 			yRatio,
 			offset,
-			position = $(target).css('position');
+			$target = $(target),
+			position = $target.css('position'),
+			$source = $(source);
 
 		// The parent element needs positioning so that the zoomed element can be correctly positioned within.
-		$(target).css({
-			position: /(absolute|fixed)/.test() ? position : 'relative',
-			overflow: 'hidden'
-		});
+		target.style.position = /(absolute|fixed)/.test(position) ? position : 'relative';
+		target.style.overflow = 'hidden';
+		img.style.width = img.style.height = '';
 
 		$(img)
 			.addClass('zoomImg')
@@ -34,27 +41,38 @@
 				top: 0,
 				left: 0,
 				opacity: 0,
-				width: img.width,
-				height: img.height,
+				width: img.width * magnify,
+				height: img.height * magnify,
 				border: 'none',
-				maxWidth: 'none'
+				maxWidth: 'none',
+				maxHeight: 'none'
 			})
 			.appendTo(target);
 
 		return {
 			init: function() {
-				outerWidth = $(target).outerWidth();
-				outerHeight = $(target).outerHeight();
-				xRatio = (img.width - outerWidth) / $(source).outerWidth();
-				yRatio = (img.height - outerHeight) / $(source).outerHeight();
-				offset = $(source).offset();
+				targetWidth = $target.outerWidth();
+				targetHeight = $target.outerHeight();
+
+				if (source === target) {
+					sourceWidth = targetWidth;
+					sourceHeight = targetHeight;
+				} else {
+					sourceWidth = $source.outerWidth();
+					sourceHeight = $source.outerHeight();
+				}
+
+				xRatio = (img.width - targetWidth) / sourceWidth;
+				yRatio = (img.height - targetHeight) / sourceHeight;
+
+				offset = $source.offset();
 			},
 			move: function (e) {
 				var left = (e.pageX - offset.left),
 					top = (e.pageY - offset.top);
 
-				top = Math.max(Math.min(top, outerHeight), 0);
-				left = Math.max(Math.min(left, outerWidth), 0);
+				top = Math.max(Math.min(top, sourceHeight), 0);
+				left = Math.max(Math.min(left, sourceWidth), 0);
 
 				img.style.left = (left * -xRatio) + 'px';
 				img.style.top = (top * -yRatio) + 'px';
@@ -66,25 +84,38 @@
 		return this.each(function () {
 			var
 			settings = $.extend({}, defaults, options || {}),
-			//target will display the zoomed iamge
-			target = settings.target || this,
+			//target will display the zoomed image
+			target = settings.target && $(settings.target)[0] || this,
 			//source will provide zoom location info (thumbnail)
 			source = this,
-			img = new Image(),
+			$source = $(source),
+			img = document.createElement('img'),
 			$img = $(img),
-			mousemove = 'mousemove',
-			clicked = false;
+			mousemove = 'mousemove.zoom',
+			clicked = false,
+			touched = false;
 
 			// If a url wasn't specified, look for an image element.
 			if (!settings.url) {
-				settings.url = $(source).find('img').attr('src');
+				var srcElement = source.querySelector('img');
+				if (srcElement) {
+					settings.url = srcElement.getAttribute('data-src') || srcElement.currentSrc || srcElement.src;
+				}
 				if (!settings.url) {
 					return;
 				}
 			}
 
+			$source.one('zoom.destroy', function(position, overflow){
+				$source.off(".zoom");
+				target.style.position = position;
+				target.style.overflow = overflow;
+				img.onload = null;
+				$img.remove();
+			}.bind(this, target.style.position, target.style.overflow));
+
 			img.onload = function () {
-				var zoom = $.zoom(target, source, img);
+				var zoom = $.zoom(target, source, img, settings.magnify);
 
 				function start(e) {
 					zoom.init();
@@ -93,34 +124,38 @@
 					// Skip the fade-in for IE8 and lower since it chokes on fading-in
 					// and changing position based on mousemovement at the same time.
 					$img.stop()
-					.fadeTo($.support.opacity ? settings.duration : 0, 1);
+					.fadeTo($.support.opacity ? settings.duration : 0, 1, $.isFunction(settings.onZoomIn) ? settings.onZoomIn.call(img) : false);
 				}
 
 				function stop() {
 					$img.stop()
-					.fadeTo(settings.duration, 0);
+					.fadeTo(settings.duration, 0, $.isFunction(settings.onZoomOut) ? settings.onZoomOut.call(img) : false);
 				}
 
+				// Mouse events
 				if (settings.on === 'grab') {
-					$(source).mousedown(
-						function (e) {
-							$(document).one('mouseup',
-								function () {
-									stop();
+					$source
+						.on('mousedown.zoom',
+							function (e) {
+								if (e.which === 1) {
+									$(document).one('mouseup.zoom',
+										function () {
+											stop();
 
-									$(document).unbind(mousemove, zoom.move);
+											$(document).off(mousemove, zoom.move);
+										}
+									);
+
+									start(e);
+
+									$(document).on(mousemove, zoom.move);
+
+									e.preventDefault();
 								}
-							);
-
-							start(e);
-
-							$(document)[mousemove](zoom.move);
-
-							e.preventDefault();
-						}
-					);
+							}
+						);
 				} else if (settings.on === 'click') {
-					$(source).click(
+					$source.on('click.zoom',
 						function (e) {
 							if (clicked) {
 								// bubble the event up to the document to trigger the unbind.
@@ -128,12 +163,12 @@
 							} else {
 								clicked = true;
 								start(e);
-								$(document)[mousemove](zoom.move);
-								$(document).one('click',
+								$(document).on(mousemove, zoom.move);
+								$(document).one('click.zoom',
 									function () {
 										stop();
 										clicked = false;
-										$(document).unbind(mousemove, zoom.move);
+										$(document).off(mousemove, zoom.move);
 									}
 								);
 								return false;
@@ -141,7 +176,7 @@
 						}
 					);
 				} else if (settings.on === 'toggle') {
-					$(source).click(
+					$source.on('click.zoom',
 						function (e) {
 							if (clicked) {
 								stop();
@@ -151,20 +186,48 @@
 							clicked = !clicked;
 						}
 					);
-				} else {
-					zoom.init(); // Pre-emptively call init because IE7 will fire the mousemove handler before the hover handler.
+				} else if (settings.on === 'mouseover') {
+					zoom.init(); // Preemptively call init because IE7 will fire the mousemove handler before the hover handler.
 
-					$(source).hover(
-						start,
-						stop
-					)[mousemove](zoom.move);
+					$source
+						.on('mouseenter.zoom', start)
+						.on('mouseleave.zoom', stop)
+						.on(mousemove, zoom.move);
 				}
 
+				// Touch fallback
+				if (settings.touch) {
+					$source
+						.on('touchstart.zoom', function (e) {
+							e.preventDefault();
+							if (touched) {
+								touched = false;
+								stop();
+							} else {
+								touched = true;
+								start( e.originalEvent.touches[0] || e.originalEvent.changedTouches[0] );
+							}
+						})
+						.on('touchmove.zoom', function (e) {
+							e.preventDefault();
+							zoom.move( e.originalEvent.touches[0] || e.originalEvent.changedTouches[0] );
+						})
+						.on('touchend.zoom', function (e) {
+							e.preventDefault();
+							if (touched) {
+								touched = false;
+								stop();
+							}
+						});
+				}
+				
 				if ($.isFunction(settings.callback)) {
 					settings.callback.call(img);
 				}
 			};
 
+			img.setAttribute('role', 'presentation');
+			img.alt = '';
 			img.src = settings.url;
 		});
 	};

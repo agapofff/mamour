@@ -1,160 +1,159 @@
 <?php
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+use frontend\assets\AppAsset;
+// use common\widgets\Alert;
+use yii\web\View;
+use dvizh\cart\widgets\CartInformer;
+use dvizh\cart\widgets\ElementsList;
+use dvizh\shop\models\Category;
 
-    use yii\helpers\Url;
-    use yii\helpers\Html;
-    use yii\helpers\ArrayHelper;
-    use yii\bootstrap\Nav;
-    use yii\bootstrap\NavBar;
-    use yii\widgets\Breadcrumbs;
-    use frontend\assets\AppAsset;
-    // use common\widgets\Alert;
-    use yii\web\View;
-    use dvizh\cart\widgets\CartInformer;
-    use dvizh\cart\widgets\ElementsList;
-    use dvizh\shop\models\Category;
+AppAsset::register($this);
+
+$this->registerLinkTag([
+    'rel' => 'canonical',
+    'href' => Url::canonical()
+]);
+
+
+// SEO   
+if ($this->params['model']) {
+    $model = $this->params['model'];
     
-    AppAsset::register($this);
+    if (!($model->seo->title && $modelTitle = json_decode($model->seo->title)->{Yii::$app->language})) {
+        $modelTitle = json_decode($model->name)->{Yii::$app->language};
+    }
+    $this->title = $modelTitle;
     
-    $this->registerLinkTag([
-        'rel' => 'canonical',
-        'href' => Url::canonical()
+    if (!($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language})) {
+        $modelDescription = json_decode($model->text)->{Yii::$app->language};
+    }
+    $this->registerMetaTag([
+        'name' => 'description',
+        'content' => trim(strip_tags($modelDescription))
     ]);
-    
-    
-    // SEO   
-    if ($this->params['model']) {
-        $model = $this->params['model'];
-        
-        if (!($model->seo->title && $modelTitle = json_decode($model->seo->title)->{Yii::$app->language})) {
-            $modelTitle = json_decode($model->name)->{Yii::$app->language};
-        }
-        $this->title = $modelTitle;
-        
-        if (!($model->seo->description && $modelDescription = json_decode($model->seo->description)->{Yii::$app->language})) {
-            $modelDescription = json_decode($model->text)->{Yii::$app->language};
-        }
+
+    if ($model->seo->keywords) {
         $this->registerMetaTag([
-            'name' => 'description',
-            'content' => trim(strip_tags($modelDescription))
+            'name' => 'keywords',
+            'content' => json_decode($model->seo->keywords)->{Yii::$app->language}
         ]);
+    }
+}
 
-        if ($model->seo->keywords) {
-            $this->registerMetaTag([
-                'name' => 'keywords',
-                'content' => json_decode($model->seo->keywords)->{Yii::$app->language}
-            ]);
+// fonts preload
+$fonts = [
+    'names' => [
+        'CourierNew' => [
+            '',
+            'Bold',
+            'Italic',
+            'BoldItalic',
+        ],         
+        // 'GothamPro' => [
+            // '',
+            // 'Bold',
+            // 'Light',
+        // ],
+    ],
+    'extensions' => [
+        'eot',
+        'ttf',
+        'woff',
+        'woff2',
+        'svg',
+    ]
+];
+foreach ($fonts['names'] as $fontName => $fontTypes) {
+    foreach ($fontTypes as $fontType) {
+        foreach ($fonts['extensions'] as $fontExtension) {
+            $this->registerLinkTag([
+                'rel' => 'preload',
+                'as' => 'font',
+                'href' => '/fonts/' . $fontName . '/' . $fontName . $fontType . '.' . $fontExtension,
+                'type' => 'font/' . $fontExtension,
+                'crossorigin' => true,
+            ]);     
         }
     }
-    
-    // fonts preload
-    $fonts = [
-        'names' => [
-            'CourierNew' => [
-                '',
-                'Bold',
-                'Italic',
-                'BoldItalic',
-            ],         
-            // 'GothamPro' => [
-                // '',
-                // 'Bold',
-                // 'Light',
-            // ],
-        ],
-        'extensions' => [
-            'eot',
-            'ttf',
-            'woff',
-            'woff2',
-            'svg',
-        ]
-    ];
-    foreach ($fonts['names'] as $fontName => $fontTypes) {
-        foreach ($fontTypes as $fontType) {
-            foreach ($fonts['extensions'] as $fontExtension) {
-                $this->registerLinkTag([
-                    'rel' => 'preload',
-                    'as' => 'font',
-                    'href' => '/fonts/' . $fontName . '/' . $fontName . $fontType . '.' . $fontExtension,
-                    'type' => 'font/' . $fontExtension,
-                    'crossorigin' => true,
-                ]);     
-            }
-        }
+}
+
+
+// OPEN GRAPH
+$this->registerMetaTag([
+    'property' => 'og:title',
+    'content' => $this->title
+]);
+if ($modelDescription) {
+    $this->registerMetaTag([
+        'property' => 'og:description',
+        'content' => trim(strip_tags($modelDescription))
+    ]);        
+}
+$this->registerMetaTag([
+    'property' => 'og:locale',
+    'content' => Yii::$app->language
+]);
+$this->registerMetaTag([
+    'property' => 'og:site_name',
+    'content' => Yii::$app->name
+]);
+$this->registerMetaTag([
+    'property' => 'og:type',
+    'content' => 'website'
+]);
+$this->registerMetaTag([
+    'property' => 'og:updated_time',
+    'content' => Yii::$app->formatter->format('now', 'datetime')
+]);
+$this->registerMetaTag([
+    'property' => 'og:url',
+    'content' => Url::canonical()
+]);
+
+
+// кладём валюту текущего языка в параметры
+// Yii::$app->params['currency'] = \common\models\Languages::findOne([
+    // 'code' => Yii::$app->language
+// ])->currency;
+
+// echo yii\helpers\VarDumper::dump(Yii::$app->params, 99, true);
+
+// получаем языки
+$langs = new cetver\LanguageSelector\items\MenuLanguageItems([
+    'languages' => Yii::$app->params['languages'],
+]);
+$langs = $langs->toArray();
+
+foreach (Yii::$app->params['menu'] as $menuKey => $menuItem) {
+    if ($menuItem['url'] == '/' . Yii::$app->request->pathInfo) {
+        Yii::$app->params['menu'][$menuKey]['current'] = true;
     }
-    
-    
-    // OPEN GRAPH
-    $this->registerMetaTag([
-        'property' => 'og:title',
-        'content' => $this->title
-    ]);
-    if ($modelDescription) {
-        $this->registerMetaTag([
-            'property' => 'og:description',
-            'content' => trim(strip_tags($modelDescription))
-        ]);        
-    }
-    $this->registerMetaTag([
-        'property' => 'og:locale',
-        'content' => Yii::$app->language
-    ]);
-    $this->registerMetaTag([
-        'property' => 'og:site_name',
-        'content' => Yii::$app->name
-    ]);
-    $this->registerMetaTag([
-        'property' => 'og:type',
-        'content' => 'website'
-    ]);
-    $this->registerMetaTag([
-        'property' => 'og:updated_time',
-        'content' => Yii::$app->formatter->format('now', 'datetime')
-    ]);
-    $this->registerMetaTag([
-        'property' => 'og:url',
-        'content' => Url::canonical()
-    ]);
+}    
+// echo \yii\helpers\VarDumper::dump(Yii::$app->params['menu'], 99, true);
+// echo \yii\helpers\VarDumper::dump(Category::buildTreeArray(Yii::$app->params['menu']), 99, true);
 
 
-    // кладём валюту текущего языка в параметры
-    // Yii::$app->params['currency'] = \common\models\Languages::findOne([
-        // 'code' => Yii::$app->language
-    // ])->currency;
-    
-    // echo yii\helpers\VarDumper::dump(Yii::$app->params, 99, true);
-    
-    // получаем языки
-    $langs = new cetver\LanguageSelector\items\MenuLanguageItems([
-        'languages' => Yii::$app->params['languages'],
-    ]);
-    $langs = $langs->toArray();
+$controllerID = Yii::$app->controller->id;
+$actionID = Yii::$app->controller->action->id;
 
-    foreach (Yii::$app->params['menu'] as $menuKey => $menuItem) {
-        if ($menuItem['url'] == '/' . Yii::$app->request->pathInfo) {
-            Yii::$app->params['menu'][$menuKey]['current'] = true;
-        }
-    }    
-    // echo \yii\helpers\VarDumper::dump(Yii::$app->params['menu'], 99, true);
-    // echo \yii\helpers\VarDumper::dump(Category::buildTreeArray(Yii::$app->params['menu']), 99, true);
+// главная страница?
+$isMainPage = $controllerID == 'site' && $actionID == 'index';
 
-    
-    $controllerID = Yii::$app->controller->id;
-    $actionID = Yii::$app->controller->action->id;
-    
-    // главная страница?
-    $isMainPage = $controllerID == 'site' && $actionID == 'index';
-    
-    // карточка товара
-    $isProductPage = $controllerID == 'product' && $actionID == 'index';
-    
-    $cart = Yii::$app->cart;
+// карточка товара
+$isProductPage = $controllerID == 'product' && $actionID == 'index';
 
-    $this->registerJs("
-        CART_ADD_SUCCESS = '" . Yii::t('front', 'Товар добавлен в корзину') . "';
-    ");
+$cart = Yii::$app->cart;
+
+$this->registerJs("
+    CART_ADD_SUCCESS = '" . Yii::t('front', 'Товар добавлен в корзину') . "';
+");
+
 ?>
-
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -184,7 +183,7 @@
         <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
     </head>
-    <body data-page="<?= base64_encode($controllerID . '/' . $actionID) ?>" class="position-relative">
+    <body data-page="<?= base64_encode($controllerID . '/' . $actionID) ?>" class="position-relative <?= Yii::$app->devicedetect->isMobile() ? 'mobile' : 'desktop' ?>">
         
         <div id="loader" class="fixed-top vw-100 vh-100 bg-white opacity-75">
             <div class="d-flex vw-100 vh-100 align-items-center justify-content-center">
