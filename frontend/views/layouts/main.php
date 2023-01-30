@@ -354,7 +354,7 @@ $this->registerJs("
             <div class="container mt-4 mt-lg-6">
                 <div class="row justify-content-center">
                     <div class="col-6 col-md-3 text-center mb-1">
-                        <a href="<?= Url::to(['/delivery']) ?>" class="text-decoration-none">
+                        <a href="<?= Url::to(['/shipping']) ?>" class="text-decoration-none">
                             <img src="/images/main/mainpage_icon_delivery.png" class="mb-2">
                             <p class="gotham font-weight-bold text-uppercase text-center letter-spacing-10 mb-1_5">
                                 <?= Yii::t('front', 'Курьерская доставка') ?>
