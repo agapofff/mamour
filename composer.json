@@ -70,7 +70,8 @@
         "agapofff/yii2-gallery": "dev-master",
         "yii2mod/yii2-settings": "*",
         "pelock/yii2-imgopt": "*",
-        "sitronik/yii2-tree-menu": "dev-master"
+        "sitronik/yii2-tree-menu": "dev-master",
+        "kartik-v/yii2-widget-depdrop": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

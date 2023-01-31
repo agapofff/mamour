@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'f1030a230d461102952af3917ff7f9bf646a8189',
         'name' => 'yiisoft/yii2-app-advanced',
         'dev' => true,
     ),
@@ -856,12 +856,14 @@
             'dev_requirement' => false,
         ),
         'kartik-v/yii2-widget-depdrop' => array(
-            'pretty_version' => 'v1.0.6',
-            'version' => '1.0.6.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'yii2-extension',
             'install_path' => __DIR__ . '/../kartik-v/yii2-widget-depdrop',
-            'aliases' => array(),
-            'reference' => 'ea347e3793fbd8273cc9bd1eb94c4b32bb55d318',
+            'aliases' => array(
+                0 => '1.0.x-dev',
+            ),
+            'reference' => '4dffe1fd0c9d9d5b7e6231f6cd059dfa36d22b3b',
             'dev_requirement' => false,
         ),
         'kartik-v/yii2-widget-fileinput' => array(
@@ -2018,12 +2020,12 @@
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-app-advanced' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'f1030a230d461102952af3917ff7f9bf646a8189',
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-authclient' => array(
