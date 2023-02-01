@@ -51,7 +51,7 @@
                                     ->field($model, 'login', [
                                         'inputOptions' => [
                                             'autofocus' => 'autofocus',
-                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 outline-0 shadow-none',
+                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 border-dark outline-0 shadow-none montserrat font-weight-bold',
                                             'autocomplete' => rand(),
                                             'tabindex' => '1',
                                             // 'required' => true,
@@ -72,7 +72,7 @@
                             <?= $form
                                     ->field($model, 'password', [
                                         'inputOptions' => [
-                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 outline-0 shadow-none',
+                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 border-dark outline-0 shadow-none montserrat font-weight-bold',
                                             'tabindex' => '2',
                                             // 'required' => true,
                                             'autocomplete' => rand(),
@@ -96,7 +96,7 @@
                             <?= $form
                                     ->field($model, 'phone', [
                                         'inputOptions' => [
-                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 outline-0 shadow-none phone-mask',
+                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 border-dark outline-0 shadow-none montserrat font-weight-bold phone-mask',
                                             'tabindex' => '4',
                                             // 'required' => true,
                                             'autocomplete' => rand(),
