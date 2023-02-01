@@ -14,6 +14,8 @@
 
 ?>
 
+<?=\dvizh\promocode\widgets\Enter::widget();?>
+
 <div id="order" class="dvizh_order_form">
 
     <?php

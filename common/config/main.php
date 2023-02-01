@@ -150,14 +150,14 @@ $config = [
             'clientsModel' => 'dektrium\user\models\User', //Модель пользователей
             //Указываем модели, к которым будем привязывать промокод
             'targetModelList' => [
+                'Товары' => [
+                    'model' => 'dvizh\shop\models\Product',
+                    'searchModel' => 'dvizh\shop\models\product\ProductSearch'
+                ],
                 'Категории' => [
                     'model' => 'dvizh\shop\models\Category',
                     'searchModel' => 'dvizh\shop\models\category\CategorySearch'
-                ],
-                'Продукты' => [
-                    'model' => 'dvizh\shop\models\Product',
-                    'searchModel' => 'dvizh\shop\models\product\ProductSearch'
-                ],            
+                ],  
             ],
         ],
        'treemenu' =>  [
@@ -291,6 +291,8 @@ $config = [
             'currency' => 'р.',
             'currencyPosition' => 'after',
             'priceFormat' => [2, '.', ''],
+            // 'as PromoDiscount' => ['class' => 'dvizh\promocode\behaviors\Discount'],
+            'as ElementDiscount' => ['class' => 'dvizh\promocode\behaviors\DiscountToElement'],
         ],
         
         'treeSettings' => [

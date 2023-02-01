@@ -226,7 +226,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                 }
             ?>
                 </div>
-                <div id="product-zoom-container" class="position-absolute top-0 left-0 right-0 bottom-0 bg-gray-300 mt-0_5 d-none d-md-block"></div>
+                <div id="product-zoom-container" class="position-absolute top-0 left-0 right-0 bottom-0 bg-gray-300 mt-0_5 d-none d-md-block pointer-events-none"></div>
             </div>
         </div>
     </div>

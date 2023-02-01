@@ -9,6 +9,7 @@ use dvizh\order\models\Field;
 use dvizh\order\models\FieldValue;
 use yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 use common\models\Stores;
 use common\models\Countries;
 
@@ -31,7 +32,7 @@ class OrderForm extends \yii\base\Widget
             Yii::$app->getResponse()->redirect(['/catalog']);
             Yii::$app->end();
         }
-
+echo VarDumper::dump(Yii::$app->cart, 99, true);
         Yii::$app->getModule('order')->currency = Yii::$app->params['currency'];
         
         // способы доставки

@@ -390,32 +390,32 @@ jQuery(document).ready(function ($) {
 
 
     // выбор размера
-    $(document).on('click', '.dropdown-change-select', function () {
-        var $element = $(this).parents('.dropdown').find('button[data-toggle="dropdown"]'),
-            id = $(this).data('id'),
-            val = $(this).data('value'),
-            txt = $(this).text();
+    // $(document).on('click', '.dropdown-change-select', function () {
+        // var $element = $(this).parents('.dropdown').find('button[data-toggle="dropdown"]'),
+            // id = $(this).data('id'),
+            // val = $(this).data('value'),
+            // txt = $(this).text();
             
-        $('select[data-id="' + id + '"]')
-            .val(val)
-            .trigger('change');
+        // $('select[data-id="' + id + '"]')
+            // .val(val)
+            // .trigger('change');
             
-        $element
-            .text(txt)
-            .attr('aria-expanded', false)
-            .addClass('changed');
+        // $element
+            // .text(txt)
+            // .attr('aria-expanded', false)
+            // .addClass('changed');
             
-        $element.dropdown('hide');
-    });
+        // $element.dropdown('hide');
+    // });
 
     // показ нотификации выбора размера
-    $('.dvizh-cart-buy-button, .product-buy, #product-wishlist').click(function (event) {
-        event.preventDefault();
-        if ($(this).is(':disabled') || $(this).children().is(':disabled')) {
-            $('.select-size-note').show();
-            return false;
-        }
-    });
+    // $('.dvizh-cart-buy-button, .product-buy, #product-wishlist').click(function (event) {
+        // event.preventDefault();
+        // if ($(this).is(':disabled') || $(this).children().is(':disabled')) {
+            // $('.select-size-note').show();
+            // return false;
+        // }
+    // });
     
 
     // wishlist
