@@ -32,7 +32,7 @@ class OrderForm extends \yii\base\Widget
             Yii::$app->getResponse()->redirect(['/catalog']);
             Yii::$app->end();
         }
-echo VarDumper::dump(Yii::$app->cart, 99, true);
+// echo VarDumper::dump(Yii::$app->cart, 99, true);
         Yii::$app->getModule('order')->currency = Yii::$app->params['currency'];
         
         // способы доставки

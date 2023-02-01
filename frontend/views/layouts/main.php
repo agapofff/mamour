@@ -231,7 +231,6 @@ $this->registerJs("
                                                     </a>
                                                     <?php Category::renderMenu(Category::buildTreeArray($menuChilds, $menuItemChild['id']), 'list-unstyled pl-2', 'montserrat fs15px', 'dropdown-item') ?>
                                                 </li>
-                                                <div class="dropdown-divider"></div>
                                     <?php
                                             }
                                         }

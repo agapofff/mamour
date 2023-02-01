@@ -57,8 +57,8 @@ class ElementsList extends \yii\base\Widget
 
         ];
 
-        foreach($paramsArr as $key => $value) {
-            if($value === 'false') {
+        foreach ($paramsArr as $key => $value) {
+            if ($value === 'false') {
                 $this->$key = false;
             }
         }
@@ -114,7 +114,7 @@ class ElementsList extends \yii\base\Widget
             $cartElements = '';
             foreach ($elements as $element){
                 $cartElements .= Html::tag('div', $this->_row($element), [
-                    'class' => 'col-12' . (Yii::$app->params['gift'] && $element->item_id == Yii::$app->params['gift']['product_id'] ? ' order-first' : '')
+                    'class' => 'col-md-6 ' . (Yii::$app->params['gift'] && $element->item_id == Yii::$app->params['gift']['product_id'] ? ' order-first' : '')
                 ]);
             }
             $cart = Html::tag('div', $cartElements, [
@@ -131,13 +131,13 @@ class ElementsList extends \yii\base\Widget
                 ]);
             }
 
-            if($this->offerUrl && $this->showOffer) {
+            if ($this->offerUrl && $this->showOffer) {
                 $bottomPanel .= Html::a(Yii::t('front', 'Оформить заказ'), $this->offerUrl, [
                     'class' => 'dvizh-cart-offer-button btn btn-success',
                 ]);
             }
 
-            if($this->showTruncate) {
+            if ($this->showTruncate) {
                 $bottomPanel .= TruncateButton::widget();
             }
 
@@ -186,7 +186,7 @@ class ElementsList extends \yii\base\Widget
         }
 
         $options = false;
-        if($this->showOptions && $item->getOptions()) {
+        if ($this->showOptions && $item->getOptions()) {
             $options = $item->getOptions();
         }
 
@@ -195,8 +195,8 @@ class ElementsList extends \yii\base\Widget
         $cartElName = $product->getCartName();
         
         $image = $product->getImage();
-        $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_200x200.jpg';
-        $img = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('200x200');
+        $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_170x205.' . $image->extension;
+        $img = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('170x205');
 
         return $this->render($this->elementView, [
             'allOptions' => $allOptions,

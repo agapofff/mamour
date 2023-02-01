@@ -10,7 +10,7 @@ if ($options && !empty($allOptions)) {
 	$productOptions = '';
 	foreach ($options as $optionId => $valueId)
 	{
-		if ($optionId == 1){
+		// if ($optionId == 1) {
 			if ($optionData = $allOptions[$optionId]) {
 				$optionName = $optionData['name'];
 				$optionValue = $valueId == 1 ? '' : $optionData['variants'][$valueId];
@@ -18,7 +18,7 @@ if ($options && !empty($allOptions)) {
 					// 'class' => 'cart-product-variant'
 				// ]));
 			}
-		}
+		// }
 	}
 	// echo Html::tag('div', $productOptions, [
 		// 'class' => 'dvizh-cart-show-options'
@@ -30,15 +30,15 @@ if ($options && !empty($allOptions)) {
 <div class="cart-product" data-product-id="<?= $model->item_id ?>" data-currency="<?= $currency ?>" data-id="<?= $model->comment ?>" data-name="<?= $name ?>" data-price="<?= round($model->price) ?>">
     <div class="row">
         <div class="col-4">
-			<a href="<?= $url ?>">
+			<a href="<?= $url ?>" class="d-block product-bg">
 				<img src="<?= $image ?>" class="img-fluid">
 			</a>
 		</div>
-		<div class="col-5">
+		<div class="col-6">
 			<div class="row h-100">
 				<div class="col-12 align-self-start">
-					<p class="font-weight-bold">
-						<?= $name ?> <?= $optionValue ?>
+					<p class="font-weight-bold text-uppercase montserrat">
+						<?= join(', ', [$name, json_decode($optionValue)->{Yii::$app->language}]) ?>
 					</p>
                     
                 <?php
@@ -49,12 +49,20 @@ if ($options && !empty($allOptions)) {
                     }
                 ?>
                     
+                    <p class="font-weight-bold text-uppercase montserrat">
+                        <?= ElementPrice::widget([
+                                'model' => $model,
+                                'currency' => $currency,
+                                'htmlTag' => 'span',
+                                'cssClass' => 'font-weight-bold text-nowrap',
+                            ]);
+                        ?>
+                    </p>
+                    
                     <?php 
-                        if (!empty($otherFields))
-                        {
-                            foreach ($otherFields as $fieldName => $field)
-                            {
-                                if (isset($product->$field)){
+                        if (!empty($otherFields)) {
+                            foreach ($otherFields as $fieldName => $field) {
+                                if (isset($product->$field)) {
                                     echo Html::tag('p', $fieldName . ': ' . Html::tag('strong', $product->$field));
                                 }
                             }
@@ -62,37 +70,24 @@ if ($options && !empty($allOptions)) {
                     ?>
 				</div>
 				<div class="col-12 align-self-end">
-                    <?= ChangeCount::widget([
-							'model' => $model,
-							'showArrows' => $showCountArrows,
-							'actionUpdateUrl' => Url::to([$controllerActions['update']]),
-						]);
-					?>
-				</div>
-			</div>
-		</div>
-		<div class="col-3">
-			<div class="row h-100">
-				<div class="col-12 align-self-start text-right">
-                    <?= ElementPrice::widget([
-							'model' => $model,
-							'currency' => $currency,
-							'htmlTag' => 'span',
-							'cssClass' => 'font-weight-bold text-nowrap',
-						]);
-                    ?>
-				</div>
-				<div class="col-12 align-self-end text-right mb-0_5">
 					<?= DeleteButton::widget([
 							'model' => $model,
 							'deleteElementUrl' => Url::to([$controllerActions['delete']]),
 							'lineSelector' => 'list-group-item',
-							'cssClass' => 'delete',
+							'cssClass' => 'btn btn-lg btn-outline-secondary',
 							'text' => Yii::t('front', 'Удалить'),
 						])
 					?>
 				</div>
 			</div>
+		</div>
+		<div class="col-2">
+            <?= ChangeCount::widget([
+                    'model' => $model,
+                    'showArrows' => $showCountArrows,
+                    'actionUpdateUrl' => Url::to([$controllerActions['update']]),
+                ]);
+            ?>
 		</div>
 	</div>
 </div>

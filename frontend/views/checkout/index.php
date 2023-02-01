@@ -12,7 +12,7 @@ $this->title = Yii::t('front', 'Оформить заказ');
             <?= ElementsList::widget([
                     'type' => 'checkout',
                     'currency' => $currency,
-                    'lang' => Yii::$app->language,                
+                    'lang' => Yii::$app->language,
                 ]);
             ?>
         </div>
