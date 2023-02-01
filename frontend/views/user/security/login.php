@@ -51,7 +51,7 @@
                                     ->field($model, 'login', [
                                         'inputOptions' => [
                                             'autofocus' => 'autofocus',
-                                            'class' => 'form-control py-1_75 px-1_5',
+                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 outline-0 shadow-none',
                                             'autocomplete' => rand(),
                                             'tabindex' => '1',
                                             // 'required' => true,
@@ -72,7 +72,7 @@
                             <?= $form
                                     ->field($model, 'password', [
                                         'inputOptions' => [
-                                            'class' => 'form-control py-1_75 px-1_5',
+                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 outline-0 shadow-none',
                                             'tabindex' => '2',
                                             // 'required' => true,
                                             'autocomplete' => rand(),
@@ -96,7 +96,7 @@
                             <?= $form
                                     ->field($model, 'phone', [
                                         'inputOptions' => [
-                                            'class' => 'form-control py-1_75 px-1_5 phone-mask',
+                                            'class' => 'form-control py-1 px-0 bg-transparent border-top-0 border-left-0 border-right-0 outline-0 shadow-none phone-mask',
                                             'tabindex' => '4',
                                             // 'required' => true,
                                             'autocomplete' => rand(),
