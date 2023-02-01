@@ -51,7 +51,7 @@ class CatalogController extends Controller
     public function actionCategory($path = null)
     {
         $new = $popular = $sale = $promo = $category_id = $category = null;
-        $products = $productsIDs = $productsSizes = $productsPrices = [];
+        $products = $productsIDs = $productsSizes = $productsPrices = $modificationsPrices = $modificationsOldPrices = [];
 
         $categories = Category::find()
             ->select([
