@@ -465,6 +465,9 @@ $this->registerJs("
                             </div>
                             <div class="col-12 align-self-end">
                                 <div class="row justify-content-center justify-content-xl-between align-items-baseline">
+                            <?php
+                                if (Yii::$app->params['socials']) {
+                            ?>
                                     <div class="col-auto mb-3 mb-xl-0">
                                         <div class="row justify-content-between">
                                     <?php
@@ -480,6 +483,9 @@ $this->registerJs("
                                     ?>
                                         </div>
                                     </div>
+                            <?php
+                                }
+                            ?>
                                     <div class="col-12 col-xl-auto mb-2 mb-xl-0 text-center">
                                         <p class="m-0 small" style="font-size: 13px">
                                             <em>
