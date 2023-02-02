@@ -22,7 +22,7 @@
                 ])
             ?>
         </a>
-        <p class="text-center montserrat font-weight-light mt-1_5 mb-0">
+        <p class="text-center montserrat font-weight-light ls10 mt-1_5 mb-0">
             <?= $productName ?>
         </p>
         <?= $this->render('@frontend/views/wishlist/product', [
@@ -51,7 +51,7 @@
         </p>
         
         <div class="text-center small">
-            <a href="<?= Url::to(['/product/' . $product->slug]) ?>" class="courier font-weight-light text-warning text-decoration-underline small">
+            <a href="<?= Url::to(['/product/' . $product->slug]) ?>" class="courier font-weight-light text-warning text-decoration-underline small ls10">
                 <?= Yii::t('front', 'Просмотр') ?>
             </a>
         </div>
