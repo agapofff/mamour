@@ -7,7 +7,7 @@ if (!$this->title) {
 }
 ?>
 
-<div class="container-xxl mt-3">    
+<div class="container-xxl mt-3 mt-sm-4 mt-md-5 mt-lg-6 mt-xl-7">    
     <div class="row justify-content-center">
         <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
             <h1 class="gotham font-weight-bold text-uppercase headline mb-5">

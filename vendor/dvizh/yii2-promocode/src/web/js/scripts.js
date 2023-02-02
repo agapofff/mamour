@@ -20,7 +20,7 @@ dvizh.promocode = {
             function (json) {
                 if (json.result == 'success') {
                     // $(form).find('input[type=text]').css({'border': '1px solid #ccc'}).val('');
-                    $(form).find('.promo-code-discount').show().html(json.message);
+                    // $(form).find('.promo-code-discount').show().html(json.message);
                     
                     // setTimeout(function() { $('.promo-code-discount').hide('slow'); }, 2300);
                     
@@ -47,7 +47,7 @@ dvizh.promocode = {
 
         jQuery.post($(form).attr('action'), data,
             function (json) {
-console.log(json);
+// console.log(json);
                 if (json.result == 'success') {
                     // $(form).find('input[type=text]').css({'border': '1px solid green'});
 
@@ -63,7 +63,7 @@ console.log(json);
 				dvizh.cart.renderCart();
 				$(document).trigger("promocodeEnter", json.code);
 				
-                $(form).find('.promo-code-discount').show().html(json.message);
+                // $(form).find('.promo-code-discount').show().html(json.message);
 
                 return true;
 

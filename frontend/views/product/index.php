@@ -42,7 +42,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
 
 ?>
 
-<div class="product-content container-xl" itemscope itemtype="http://schema.org/Product">
+<div class="product-content container-xl mt-3 mt-sm-4 mt-md-5 mt-lg-6 mt-xl-7" itemscope itemtype="http://schema.org/Product">
     <div class="row">
         <div class="col-md-6 mt-1">
             <div class="row overflow-hidden mt-0_5">
@@ -112,7 +112,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
                     ?>
                 </div>
                 <div class="col-sm-11">
-                    <h1 class="montserrat font-weight-bold text-uppercase" itemprop="name">
+                    <h1 class="montserrat font-weight-bold text-uppercase h5 mt-0_25" itemprop="name">
                         <?= $productName ?>
                     </h1>
             <?php

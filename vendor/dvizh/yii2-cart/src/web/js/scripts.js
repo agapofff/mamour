@@ -299,10 +299,7 @@ console.log(response);
         return false;
     },
     renderCart: function (json) {
-console.log('renderCart');
         if (!json) {
-console.log('no json');
-console.log(dvizh.cart.link);
             var json = {};
             jQuery.ajax({
                 url: dvizh.cart.link,

@@ -11,7 +11,7 @@ if (!$this->title) {
 }
 ?>
 
-<div class="container-fluid mt-5 mt-lg-8">    
+<div class="container-fluid mt-3 mt-sm-4 mt-md-5 mt-lg-6 mt-xl-7">    
     <div class="row justify-content-center justify-content-lg-start">
         <div id="category-menu" class="col-md-3 pl-lg-2 pl-xl-6 d-none d-md-block">
             <h1 class="montserrat font-weight-bold text-uppercase headline mb-4 mb-lg-6">

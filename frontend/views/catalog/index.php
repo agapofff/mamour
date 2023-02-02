@@ -17,7 +17,7 @@ if (!$this->title) {
 // \yii\web\YiiAsset::register($this);
 ?>
 
-<div class="container-xxl mt-2">    
+<div class="container-xxl mt-3 mt-sm-4 mt-md-5 mt-lg-6 mt-xl-7">    
     <div class="row justify-content-center justify-content-lg-start">
         <div id="category-menu" class="col-sm-3 col-md-3 col-lg-2 col-xl-3 d-none d-md-block">
         <?php 
