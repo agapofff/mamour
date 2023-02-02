@@ -51,8 +51,8 @@ $fonts = [
         'CourierNew' => [
             '',
             'Bold',
-            'Italic',
-            'BoldItalic',
+            // 'Italic',
+            // 'BoldItalic',
         ],         
         // 'GothamPro' => [
             // '',
@@ -169,7 +169,7 @@ $this->registerJs("
         <?php $this->head() ?>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
         <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="194x194" href="/images/favicons/favicon-194x194.png">
@@ -213,7 +213,7 @@ $this->registerJs("
                             if (!$menuItem['parent_id']) {
                     ?>
                                 <div class="col-auto dropdown hover px-0 px-lg-0_5">
-                                    <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 montserrat fs15px font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
+                                    <a href="<?= Url::to([$menuItem['url']]) ?>" class="btn btn-link mx-0 montserrat fs15px ls10 font-weight-bold text-uppercase text-decoration-none main-menu-item <?= !empty($menuChilds) ? 'dropdown-toggle' : '' ?>">
                                         <?= json_decode($menuItem['name'])->{Yii::$app->language} ?>
                                     </a>
                             <?php
