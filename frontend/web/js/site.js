@@ -476,6 +476,5 @@ jQuery(document).ready(function ($) {
         // }
     // });
 
-    $()
     
 });

@@ -715,6 +715,7 @@ console.log(response);
             });
         }
 		
+        /*
 		$(document).on('dvizhCartChanged', function () {
 			if ($('#order-shipping_type_id').val() === '1') {
 				$('#delivery').trigger('change');
@@ -724,6 +725,7 @@ console.log(response);
 				location.reload();
 			}
 		});
+        */
 		
 		setMap = function (lat, lon, name, comment) {
             var map = new ymaps.Map('delivery_image', {

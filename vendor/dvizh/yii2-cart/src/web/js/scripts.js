@@ -97,7 +97,7 @@ dvizh.cart = {
         }
         else {
             var els = jQuery('.dvizh-cart-option' + id + ':checked');
-            console.log('radio');
+            // console.log('radio');
         }
 
         jQuery(els).each(function () {
@@ -185,16 +185,15 @@ dvizh.cart = {
         return false;
     },
     changeInputValue: function () {
-        var val = parseInt(jQuery(this).siblings('input').val());
-        var input = jQuery(this).siblings('input');
+        var input = jQuery(this).parents('.dvizh-change-count').find('input'),
+            val = parseFloat(jQuery(input).val());
 
         if (jQuery(this).hasClass('dvizh-downArr')) {
             if (val <= 0) {
                 return false;
             }
             jQuery(input).val(val - 1);
-        }
-        else {
+        } else {
             jQuery(input).val(val + 1);
         }
 
@@ -300,11 +299,15 @@ console.log(response);
         return false;
     },
     renderCart: function (json) {
+console.log('renderCart');
         if (!json) {
+console.log('no json');
+console.log(dvizh.cart.link);
             var json = {};
             jQuery.ajax({
-                url: '/cart/default/info',
+                url: dvizh.cart.link,
                 type: 'get',
+                async: false,
                 data: {
                     lang: $('html').attr('lang')
                 },
@@ -314,6 +317,7 @@ console.log(response);
                 },
                 success: function(answer) {
                     json = answer;
+                    dvizh.cart.renderCart(json);
                 },
                 error: function(answer){
                     console.log(answer);

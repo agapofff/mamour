@@ -38,7 +38,7 @@ if ($options && !empty($allOptions)) {
 			<div class="row h-100">
 				<div class="col-12 align-self-start">
 					<p class="font-weight-bold text-uppercase montserrat">
-						<?= join(', ', [$name, json_decode($optionValue)->{Yii::$app->language}]) ?>
+						<?= join(', ', [trim($name), json_decode($optionValue)->{Yii::$app->language}]) ?>
 					</p>
                     
                 <?php
@@ -74,14 +74,14 @@ if ($options && !empty($allOptions)) {
 							'model' => $model,
 							'deleteElementUrl' => Url::to([$controllerActions['delete']]),
 							'lineSelector' => 'list-group-item',
-							'cssClass' => 'btn btn-lg btn-outline-secondary',
+							'cssClass' => 'btn btn-outline-secondary px-2 py-1 montserrat',
 							'text' => Yii::t('front', 'Удалить'),
 						])
 					?>
 				</div>
 			</div>
 		</div>
-		<div class="col-2">
+		<div class="col-2 mt-n1">
             <?= ChangeCount::widget([
                     'model' => $model,
                     'showArrows' => $showCountArrows,

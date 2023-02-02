@@ -17,22 +17,24 @@ dvizh.promocode = {
         data = data+'&clear=1';
         
         jQuery.post($(form).attr('action'), data,
-            function(json) {
-                if(json.result == 'success') {
-                    $(form).find('input[type=text]').css({'border': '1px solid #ccc'}).val('');
-                    $(form).find('.promo-code-discount').show('slow').html(json.message);
+            function (json) {
+                if (json.result == 'success') {
+                    // $(form).find('input[type=text]').css({'border': '1px solid #ccc'}).val('');
+                    $(form).find('.promo-code-discount').show().html(json.message);
                     
-                    setTimeout(function() { $('.promo-code-discount').hide('slow'); }, 2300);
+                    // setTimeout(function() { $('.promo-code-discount').hide('slow'); }, 2300);
                     
-                    if(json.informer) {
-                        $('.dvizh-cart-informer').replaceWith(json.informer);
-                    }
-                }
-                else {
-                    $(form).find('input[type=text]').css({'border': '1px solid red'});
+                    // if(json.informer) {
+                        // $('.dvizh-cart-informer').replaceWith(json.informer);
+                    // }
+                    toastr.info(json.message);
+                    
+                } else {
+                    // $(form).find('input[type=text]').css({'border': '1px solid red'});
                     console.log(json.errors);
+                    toastr.error(json.errors);
                 }
-
+                dvizh.cart.renderCart();
                 return true;
 
             }, "json");
@@ -44,19 +46,21 @@ dvizh.promocode = {
         var data = $(form).serialize();
 
         jQuery.post($(form).attr('action'), data,
-            function(json) {
-                if(json.result == 'success') {
-                    $(form).find('input[type=text]').css({'border': '1px solid green'});
+            function (json) {
+console.log(json);
+                if (json.result == 'success') {
+                    // $(form).find('input[type=text]').css({'border': '1px solid green'});
 
-                    if(json.informer) {
-                        $('.dvizh-cart-informer').replaceWith(json.informer);
-                    }
-                }
-                else {
-                    $(form).find('input[type=text]').css({'border': '1px solid red'});
+                    // if(json.informer) {
+                        // $('.dvizh-cart-informer').replaceWith(json.informer);
+                    // }
+                    toastr.info(json.message);
+                } else {
+                    // $(form).find('input[type=text]').css({'border': '1px solid red'});
+                    toastr.error(json.message);
                     console.log(json.errors);
                 }
-				
+				dvizh.cart.renderCart();
 				$(document).trigger("promocodeEnter", json.code);
 				
                 $(form).find('.promo-code-discount').show().html(json.message);

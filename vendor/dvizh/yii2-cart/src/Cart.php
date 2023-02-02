@@ -7,6 +7,7 @@ use dvizh\cart\events\Cart as CartEvent;
 use dvizh\cart\events\CartElement as CartElementEvent;
 use dvizh\cart\events\CartGroupModels;
 use yii;
+use yii\helpers\Url;
 
 class Cart extends Component
 {
@@ -43,6 +44,7 @@ class Cart extends Component
 
     public function init()
     {
+        Yii::$app->view->registerJs('dvizh.cart.link = "' . Url::to(['/cart/default/info']) . '";');
         $this->trigger(self::EVENT_CART_INIT, new CartEvent(['cart' => $this->cart]));
         $this->update();
 
