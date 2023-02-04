@@ -141,11 +141,10 @@ foreach (Yii::$app->params['menu'] as $menuKey => $menuItem) {
 $controllerID = Yii::$app->controller->id;
 $actionID = Yii::$app->controller->action->id;
 
-// главная страница?
 $isMainPage = $controllerID == 'site' && $actionID == 'index';
-
-// карточка товара
-$isProductPage = $controllerID == 'product' && $actionID == 'index';
+$isCategory = $controllerID == 'category';
+$isProduct = $controllerID == 'product';
+$isWishlist = $controllerID == 'wishlist' && $actionID == 'index';
 
 $cart = Yii::$app->cart;
 
@@ -337,6 +336,9 @@ $this->registerJs("
                 <?= $content ?>
             </div>
             
+    <?php
+        if ($isMainPage || $isCategory || $isProduct || $isWishlist) {
+    ?>
             <div class="container mt-6 mt-lg-8">
                 <div class="row justify-content-center">
                     <div class="col-md-11 col-lg-10">
@@ -386,7 +388,9 @@ $this->registerJs("
                     </div>
                 </div>
             </div>
-            
+    <?php
+        }
+    ?>
         </div>
 
         <footer class="mt-5 mt-sm-7 pt-4 pt-lg-7 pb-1 pb-lg-4 bg-gray-300">

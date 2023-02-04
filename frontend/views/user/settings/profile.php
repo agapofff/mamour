@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="container-xxl mt-3">    
+<div class="container-fluid mt-3 mt-sm-4 mt-md-5 mt-lg-6 mt-xl-7">    
     <div class="row justify-content-center justify-content-lg-start">
         <div class="col-sm-3 col-md-3 col-lg-2 col-xl-2 offset-xl-1 d-none d-md-block">
             <?= $this->render('@frontend/views/user/settings/_menu') ?>

@@ -104,7 +104,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
         </div>        
         <div class="col-md-6 mt-1 position-relative">
             <div class="row">
-                <div class="col-sm-1 mt-n1 pt-0_5">
+                <div class="col-sm-1 mt-n1 pt-0_25 pr-0 pl-1_5 text-right">
                     <?= $this->render('@frontend/views/wishlist/product', [
                             'product_id' => $product->id,
                             'action' => in_array($product->id, $wishlist) ? 'remove' : 'add',
@@ -165,14 +165,14 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
             <?php
                 if ($productText) {
             ?>
-                    <div class="product-text font-weight-light mb-1">
+                    <div class="product-text font-weight-light mt-2 mt-lg-3 mb-1 mb-lg-2 ls5">
                         <?= $productText ?>
                     </div>
             <?php
                 }
             ?>
             
-                    <div class="mb-1_5">
+                    <div class="mt-1 mt-lg-2 mb-1_5 mb-lg-2_5">
                         <div class="row">
                     <?php
                         if ($productCompound) {
@@ -243,7 +243,7 @@ $productHoToUse = json_decode($product->howtouse)->{Yii::$app->language};
         <div class="container-xl">
             <div class="row mt-7 mt-md-10">
                 <div class="col-12">
-                    <h4 class="h1 montserrat text-uppercase text-center mb-3">
+                    <h4 class="h1 montserrat font-weight-light text-uppercase text-center mb-3">
                         <?= Yii::t('front', 'Вам также понравится') ?>
                     </h4>
                 </div>
