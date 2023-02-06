@@ -110,7 +110,7 @@ foreach ($slides as $slide) {
                 $url = \dvizh\shop\models\Category::getAllParents($cats, $subCategory->id, 'slug', true);
 // print_r($url);
 ?>
-                <a href="<?= Url::to([join('/', array_reverse($url))]) ?>">
+                <a href="<?= Url::to(['/catalog/' . join('/', array_reverse($url))]) ?>">
                     <?= ImgOpt::widget([
                             'src' => $imageSrc, 
                             'alt' => $this->title,
