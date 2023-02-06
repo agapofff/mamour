@@ -91,26 +91,6 @@ class SiteController extends Controller
             ])
             ->all();
             
-        // $banners = Slides::find()
-            // ->where([
-                // 'active' => 1,
-                // 'category' => 'Главный слайдер',
-            // ])
-            // ->orderBy([
-                // 'sort' => SORT_ASC
-            // ])
-            // ->all();
-            
-        // $categories = Slides::find()
-            // ->where([
-                // 'active' => 1,
-                // 'category' => 'Категории на Главной',
-            // ])
-            // ->orderBy([
-                // 'sort' => SORT_ASC
-            // ])
-            // ->all();
-            
         $categories = Category::findAll([
             'active' => 1
         ]);
