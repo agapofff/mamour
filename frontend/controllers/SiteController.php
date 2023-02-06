@@ -111,6 +111,8 @@ class SiteController extends Controller
             // ])
             // ->all();
             
+        $cats = Category::find()->all();
+            
         $categories = Category::find()
             ->where([
                 'active' => 1,
@@ -132,6 +134,7 @@ class SiteController extends Controller
             'banners' => $banners,
             'categories' => $categories,
             'subCategories' => $subCategories,
+            'cats' => $cats,
         ]);
         
     }
