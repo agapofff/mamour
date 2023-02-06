@@ -82,7 +82,7 @@ foreach ($slides as $slide) {
                 $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
                 $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
 ?>
-                <a href="<?= Url::to([$category->link]) ?>">
+                <a href="<?= Url::to(['/catalog/' . $category->slug]) ?>">
                     <?= ImgOpt::widget([
                             'src' => $imageSrc, 
                             'alt' => $this->title,
@@ -108,7 +108,7 @@ foreach ($slides as $slide) {
                 $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
                 $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
 ?>
-                <a href="<?= Url::to([$subCategory->link]) ?>">
+                <a href="<?= Url::to(['/catalog/' . $subCategory->getParent()->slug . '/' . $subCategory->slug]) ?>">
                     <?= ImgOpt::widget([
                             'src' => $imageSrc, 
                             'alt' => $this->title,
