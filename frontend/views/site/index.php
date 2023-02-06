@@ -108,9 +108,9 @@ foreach ($slides as $slide) {
                 $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
                 $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
                 $url = \dvizh\shop\models\Category::getAllParents($cats, $subCategory->id, 'slug', true);
-print_r($url);
+// print_r($url);
 ?>
-                <a href="<?= Url::to(['/catalog/' . $subCategory->slug]) ?>">
+                <a href="<?= Url::to([join('/', array_reverse($url))]) ?>">
                     <?= ImgOpt::widget([
                             'src' => $imageSrc, 
                             'alt' => $this->title,
