@@ -36,57 +36,59 @@ if (!$this->title) {
                 <?= $this->title ?>
             </h1>
             
-            <?php
-                if ($categories) {
-            ?>
-                    <div class="owl-carousel owl-theme mb-1_25" data-items="2-2-2-2-2-2" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
-            <?php
-                    foreach ($categories as $category) {
-                        $image = $category->getImage();
-                        $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
-                        $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
-            ?>
-                        <a href="<?= Url::to([$category->link]) ?>">
-                            <?= ImgOpt::widget([
-                                    'src' => $imageSrc, 
-                                    'alt' => $this->title,
-                                    'loading' => 'lazy',
-                                    'css' => 'img-fluid',
-                                ])
-                            ?>
-                        </a>
-            <?php
-                    }
-            ?>
-                    </div>
-            <?php
+    <?php
+        if ($categories) {
+    ?>
+            <div class="owl-carousel owl-theme mb-1_25" data-items="2-2-2-2-2-2" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
+    <?php
+            foreach ($categories as $category) {
+                if (!$category->parent_id) {
+                    $image = $category->getImage();
+                    $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
+                    $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
+    ?>
+                    <a href="<?= Url::to(['/catalog/' . $category->slug]) ?>">
+                        <?= ImgOpt::widget([
+                                'src' => $imageSrc, 
+                                'alt' => $this->title,
+                                'loading' => 'lazy',
+                                'css' => 'img-fluid',
+                            ])
+                        ?>
+                    </a>
+    <?php
                 }
+            }
+    ?>
+            </div>
 
-                if ($subCategories) {
-            ?>
-                    <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
-            <?php
-                    foreach ($subCategories as $subCategory) {
-                        $image = $subCategory->getImage();
-                        $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
-                        $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
-            ?>
-                        <a href="<?= Url::to([$subCategory->link]) ?>">
-                            <?= ImgOpt::widget([
-                                    'src' => $imageSrc, 
-                                    'alt' => $this->title,
-                                    'loading' => 'lazy',
-                                    'css' => 'img-fluid',
-                                ])
-                            ?>
-                        </a>
-            <?php
-                    }
-            ?>
-                    </div>
-            <?php
+            <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true" data-random="true">
+    <?php
+            foreach ($categories as $category) {
+                if ($category->parent_id) {
+                    $image = $category->getImage();
+                    $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
+                    $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
+                    $url = Category::getAllParents($categories, $category->id, 'slug', true);
+    // print_r($url);
+    ?>
+                    <a href="<?= Url::to(['/catalog/' . join('/', array_reverse($url))]) ?>">
+                        <?= ImgOpt::widget([
+                                'src' => $imageSrc, 
+                                'alt' => $this->title,
+                                'loading' => 'lazy',
+                                'css' => 'img-fluid',
+                            ])
+                        ?>
+                    </a>
+    <?php
                 }
-            ?>
+            }
+    ?>
+            </div>
+    <?php
+        }
+    ?>
             
         </div>
     </div>
