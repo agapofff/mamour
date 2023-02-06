@@ -108,6 +108,7 @@ foreach ($slides as $slide) {
                 $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
                 $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
                 $categoryParent = $subCategory->getParent();
+                echo $categoryParent->slug;
 ?>
                 <a href="<?= Url::to(['/catalog/' . $subCategory->slug]) ?>">
                     <?= ImgOpt::widget([
