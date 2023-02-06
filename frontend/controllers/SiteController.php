@@ -111,30 +111,13 @@ class SiteController extends Controller
             // ])
             // ->all();
             
-        $cats = Category::find()->all();
-            
-        $categories = Category::find()
-            ->where([
-                'active' => 1,
-                'parent_id' => null
-            ])
-            ->orderBy('sort', SORT_DESC)
-            ->all();
-            
-        $subCategories = Category::find()
-            ->where([
-                'active' => 1,
-            ])
-            ->andWhere(['not', ['parent_id' => null]])
-            ->orderBy(new Expression('rand()'))
-            ->all();
+        $categories = Category::findAll([
+            'active' => 1
+        ]);
             
         return $this->render('index', [
             'slides' => $slides,
-            'banners' => $banners,
             'categories' => $categories,
-            'subCategories' => $subCategories,
-            'cats' => $cats,
         ]);
         
     }

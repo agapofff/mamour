@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use PELock\ImgOpt\ImgOpt;
+use dvizh\shop\models\Category;
 
 $this->title = Yii::$app->name;
 
@@ -78,7 +79,8 @@ foreach ($slides as $slide) {
         <div class="owl-carousel owl-theme mb-1_25" data-items="2-2-2-2-2-2" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
 <?php
         foreach ($categories as $category) {
-            if ($image = $category->getImage()) {
+            if (!$category->parent_id) {
+                $image = $category->getImage();
                 $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
                 $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
 ?>
@@ -96,18 +98,15 @@ foreach ($slides as $slide) {
         }
 ?>
         </div>
-<?php
-    }
 
-    if ($subCategories) {
-?>
-        <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true">
+        <div class="owl-carousel owl-theme" data-items="2-2-3-3-4-4" data-margin="20" data-nav="true" data-dots="true" data-loop="true" data-random="true">
 <?php
-        foreach ($subCategories as $subCategory) {
-            if ($image = $subCategory->getImage()) {
+        foreach ($categories as $category) {
+            if ($category->parent_id) {
+                $image = $category->getImage();
                 $imageCachePath = '/images/cache/Slides/Slides' . $image->itemId . '/' . $image->urlAlias . '.' . $image->extension;
                 $imageSrc = file_exists(Yii::getAlias('@frontend') . '/web' . $imageCachePath) ? $imageCachePath : $image->getUrl();
-                $url = \dvizh\shop\models\Category::getAllParents($cats, $subCategory->id, 'slug', true);
+                $url = Category::getAllParents($categories, $category->id, 'slug', true);
 // print_r($url);
 ?>
                 <a href="<?= Url::to(['/catalog/' . join('/', array_reverse($url))]) ?>">
