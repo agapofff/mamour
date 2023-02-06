@@ -92,7 +92,7 @@ foreach ($slides as $slide) {
                     ?>
                 </a>
 <?php
-            |
+            }
         }
 ?>
         </div>
