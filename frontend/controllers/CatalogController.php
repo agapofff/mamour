@@ -22,29 +22,12 @@ class CatalogController extends Controller
 {
     public function actionIndex()
     {
-        $categories = Slides::find()
-            ->where([
-                'active' => 1,
-                'category' => 'Категории на Главной',
-            ])
-            ->orderBy([
-                'sort' => SORT_ASC
-            ])
-            ->all();
-            
-        $subCategories = Slides::find()
-            ->where([
-                'active' => 1,
-                'category' => 'Подкатегории на Главной',
-            ])
-            ->orderBy([
-                'sort' => SORT_ASC
-            ])
-            ->all();
+        $categories = Category::findAll([
+            'active' => 1
+        ]);
         
         return $this->render('index', [
             'categories' => $categories,
-            'subCategories' => $subCategories,
         ]);
     }
     
