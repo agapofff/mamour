@@ -195,7 +195,7 @@ class ElementsList extends \yii\base\Widget
         $cartElName = $product->getCartName();
         
         $image = $product->getImage();
-        $cachedImage = '/images/cache/Products/Product' . $image->itemId . '/' . $image->urlAlias . '_170x205.' . $image->extension;
+        $cachedImage = '/images/cache/Product/Product' . $image->itemId . '/' . $image->urlAlias . '_170x205.' . $image->extension;
         $img = file_exists(Yii::getAlias('@frontend') . '/web' . $cachedImage) ? $cachedImage : $image->getUrl('170x205');
 
         return $this->render($this->elementView, [

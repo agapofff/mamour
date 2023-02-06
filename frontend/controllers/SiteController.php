@@ -13,6 +13,7 @@ use yii\db\Expression;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use dvizh\shop\models\Price;
+use dvizh\shop\models\Category;
 use dvizh\shop\models\Product;
 use dvizh\shop\models\product\ProductSearch;
 use yii\db\Query;
@@ -90,34 +91,40 @@ class SiteController extends Controller
             ])
             ->all();
             
-        $banners = Slides::find()
+        // $banners = Slides::find()
+            // ->where([
+                // 'active' => 1,
+                // 'category' => 'Главный слайдер',
+            // ])
+            // ->orderBy([
+                // 'sort' => SORT_ASC
+            // ])
+            // ->all();
+            
+        // $categories = Slides::find()
+            // ->where([
+                // 'active' => 1,
+                // 'category' => 'Категории на Главной',
+            // ])
+            // ->orderBy([
+                // 'sort' => SORT_ASC
+            // ])
+            // ->all();
+            
+        $categories = Category::find()
             ->where([
                 'active' => 1,
-                'category' => 'Главный слайдер',
+                'parent_id' => null
             ])
-            ->orderBy([
-                'sort' => SORT_ASC
-            ])
+            ->orderBy('sort', SORT_DESC)
             ->all();
             
-        $categories = Slides::find()
+        $subCategories = Category::find()
             ->where([
                 'active' => 1,
-                'category' => 'Категории на Главной',
             ])
-            ->orderBy([
-                'sort' => SORT_ASC
-            ])
-            ->all();
-            
-        $subCategories = Slides::find()
-            ->where([
-                'active' => 1,
-                'category' => 'Подкатегории на Главной',
-            ])
-            ->orderBy([
-                'sort' => SORT_ASC
-            ])
+            ->andWhere(['not', ['parent_id' => null]])
+            ->orderBy(new Expression('rand()'))
             ->all();
             
         return $this->render('index', [
@@ -192,5 +199,7 @@ class SiteController extends Controller
             'referal' => Yii::$app->request->get('referal')
         ]);
     }
+    
+    
 
 }

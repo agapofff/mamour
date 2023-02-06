@@ -34,7 +34,7 @@ if ($options && !empty($allOptions)) {
 				<img src="<?= $image ?>" class="img-fluid">
 			</a>
 		</div>
-		<div class="col-6">
+		<div class="col-6 pr-0">
 			<div class="row h-100">
 				<div class="col-12 align-self-start">
 					<p class="font-weight-bold text-uppercase montserrat">

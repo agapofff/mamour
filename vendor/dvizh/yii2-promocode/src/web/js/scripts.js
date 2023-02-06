@@ -34,7 +34,14 @@ dvizh.promocode = {
                     console.log(json.errors);
                     toastr.error(json.errors);
                 }
-                dvizh.cart.renderCart();
+
+                $.pjax.reload({
+                    container: '#pjax_promo_code', 
+                    // async: false
+                }).done(function () {
+                    dvizh.cart.renderCart();
+                });
+                
                 return true;
 
             }, "json");
@@ -60,7 +67,13 @@ dvizh.promocode = {
                     toastr.error(json.message);
                     console.log(json.errors);
                 }
-				dvizh.cart.renderCart();
+				
+                $.pjax.reload({
+                    container: '#pjax_promo_code', 
+                    // async: false
+                }).done(function () {
+                    dvizh.cart.renderCart();
+                });
 				$(document).trigger("promocodeEnter", json.code);
 				
                 // $(form).find('.promo-code-discount').show().html(json.message);

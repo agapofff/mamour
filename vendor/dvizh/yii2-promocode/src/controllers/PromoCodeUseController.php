@@ -31,7 +31,7 @@ class PromoCodeUseController extends Controller
             if(Yii::$app->request->post('clear')) {
                 Yii::$app->promocode->clear();
                 $discount = false;
-                $message = 'Промокод удален!';
+                $message = Yii::t('front', 'Промокод удален');
             } else {
                 Yii::$app->promocode->enter($promocode);
                 $transactions = Yii::$app->promocode->get()->promocode->getTransactions()->all();
@@ -46,6 +46,8 @@ class PromoCodeUseController extends Controller
                 } else {
                     $message .= ' рублей';
                 }
+                
+                $message = Yii::t('front', 'Промокод применен');
             }
             
             if(Yii::$app->cart) {

@@ -314,7 +314,7 @@ console.log(response);
                 },
                 success: function(answer) {
                     json = answer;
-                    dvizh.cart.renderCart(json);
+                    // dvizh.cart.renderCart(json);
                 },
                 error: function(answer){
                     console.log(answer);

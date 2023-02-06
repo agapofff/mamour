@@ -86,7 +86,7 @@ class ChangeCount extends \yii\base\Widget
             ]) . Html::tag('div', $input, [
                 'class' => 'col-auto p-0'
             ]), [
-                'class' => $this->cssClass . ($this->showArrows ? ' row align-items-center flex-nowrap' : ''),
+                'class' => $this->cssClass . ($this->showArrows ? ' row align-items-center justify-content-end flex-nowrap' : ''),
                 // 'style' => 'width: 120px;',
             ]);
         }
