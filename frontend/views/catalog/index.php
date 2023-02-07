@@ -32,7 +32,7 @@ if (!$this->title) {
                 }
             }
 
-            Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase mb-0_5 fs15px', 'text-decoration-underline') ?>
+            Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2 mb-1', null, 'd-inline-block montserrat font-weight-bold text-uppercase mb-0_5 fs15px', 'text-decoration-underline') ?>
         </div>
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6">
             <h1 class="gotham font-weight-bold text-uppercase headline mb-2 mb-lg-3">
