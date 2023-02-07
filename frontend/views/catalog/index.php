@@ -21,11 +21,14 @@ if (!$this->title) {
     <div class="row justify-content-center justify-content-lg-start">
         <div id="category-menu" class="col-sm-3 col-md-3 col-lg-2 col-xl-3 d-none d-md-block">
         <?php 
-            $menu = ArrayHelper::index(Yii::$app->params['menu'], 'id');
+            $menu = ArrayHelper::index($menuArr, 'id');
             $rootID = 0;
-            foreach ($menu as $item) {
+            foreach ($menu as $key => $item) {
                 if ($item['current']) {
                     $rootID = $item['parent_id'] == '0' ? $item['id'] : $item['parent_id'];
+                }
+                if (in_array($item['id'], [41, 42])) {
+                    unset($menu[$key]);
                 }
             }
 
