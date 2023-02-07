@@ -142,7 +142,7 @@ $controllerID = Yii::$app->controller->id;
 $actionID = Yii::$app->controller->action->id;
 
 $isMainPage = $controllerID == 'site' && $actionID == 'index';
-$isCategory = $controllerID == 'category';
+$isCategory = $controllerID == 'catalog';
 $isProduct = $controllerID == 'product';
 $isWishlist = $controllerID == 'wishlist' && $actionID == 'index';
 
