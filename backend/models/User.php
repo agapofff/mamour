@@ -54,6 +54,7 @@ class User extends \yii\db\ActiveRecord
             'comment' => Yii::t('back', 'Comment'),
             'agree' => Yii::t('back', 'Agree'),
             'lottery' => Yii::t('back', 'Lottery'),
+            'name' => Yii::t('back', 'Пользователь'),
         ];
     }
 
@@ -70,5 +71,10 @@ class User extends \yii\db\ActiveRecord
     public function getTokens()
     {
         return $this->hasMany(Token::className(), ['user_id' => 'id']);
+    }
+    
+    public function getName()
+    {
+        return json_encode(['ru' => $this->email]);
     }
 }
