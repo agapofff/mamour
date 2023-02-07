@@ -21,7 +21,7 @@ if (!$this->title) {
     <div class="row justify-content-center justify-content-lg-start">
         <div id="category-menu" class="col-sm-3 col-md-3 col-lg-2 col-xl-3 d-none d-md-block">
         <?php 
-            $menu = ArrayHelper::index($menuArr, 'id');
+            $menu = ArrayHelper::index(Yii::$app->params['menu'], 'id');
             $rootID = 0;
             foreach ($menu as $key => $item) {
                 if ($item['current']) {
