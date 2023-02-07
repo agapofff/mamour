@@ -291,7 +291,7 @@ $config = [
             'currency' => 'р.',
             'currencyPosition' => 'after',
             'priceFormat' => [2, '.', ''],
-            // 'as PromoDiscount' => ['class' => 'dvizh\promocode\behaviors\Discount'],
+            'as PromoDiscount' => ['class' => 'dvizh\promocode\behaviors\Discount'],
             'as ElementDiscount' => ['class' => 'dvizh\promocode\behaviors\DiscountToElement'],
         ],
         
