@@ -157,7 +157,11 @@ $config = [
                 'Категории' => [
                     'model' => 'dvizh\shop\models\Category',
                     'searchModel' => 'dvizh\shop\models\category\CategorySearch'
-                ],  
+                ],
+                'Пользователи' => [
+                    'model' => 'backend\models\User',
+                    'searchModel' => 'backend\models\UserSearch'
+                ],
             ],
         ],
        'treemenu' =>  [
