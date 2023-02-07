@@ -8,6 +8,7 @@ use yii\widgets\Pjax;
 <?php 
     Pjax::begin([
         'id' => 'pjax_promo_code',
+        'enablePushState' => false,
     ]);
 ?>
 
@@ -55,18 +56,20 @@ use yii\widgets\Pjax;
                     if (Yii::$app->promocode->has()) { 
                 ?>
                         <div class="help-block promo-code-discount small font-weight-light">
-                            Ваша скидка: <?php
-                                if (Yii::$app->promocode->get()->promocode->type === 'cumulative' && Yii::$app->promocode->get()->promocode->getTransactions()->all()) {
-                                echo 0;
-                            } else {
-                                echo Yii::$app->promocode->get()->promocode->discount;
-                            }
+                            <?= Yii::t('front', 'Скидка') ?>: <?php
+                                if (
+                                    Yii::$app->promocode->get()->promocode->type === 'cumulative' 
+                                    && Yii::$app->promocode->get()->promocode->getTransactions()->all()
+                                ) {
+                                    echo '0';
+                                } else {
+                                    if (Yii::$app->promocode->get()->promocode->type != 'quantum') {
+                                        echo Yii::$app->promocode->get()->promocode->discount . htmlspecialchars('%');
+                                    } else {
+                                        echo Yii::$app->formatter->asPercent(Yii::$app->promocode->get()->promocode->discount);
+                                    }
+                                }
                             ?>
-                            <?php if (Yii::$app->promocode->get()->promocode->type != 'quantum') {
-                                echo '%';
-                            } else {
-                                echo ' рублей';
-                            } ?>
                         </div>
                 <?php 
                     } else { 

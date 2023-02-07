@@ -27,19 +27,20 @@ dvizh.promocode = {
                     // if(json.informer) {
                         // $('.dvizh-cart-informer').replaceWith(json.informer);
                     // }
-                    toastr.info(json.message);
+                    toastr.success(json.message);
                     
                 } else {
                     // $(form).find('input[type=text]').css({'border': '1px solid red'});
                     console.log(json.errors);
                     toastr.error(json.errors);
                 }
-
+                
                 $.pjax.reload({
                     container: '#pjax_promo_code', 
-                    // async: false
+                    async: false
                 }).done(function () {
                     dvizh.cart.renderCart();
+                    shippingTypeChange(false);
                 });
                 
                 return true;
@@ -61,19 +62,21 @@ dvizh.promocode = {
                     // if(json.informer) {
                         // $('.dvizh-cart-informer').replaceWith(json.informer);
                     // }
-                    toastr.info(json.message);
+                    toastr.success(json.message);
                 } else {
                     // $(form).find('input[type=text]').css({'border': '1px solid red'});
                     toastr.error(json.message);
                     console.log(json.errors);
                 }
-				
+                
                 $.pjax.reload({
                     container: '#pjax_promo_code', 
-                    // async: false
+                    async: false
                 }).done(function () {
                     dvizh.cart.renderCart();
+                    shippingTypeChange(false);
                 });
+                
 				$(document).trigger("promocodeEnter", json.code);
 				
                 // $(form).find('.promo-code-discount').show().html(json.message);

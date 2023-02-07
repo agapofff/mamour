@@ -21,46 +21,51 @@ class PromoCodeUseController extends Controller
 
     public function actionEnter()
     {
-
         $informer = $this->module->informer;
         $informerSettings = $this->module->informerSettings;
 
         try {
             $promocode = Yii::$app->request->post('promocode');
             
-            if(Yii::$app->request->post('clear')) {
+            if (Yii::$app->request->post('clear')) {
                 Yii::$app->promocode->clear();
                 $discount = false;
                 $message = Yii::t('front', 'Промокод удален');
             } else {
                 Yii::$app->promocode->enter($promocode);
                 $transactions = Yii::$app->promocode->get()->promocode->getTransactions()->all();
-                if (Yii::$app->promocode->get()->promocode->type === 'cumulative' && empty($transactions)) {
+                if (
+                    Yii::$app->promocode->get()->promocode->type === 'cumulative' 
+                    && empty($transactions)
+                ) {
                     $discount = 0;
                 } else {
                     $discount = Yii::$app->promocode->get()->promocode->discount;
                 }
-                $message = 'Промокод применен, скидка ' . $discount;
-                if (Yii::$app->promocode->get()->promocode->type != 'quantum') {
-                    $message .= '%';
-                } else {
-                    $message .= ' рублей';
-                }
-                
                 $message = Yii::t('front', 'Промокод применен');
             }
             
-            if(Yii::$app->cart) {
+            if (Yii::$app->cart) {
                 $newCost = Yii::$app->cart->costFormatted;
-            }
-            else {
+            } else {
                 $newCost = null;
             }
 
-            return json_encode(['code' => Html::encode($promocode), 'informer' => $informer::widget($informerSettings), 'result' => 'success', 'newCost' => $newCost, 'message' => $message]);
-        }
-        catch(\Exception $e) {
-            return json_encode(['informer' => $informer::widget($informerSettings), 'result' => 'fail', 'message' => $e->getMessage()]);
+            return json_encode([
+                'code' => Html::encode($promocode), 
+                'informer' => $informer::widget($informerSettings), 
+                'result' => 'success', 
+                'newCost' => $newCost, 
+                'message' => $message,
+                'discount' => $discount,
+            ]);
+        } catch (\Exception $e) {
+            return json_encode([
+                'informer' => $informer::widget($informerSettings), 
+                'result' => 'fail', 
+                'message' => $e->getMessage(),
+                'discount' => $discount,
+            ]);
         }
     }
 }
