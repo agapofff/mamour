@@ -172,7 +172,7 @@ if ($model->isNewRecord) {
                     ->hint('Здесь задается количество использований промокода')
             ?>
             
-            <div class="promocode-right-column hidden">
+            <div class="promocode-right-column">
             <?php if ($targetModelList) { ?>
                 <h3>Прикрепить к:</h3>
                 <div class="row">

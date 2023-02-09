@@ -20,7 +20,7 @@ class Discount extends Behavior
 
     public function doDiscount($event)
     {
-        if(Yii::$app->promocode->has()) {
+        if(Yii::$app->promocode->has() && !$targetModels = Yii::$app->promocode->getTargetModels()) {
             
             if (!Yii::$app->promocode->get()->promocode->getTransactions()->all() && Yii::$app->promocode->get()->promocode->type == 'cumulative') {
                 $discount = 0;
