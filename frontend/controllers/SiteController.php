@@ -107,7 +107,7 @@ class SiteController extends Controller
             
         return $this->render('index', [
             'slidesDesktop' => $slidesDesktop,
-            'slidesMobile' => $slidesMobile
+            'slidesMobile' => $slidesMobile,
             'categories' => $categories,
         ]);
         
