@@ -45,7 +45,7 @@ class Slides extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['active', 'show_button', 'content_align', 'sort'], 'integer'],
+            [['active', 'show_button', 'content_align', 'sort', 'color'], 'integer'],
             [['text', 'button_text'], 'string'],
             [['category', 'link'], 'string', 'max' => 255],
         ];
@@ -66,6 +66,7 @@ class Slides extends \yii\db\ActiveRecord
             'button_text' => Yii::t('back', 'Текст на кнопке'),
             'content_align' => Yii::t('back', 'Выровнять контент'),
             'sort' => Yii::t('back', 'Порядок'),
+            'color' => Yii::t('back', 'Цветовая схема'),
         ];
     }
 }

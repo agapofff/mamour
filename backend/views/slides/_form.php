@@ -44,7 +44,7 @@ use backend\widgets\MultilangField;
                             'offColor' => 'danger',
                         ],
                     ]);
-                ?>
+            ?>
             
             <?= Gallery::widget([
                     'model' => $model,
@@ -84,6 +84,7 @@ use backend\widgets\MultilangField;
                     ->hint('Относительная ссылка, после языковой метки, начинается со слеша')
             ?>
 
+        <div class="hidden">
             <?= MultilangField::widget([
                     'model' => $model,
                     'form' => $form,
@@ -92,6 +93,7 @@ use backend\widgets\MultilangField;
                     'languages' => $languages,
                 ]);
             ?>
+        </div>
 
             <?= $form
                     ->field($model, 'show_button')
@@ -103,7 +105,7 @@ use backend\widgets\MultilangField;
                             'offColor' => 'danger',
                         ],
                     ]);
-                ?>
+            ?>
 
             <?= MultilangField::widget([
                     'model' => $model,
@@ -113,6 +115,7 @@ use backend\widgets\MultilangField;
                 ]);
             ?>
 
+        <div class="hidden">
             <?= $form
                     ->field($model, 'content_align')
                     ->radioList([
@@ -133,6 +136,30 @@ use backend\widgets\MultilangField;
                         },
                     ])
                     ->label(Yii::t('back', 'Расположение контента'), [
+                        'style' => 'display: block'
+                    ])
+            ?>
+        </div>
+            
+            <?= $form
+                    ->field($model, 'color')
+                    ->radioList([
+                        'Темная',
+                        'Светлая',
+                    ], [
+                        'class' => 'btn-group',
+                        'data-toggle' => 'buttons',
+                        'unselect' => null,
+                        'item' => function ($index, $label, $name, $checked, $value) {
+                            return '<label class="btn btn-primary text-white '. ($checked ? ' active' : '') . '">' .
+                                        Html::radio($name, $checked, [
+                                            'value' => $value,
+                                            'class' => 'btn-switch'
+                                        ]) . $label . 
+                                    '</label>';
+                        },
+                    ])
+                    ->label(Yii::t('back', 'Цветовая схема'), [
                         'style' => 'display: block'
                     ])
             ?>
