@@ -12,7 +12,7 @@ $this->title = Yii::$app->name;
 <?php
     if ($slidesDesktop) {
 ?>
-        <div class="owl-carousel owl-theme mainpage-slider desktop d-none d-sm-block" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
+        <div class="owl-carousel owl-theme mainpage-slider desktop d-none d-md-block" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
         <?php
         foreach ($slidesDesktop as $slide) {
         ?>
@@ -70,7 +70,7 @@ $this->title = Yii::$app->name;
 <?php
     if ($slidesMobile) {
 ?>
-        <div class="owl-carousel owl-theme mainpage-slider mobile d-sm-none" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
+        <div class="owl-carousel owl-theme mainpage-slider mobile d-md-none" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
         <?php
         foreach ($slidesMobile as $slide) {
         ?>

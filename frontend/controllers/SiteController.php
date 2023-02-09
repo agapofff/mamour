@@ -84,7 +84,7 @@ class SiteController extends Controller
         $slidesDesktop = Slides::find()
             ->where([
                 'active' => 1,
-                'category' => 'Главный слайдер - Desktop',
+                'category' => 'desktop',
             ])
             ->orderBy([
                 'sort' => SORT_ASC
@@ -94,7 +94,7 @@ class SiteController extends Controller
         $slidesMobile = Slides::find()
             ->where([
                 'active' => 1,
-                'category' => 'Главный слайдер - Mobile',
+                'category' => 'mobile',
             ])
             ->orderBy([
                 'sort' => SORT_ASC
@@ -107,7 +107,7 @@ class SiteController extends Controller
             
         return $this->render('index', [
             'slidesDesktop' => $slidesDesktop,
-            'slidesMobile' => $slidesMobile,
+            'slidesMobile' => $slidesMobile
             'categories' => $categories,
         ]);
         
