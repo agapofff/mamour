@@ -49,16 +49,17 @@ use backend\widgets\MultilangField;
             <?= Gallery::widget([
                     'model' => $model,
                     'label' => Yii::t('back', 'Изображение'),
-                    'previewSize' => '500x',
+                    'previewSize' => '200x200',
                     'fileInputPluginOptions' => [
                         'showPreview' => false,
                     ],
                     'containerClass' => 'row',
-                    'elementClass' => 'col-xs-12',
+                    'elementClass' => 'col-xs-6',
                     'deleteButtonText' => Html::tag('i', '', ['class' => 'fa fa-trash']),
                     'editButtonText' => Html::tag('i', '', ['class' => 'fa fa-edit']),
                 ]);
             ?>
+            <p><small><?= Yii::t('back', 'Первое изображение - горизонтальное, для десктопа. Второе изображение - вертикальное, для мобильных.') ?></small></p>
             <br>
 
             <?= $form

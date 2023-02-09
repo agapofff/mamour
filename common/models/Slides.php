@@ -23,7 +23,7 @@ class Slides extends \yii\db\ActiveRecord
         return [
             'images' => [
                 'class' => 'agapofff\gallery\behaviors\AttachImages',
-                'mode' => 'single',
+                'mode' => 'gallery',
                 'quality' => 80,
                 'galleryId' => 'slides',
                 'allowExtensions' => ['jpg', 'jpeg', 'png'],
