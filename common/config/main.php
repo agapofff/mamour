@@ -148,20 +148,21 @@ $config = [
             'informer' => 'dvizh\cart\widgets\CartInformer', // namespace to custom cartInformer widget
             'informerSettings' => [], //settings for custom cartInformer widget
             'clientsModel' => 'dektrium\user\models\User', //Модель пользователей
+            'orderModel' => 'dvizh\order\models\Order', //Модель заказов
             //Указываем модели, к которым будем привязывать промокод
             'targetModelList' => [
                 'Товары' => [
                     'model' => 'dvizh\shop\models\Product',
                     'searchModel' => 'dvizh\shop\models\product\ProductSearch'
                 ],
-                'Категории' => [
-                    'model' => 'dvizh\shop\models\Category',
-                    'searchModel' => 'dvizh\shop\models\category\CategorySearch'
-                ],
-                'Пользователи' => [
-                    'model' => 'backend\models\User',
-                    'searchModel' => 'backend\models\UserSearch'
-                ],
+                // 'Категории' => [
+                    // 'model' => 'dvizh\shop\models\Category',
+                    // 'searchModel' => 'dvizh\shop\models\category\CategorySearch'
+                // ],
+                // 'Пользователи' => [
+                    // 'model' => 'backend\models\User',
+                    // 'searchModel' => 'backend\models\UserSearch'
+                // ],
             ],
         ],
        'treemenu' =>  [
@@ -295,8 +296,8 @@ $config = [
             'currency' => 'р.',
             'currencyPosition' => 'after',
             'priceFormat' => [2, '.', ''],
-            'as PromoDiscount' => ['class' => 'dvizh\promocode\behaviors\Discount'],
             'as ElementDiscount' => ['class' => 'dvizh\promocode\behaviors\DiscountToElement'],
+            'as PromoDiscount' => ['class' => 'dvizh\promocode\behaviors\Discount'],
         ],
         
         'treeSettings' => [
