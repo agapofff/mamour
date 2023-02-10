@@ -391,6 +391,11 @@ form[disabled] {
     /* } */
 /* } */
 
+body[data-theme="dark"] .light,
+body[data-theme="light"] .dark {
+    display: none;
+}
+
 .main-menu-item.dropdown-toggle:before {
     content: '';
     display: inline-block;
@@ -566,13 +571,17 @@ form[disabled] {
 }
 @media (max-width: 991px) {
     .mainpage-slider .owl-dots {
-        bottom: 1rem;
+        bottom: 0.5rem;
         left: 1rem;
     }    
 }
-.mainpage-slider .owl-dot span {
-    background: #fff !important;
-    border: 2px solid #fff !important;
+body[data-theme="light"] .mainpage-slider .owl-dot span {
+    background: #fff;
+    border: 2px solid #fff;
+}
+body[data-theme="dark"] .mainpage-slider .owl-dot span {
+    background: #B8994F;
+    border: 2px solid #B8994F;
 }
 .mainpage-slider .owl-dot.active span {
     background: transparent !important;
@@ -591,11 +600,9 @@ form[disabled] {
 }
 .mainpage-slider .owl-prev {
 	left: -3rem !important;
-    background: url('../images/arrow_left_white.svg') center center / cover no-repeat !important;
 }
 .mainpage-slider .owl-next {
 	right: -3rem !important;
-    background: url('../images/arrow_right_white.svg') center center / cover no-repeat !important;
 }
 .mainpage-slider:hover .owl-prev {
     left: 3rem !important;
@@ -604,6 +611,40 @@ form[disabled] {
 .mainpage-slider:hover .owl-next {
     right: 3rem !important;
     opacity: 1;
+}
+body[data-theme="light"] .mainpage-slider .owl-prev {
+    background: url('../images/arrow_left_white.svg') center center / cover no-repeat !important;
+}
+body[data-theme="light"] .mainpage-slider .owl-next {
+    background: url('../images/arrow_right_white.svg') center center / cover no-repeat !important;
+}
+body[data-theme="dark"] .mainpage-slider .owl-prev {
+    background: url('../images/arrow_left_dark.svg') center center / cover no-repeat !important;
+}
+body[data-theme="dark"] .mainpage-slider .owl-next {
+    background: url('../images/arrow_right_dark.svg') center center / cover no-repeat !important;
+}
+@media (max-width: 991px) {
+    .mainpage-slider .owl-nav button {
+        width: 3em !important;
+        height: 3em !important;
+    }
+    .mainpage-slider:hover .owl-prev {
+        left: 1rem !important;
+    }
+    .mainpage-slider:hover .owl-next {
+        right: 1rem !important;
+    }
+}
+@media (max-width: 991px) {
+    .mainpage-slider .btn {
+        font-size: 1rem !important;
+        right: auto !important;
+        left: 50% !important;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
 }
 
 #product-gallery .owl-dots {

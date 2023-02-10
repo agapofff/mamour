@@ -81,20 +81,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $slidesDesktop = Slides::find()
+        $slides = Slides::find()
             ->where([
                 'active' => 1,
-                'category' => 'desktop',
-            ])
-            ->orderBy([
-                'sort' => SORT_ASC
-            ])
-            ->all();
-            
-        $slidesMobile = Slides::find()
-            ->where([
-                'active' => 1,
-                'category' => 'mobile',
             ])
             ->orderBy([
                 'sort' => SORT_ASC
@@ -106,8 +95,7 @@ class SiteController extends Controller
         ]);
             
         return $this->render('index', [
-            'slidesDesktop' => $slidesDesktop,
-            'slidesMobile' => $slidesMobile,
+            'slides' => $slides,
             'categories' => $categories,
         ]);
         

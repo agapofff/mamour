@@ -182,7 +182,7 @@ $this->registerJs("
         <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
     </head>
-    <body data-page="<?= base64_encode($controllerID . '/' . $actionID) ?>" class="position-relative <?= Yii::$app->devicedetect->isMobile() ? 'mobile' : 'desktop' ?>">
+    <body data-page="<?= base64_encode($controllerID . '/' . $actionID) ?>" class="position-relative <?= Yii::$app->devicedetect->isMobile() ? 'mobile' : 'desktop' ?>" data-theme="<?= $isMainPage ? 'light' : 'dark' ?>">
         
         <div id="loader" class="fixed-top vw-100 vh-100 bg-white opacity-75">
             <div class="d-flex vw-100 vh-100 align-items-center justify-content-center">
@@ -197,9 +197,16 @@ $this->registerJs("
         <nav id="nav" class="py-1 transition <?= $isMainPage ? 'position-absolute w-100' : '' ?>">
             <div id="nav-container" class="container-fluid">
                 <div class="row align-items-center justify-content-between flex-nowrap">
-                    <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                    <div class="col-10 col-sm-5 col-md-4 col-lg-3 col-xl-3">
                         <a id="logo" href="<?= Url::home(true) ?><?= Yii::$app->language ?>">
-                            <img src="/images/logo_nav_<?= $isMainPage ? 'light' : 'dark' ?>.svg" class="img-fluid" alt="<?= Yii::$app->name ?>">
+                            <div class="light">
+                                <img src="/images/logo_nav_light.svg" class="img-fluid d-none d-sm-inline" alt="<?= Yii::$app->name ?>">
+                                <img src="/images/logo_nav_light_small.svg" class="img-fluid d-sm-none" alt="<?= Yii::$app->name ?>">
+                            </div>
+                            <div class="dark">
+                                <img src="/images/logo_nav_dark.svg" class="img-fluid d-none d-sm-inline" alt="<?= Yii::$app->name ?>">
+                                <img src="/images/logo_nav_dark_small.svg" class="img-fluid d-sm-none" alt="<?= Yii::$app->name ?>">
+                            </div>
                         </a>
                     </div>
                     <div class="col-md-7 col-lg-6 col-xl-6 d-none d-lg-block">
@@ -275,7 +282,7 @@ $this->registerJs("
                                     ?>
                                 </a>
                             </div>
-                            <div class="col-auto pl-0 pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1 mr-lg-2">
+                            <div class="col-auto d-none d-sm-block pl-0 pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1 mr-lg-2">
                                 <button id="language" type="button" class="btn btn-link text-dark text-uppercase text-decoration-none montserrat fs15px px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= Yii::$app->language ?>
                                 </button>
@@ -561,6 +568,22 @@ $this->registerJs("
                         <div id="mobile-menu" class="nav flex-column my-auto w-100">
                             <?php Category::renderMenu(Category::buildTreeArray(Yii::$app->params['menu']), 'list-unstyled pl-2', '', 'dropdown-item'); ?>
                         </div>
+                    </div>
+                    <div class="modal-footer justify-content-start">
+                <?php
+                    if ($langs) {
+                        foreach ($langs as $key => $lang) {
+                ?>
+                            <div class="col-auto">
+                                <?= Html::a($lang['label'], $lang['url'], [
+                                        'class' => 'text-uppercase text-' . ($lang['active'] ? 'underline' : 'decoration-none')
+                                    ]);
+                                ?>
+                            </div>
+                <?php
+                        }
+                    }
+                ?>
                     </div>
                 </div>
             </div>

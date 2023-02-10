@@ -234,6 +234,16 @@ jQuery(document).ready(function ($) {
         });
     }
     productImageZoom();
+    
+    
+    mainpageSliderTheme = function (event) {
+        var $slider = event.relatedTarget.$element;
+        if ($slider.hasClass('mainpage-slider')) {
+            setTimeout(function () {
+                $('body').attr('data-theme', $slider.find('.owl-item.active').children().data('theme'));
+            }, 100);
+        }
+    }
 
 
     // OWL
@@ -310,7 +320,7 @@ jQuery(document).ready(function ($) {
                 '',
                 '',
             ],
-            onInitialize: function (element) {
+            onInitialize: function (event) {
                 if (owlRandom === true) {
                     $(item).children().sort(function () {
                         return Math.round(Math.random()) - 0.5;
@@ -320,12 +330,16 @@ jQuery(document).ready(function ($) {
                 }
                 // imageZoom();
             },
+            onInitialized: function (event) {
+                mainpageSliderTheme(event);
+            },
             onDragged: function () {
                 // imageZoom();
             },
             onChanged: function (event) {
                 $(item).attr('data-item', event.item.index ? event.item.index-1 : event.item.index);
                 // imageZoom();
+                mainpageSliderTheme(event);
             },
         });
     }
@@ -341,6 +355,8 @@ jQuery(document).ready(function ($) {
     owlGoTo = function (id, slide, speed = 300) {
         $(id).trigger('to.owl.carousel', [slide, speed]);
     }
+    
+
     
 
     // SLICK
