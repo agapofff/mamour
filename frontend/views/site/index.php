@@ -12,7 +12,7 @@ $this->title = Yii::$app->name;
 <?php
     if ($slides) {
 ?>
-        <div class="owl-carousel owl-theme mainpage-slider" data-nav="true" data-dots="true" data-loop="true" data-autoplay="false" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
+        <div class="owl-carousel owl-theme mainpage-slider" data-nav="true" data-dots="true" data-loop="true" data-autoplay="true" data-animatein="fadeIn" data-animateout="fadeOut" data-hoverstop="true">
     <?php
         foreach ($slides as $slide) {
             $images = $slide->getImages();
