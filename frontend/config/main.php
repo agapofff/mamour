@@ -366,6 +366,12 @@ return [
         'devicedetect' => [
             'class' => 'alexandernst\devicedetect\DeviceDetect'
         ],
+        
+        'yiimorphy' => [
+            'class' => 'maxodrom\phpmorphy\components\YiiMorphy',
+            'language' => 'ru', // or 'uk', or 'de'
+            // 'options' => [], // your options which will be passed to \phpMorphy's constructor 
+        ],
 
         'urlManager' => [           
             'class' => 'cetver\LanguageUrlManager\UrlManager',
@@ -411,8 +417,9 @@ return [
                 // 'catalog/<slug>/<collection>' => 'catalog/index',
                 // '<catalog:(slug)>' => 'catalog/index',
                 
-                'catalog' => 'catalog/index',
+                'catalog' => 'catalog/category',
                 'catalog/<path:[\w_\/-]+>' => 'catalog/category',
+                'search' => 'catalog/search',
                 
                 // 'catalog' => 'catalog/index',
                 // 'catalog/<path:[\w_\/-]+>' => 'catalog/products',

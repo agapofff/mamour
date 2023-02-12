@@ -7,6 +7,7 @@ use common\models\Stores;
 use common\models\Languages;
 use common\models\Wishlist;
 use common\models\Slides;
+use common\models\Search;
 use dvizh\shop\models\Product;
 // use common\models\Category;
 use dvizh\shop\models\Category;
@@ -31,6 +32,11 @@ class CatalogController extends Controller
         ]);
     }
     
+    public function actionSearch()
+    {
+        return $this->actionCategory('search');
+    }
+    
     public function actionCategory($path = null)
     {
         $new = $popular = $sale = $promo = $category_id = $category = null;
@@ -43,7 +49,10 @@ class CatalogController extends Controller
             ->asArray()
             ->all();
             
-        if ($path) {
+        $isSearch = $path == 'search';
+        $search = Yii::$app->request->get('search');
+            
+        if ($path && !$isSearch) {
             $slugs = explode('/', $path);
             
             switch ($slugs[array_key_last($slugs)]) {
@@ -88,8 +97,11 @@ class CatalogController extends Controller
                     }
                 }
             }
+            
+            $this->view->params['model'] = $category;
         } else {
-            $productsIDs = Product::find()->active()->column();
+            $productsIDs = $isSearch && !$search ? [] : Product::find()->active()->column();
+            $this->view->title = $isSearch ? Yii::t('front', 'Поиск') : Yii::t('front', 'Каталог');
         }
 
         if (!empty($productsIDs)) {
@@ -115,11 +127,29 @@ class CatalogController extends Controller
                     'popular' => $popular,
                     'sale' => $sale,
                 ])
-                ->filtered()
                 ->orderBy([
                     'sort' => SORT_ASC
-                ])
-                ->all();
+                ]);
+                
+            if ($search) {
+                $searchRequest = Search::lemmatize(Search::numbersLettersSeparate(Search::normalize($search)), Yii::$app->language);
+                
+                $searchRequest = implode(' ', array_unique(explode(' ', $searchRequest)));
+
+                $searchResults = Search::find()
+                    // ->select('product_id')
+                    ->where("MATCH (content) AGAINST (:search)", [
+                        ':search' => $searchRequest
+                    ])
+                    ->all();
+                    
+                $goods = $goods->andWhere([
+                    'id' => ArrayHelper::getColumn($searchResults, 'item_id')
+                ]);
+            }
+            
+            $goods = $goods->filtered();
+            $goods = $goods->all();
 
             if ($goods) {
                 foreach ($goods as $key => $product) {
@@ -165,14 +195,13 @@ class CatalogController extends Controller
             }
         }
         
-        $this->view->params['model'] = $category;
-        
         return $this->render('category', [
             'products' => $products,
             'productsSizes' => $productsSizes,
             'productsPrices' => array_unique($modificationsPrices),
             'productsOldPrices' => array_unique($modificationsOldPrices),
             'category' => $category,
+            'isSearch' => $isSearch,
         ]);
     }
 

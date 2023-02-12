@@ -71,7 +71,8 @@
         "yii2mod/yii2-settings": "*",
         "pelock/yii2-imgopt": "*",
         "sitronik/yii2-tree-menu": "dev-master",
-        "kartik-v/yii2-widget-depdrop": "dev-master"
+        "kartik-v/yii2-widget-depdrop": "dev-master",
+        "maxodrom/yii2-phpmorphy": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

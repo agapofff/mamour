@@ -6179,6 +6179,123 @@
             "install-path": "../markbaker/matrix"
         },
         {
+            "name": "maxakawizard/phpmorphy",
+            "version": "1.3.0",
+            "version_normalized": "1.3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MAXakaWIZARD/phpmorphy.git",
+                "reference": "79f1bd01a23b1af2749b14cb191e2e5952ecd789"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MAXakaWIZARD/phpmorphy/zipball/79f1bd01a23b1af2749b14cb191e2e5952ecd789",
+                "reference": "79f1bd01a23b1af2749b14cb191e2e5952ecd789",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "time": "2016-04-14T23:11:56+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kamaev Vladimir",
+                    "email": "heromantor@users.sourceforge.net"
+                },
+                {
+                    "name": "Max Grigorian",
+                    "email": "maxakawizard@gmail.com",
+                    "homepage": "http://wizardcat.com"
+                }
+            ],
+            "description": "phpMorphy - morphological analyzer library for Russian, English and German languages",
+            "homepage": "https://github.com/MAXakaWIZARD/phpmorphy",
+            "keywords": [
+                "phpmorphy"
+            ],
+            "support": {
+                "source": "https://github.com/MAXakaWIZARD/phpmorphy/tree/1.3.0"
+            },
+            "install-path": "../maxakawizard/phpmorphy"
+        },
+        {
+            "name": "maxodrom/yii2-phpmorphy",
+            "version": "1.0.2",
+            "version_normalized": "1.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maxodrom/yii2-phpmorphy.git",
+                "reference": "3372889266458d91b7e9b80be04aec4440844d68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maxodrom/yii2-phpmorphy/zipball/3372889266458d91b7e9b80be04aec4440844d68",
+                "reference": "3372889266458d91b7e9b80be04aec4440844d68",
+                "shasum": ""
+            },
+            "require": {
+                "maxakawizard/phpmorphy": "~1.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "~2.0",
+                "codeception/specify": "~1.1",
+                "codeception/verify": "~1.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "time": "2018-06-07T15:53:28+00:00",
+            "type": "project",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "maxodrom\\phpmorphy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Max Alexandrov",
+                    "email": "max@7u3.ru"
+                }
+            ],
+            "description": "Yii2 PHPMorphy component",
+            "homepage": "https://github.com/maxodrom/yii2-phpmorphy",
+            "keywords": [
+                "seo",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/maxodrom/yii2-phpmorphy/issues?state=open",
+                "source": "https://github.com/maxodrom/yii2-phpmorphy",
+                "wiki": "https://github.com/maxodrom/yii2-phpmorphy/wiki"
+            },
+            "install-path": "../maxodrom/yii2-phpmorphy"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.37",
             "version_normalized": "2.8.37.0",

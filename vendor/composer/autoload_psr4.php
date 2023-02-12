@@ -34,6 +34,7 @@ return array(
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'nex\\datepicker\\' => array($vendorDir . '/nex/yii2-datepicker'),
     'newerton\\fancybox\\' => array($vendorDir . '/newerton/yii2-fancybox'),
+    'maxodrom\\phpmorphy\\' => array($vendorDir . '/maxodrom/yii2-phpmorphy/src'),
     'lo\\widgets\\' => array($vendorDir . '/loveorigami/yii2-slimscroll-widget'),
     'linslin\\yii2\\curl\\' => array($vendorDir . '/linslin/yii2-curl'),
     'lavrentiev\\widgets\\toastr\\' => array($vendorDir . '/lavrentiev/yii2-toastr/src'),

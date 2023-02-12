@@ -138,6 +138,10 @@ class ComposerStaticInit8236d2fd6998012d5c1e6e4991187826
             'nex\\datepicker\\' => 15,
             'newerton\\fancybox\\' => 18,
         ),
+        'm' => 
+        array (
+            'maxodrom\\phpmorphy\\' => 19,
+        ),
         'l' => 
         array (
             'lo\\widgets\\' => 11,
@@ -434,6 +438,10 @@ class ComposerStaticInit8236d2fd6998012d5c1e6e4991187826
         'newerton\\fancybox\\' => 
         array (
             0 => __DIR__ . '/..' . '/newerton/yii2-fancybox',
+        ),
+        'maxodrom\\phpmorphy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maxodrom/yii2-phpmorphy/src',
         ),
         'lo\\widgets\\' => 
         array (
@@ -1014,6 +1022,10 @@ class ComposerStaticInit8236d2fd6998012d5c1e6e4991187826
                 0 => __DIR__ . '/..' . '/behat/gherkin/src',
             ),
         ),
+    );
+
+    public static $fallbackDirsPsr0 = array (
+        0 => __DIR__ . '/..' . '/maxakawizard/phpmorphy/src',
     );
 
     public static $classMap = array (
@@ -1779,6 +1791,7 @@ class ComposerStaticInit8236d2fd6998012d5c1e6e4991187826
             $loader->prefixLengthsPsr4 = ComposerStaticInit8236d2fd6998012d5c1e6e4991187826::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit8236d2fd6998012d5c1e6e4991187826::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit8236d2fd6998012d5c1e6e4991187826::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit8236d2fd6998012d5c1e6e4991187826::$fallbackDirsPsr0;
             $loader->classMap = ComposerStaticInit8236d2fd6998012d5c1e6e4991187826::$classMap;
 
         }, null, ClassLoader::class);

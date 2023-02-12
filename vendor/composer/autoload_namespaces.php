@@ -21,4 +21,5 @@ return array(
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
+    '' => array($vendorDir . '/maxakawizard/phpmorphy/src'),
 );
