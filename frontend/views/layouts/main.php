@@ -116,6 +116,11 @@ $this->registerMetaTag([
 ]);
 
 
+$this->registerMetaTag([
+    'name' => 'author',
+    'content' => 'Dmitrii Agapofff https://axioweb.ru'
+]);
+
 // кладём валюту текущего языка в параметры
 // Yii::$app->params['currency'] = \common\models\Languages::findOne([
     // 'code' => Yii::$app->language
@@ -163,6 +168,7 @@ $this->registerJs("
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="HandheldFriendly" content="true"/>
+        <meta name="author" content="Dmitrii Agapofff https://axioweb.ru"/>
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
