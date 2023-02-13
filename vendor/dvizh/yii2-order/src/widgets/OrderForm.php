@@ -48,13 +48,7 @@ class OrderForm extends \yii\base\Widget
             ->all();
         if ($shippingTypesList) {
             foreach ($shippingTypesList as $s => $sht) {
-                if ($sht->cost > 0) {
-                    $currency = Yii::$app->getModule('order')->currency;
-                    $name = "{$sht->name} ({$sht->cost}{$currency})";
-                } else {
-                    $name = $sht->name;
-                }
-                $shippingTypes[$sht->id] = json_decode($name)->{Yii::$app->language};
+                $shippingTypes[$sht->id] = json_decode($sht->name)->{Yii::$app->language};
             }
         }
         
