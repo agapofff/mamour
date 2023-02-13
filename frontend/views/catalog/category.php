@@ -43,17 +43,14 @@ if (!$this->title) {
         }
     ?>
     
-        <?php
-            if ($products) {
-                echo \frontend\widgets\FilterPanel\FilterPanel::widget([
-                    // 'itemId' => $collection['collection']->id,
-                    'blockCssClass' => 'col-12 mb-2',
-                    'productsSizes' => $productsSizes,
-                    'productsPrices' => $productsPrices,
-                    'products' => $products,
-                    // 'actionRoute' => explode('?', Url::to())[0],
-                ]);
-            }
+        <?= \frontend\widgets\FilterPanel\FilterPanel::widget([
+                // 'itemId' => $collection['collection']->id,
+                'blockCssClass' => 'col-12 mb-2',
+                'productsSizes' => $productsSizes,
+                'productsPrices' => $productsPrices,
+                'products' => $products,
+                // 'actionRoute' => explode('?', Url::to())[0],
+            ]);
         ?>
         </div>
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6 pt-0_5">

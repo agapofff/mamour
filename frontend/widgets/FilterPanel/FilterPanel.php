@@ -130,7 +130,7 @@ class FilterPanel extends \yii\base\Widget
 
 
         // цена
-        if ($this->productsPrices && count($this->products) > 1) {
+        if ($this->productsPrices) {
             $title = Html::tag('p', Yii::t('front', 'Цена'), [
                 'class' => 'm-0'
             ]);
@@ -166,7 +166,7 @@ class FilterPanel extends \yii\base\Widget
         
         
         // размеры
-        if ($this->productsSizes && count($this->products) > 1) {
+        if ($this->productsSizes) {
             $title = Html::tag('p', Yii::t('front', 'Размеры'), [
                 'class' => 'm-0'
             ]);
@@ -309,16 +309,8 @@ class FilterPanel extends \yii\base\Widget
                                 }")
                             ],
                             'pluginEvents' => [
-                                'select2:select' => new JsExpression("
-                                    function () {
-                                        $('#products-filters').submit();
-                                    }
-                                "),
-                                'select2:unselect' => new JsExpression("
-                                    function () {
-                                        $('#products-filters').submit();
-                                    }
-                                "),
+                                'select2:select' => new JsExpression("$('#products-filters').submit();"),
+                                'select2:unselect' => new JsExpression("$('#products-filters').submit();"),
                             ],
                         ]);
                         
@@ -374,6 +366,12 @@ class FilterPanel extends \yii\base\Widget
                 }
             }
         }
+        
+        $return[] = Html::tag('div', Html::a(Yii::t('front', 'Сбросить'), explode('?', Url::to())[0], [
+            'class' => 'btn btn-outline-secondary',
+        ]), [
+            'class' => 'col-12 mt-1 text-center'
+        ]);
 
         if ($return) {
             // $return[] = Html::input('submit', '', $this->submitButtonValue, ['class' => 'btn btn-submit']);
