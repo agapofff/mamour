@@ -272,7 +272,7 @@ $this->registerJs("
                                 </a>
                             </div>
                             <div class="col-auto d-none d-sm-block pl-sm-0_5 pl-md-1 pl-lg-0 pl-xl-1 pr-md-0_5 pr-lg-0_5">
-                                <a href="<?= Url::to(['/cart']) ?>" class="d-flex align-items-center text-decoration-none">
+                                <a href="<?= Url::to(['/checkout']) ?>" class="d-flex align-items-center text-decoration-none">
                                     <img src="/images/cart.svg">
                                     <?= CartInformer::widget([
                                             'htmlTag' => 'span',
@@ -547,7 +547,7 @@ $this->registerJs("
                                 </a>
                             </div>
                             <div class="col text-center">
-                                <a href="<?= Url::to(['/cart']) ?>" class="d-flex align-items-center text-decoration-none">
+                                <a href="<?= Url::to(['/chackout']) ?>" class="d-flex align-items-center text-decoration-none">
                                     <img src="/images/cart.svg">
                                     <?= CartInformer::widget([
                                             'htmlTag' => 'span',

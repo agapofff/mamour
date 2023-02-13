@@ -6,6 +6,7 @@ use dvizh\order\models\Element;
 use dvizh\order\models\FieldValue;
 use dektrium\user\models\User;
 
+
 class OrderFilling extends \yii\base\Behavior
 {
     public function events()
@@ -19,7 +20,7 @@ class OrderFilling extends \yii\base\Behavior
     {
         $order = $event->model;
 
-        foreach (Yii::$app->cart->elements as $element) {
+        foreach(Yii::$app->cart->elements as $element) {
             $elementModel = new Element;
 
             $elementModel->setOrderId($order->id);
@@ -38,19 +39,21 @@ class OrderFilling extends \yii\base\Behavior
         $order->base_cost = 0;
         $order->cost = 0;
 
-        foreach ($order->elements as $element) {
+        foreach($order->elements as $element) {
             $order->base_cost += ($element->base_price*$element->count);
             $order->cost += ($element->price*$element->count);
         }
 
-        $delivery_cost = FieldValue::find()
-            ->where([
-                'order_id' => $order->id,
-                'field_id' => 11
-            ])
-            ->one(); 
+        // доставка
+        $order->cost += (float)$order->getField(11);
         
-        $order->cost += $delivery_cost->value;
+        // скидка
+        $order->cost -= (float)$order->getField(13);
+        
+        // промокод
+        if (Yii::$app->promocode->has()) {
+            $order->promocode = Yii::$app->promocode->getCode();
+        }
         
         if (Yii::$app->user->isGuest){
             $user = User::findOne([

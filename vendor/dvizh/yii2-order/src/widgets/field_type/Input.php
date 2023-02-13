@@ -20,19 +20,15 @@ class Input extends \yii\base\Widget
         return $this->form
             ->field($fieldValueModel, 'value['.$this->fieldModel->id.']', [
                 'inputOptions' => [
-                    'class' => 'form-control mb-0 px-0 ' . $this->class,
+                    'class' => 'form-control ' . $this->class,
                     'autocomplete' => rand(),
                     'placeholder' => ' ',
                     'value' => $this->defaultValue,
                     // 'required' => ($this->fieldModel->required == 'yes'),
                     'data-field' => $this->fieldModel->name,
                 ],
-                'options' => [
-                    'class' => 'form-group mb-2 position-relative floating-label',
-                ],
-                'template' => '{input}{label}{hint}{error}',
             ])
-            ->label(Yii::t('front', $this->fieldModel->description))
+            ->label(Yii::t('front', json_decode($this->fieldModel->description)->{Yii::$app->language}))
             // ->label(false)
             ->textInput();
     }
