@@ -147,12 +147,9 @@ class CatalogController extends Controller
 
                 $searchResults = Search::find()
                     // ->select('product_id')
-                    ->where('MATCH (content) AGAINST (:search IN BOOLEAN MODE)', [
-                        ':search' => '*' . $searchRequest . '*'
+                    ->where("MATCH (content) AGAINST (:search)", [
+                        ':search' => $searchRequest
                     ])
-                    // ->where([
-                        // 'like', 'content', $searchRequest
-                    // ])
                     ->andWhere([
                         'type' => 'product'
                     ])
