@@ -451,7 +451,7 @@ $this->registerJs("
                                     </a>
                                 </p>
                                 <p class="small text-lowercase mb-0">
-                                    <a href="<?= Url::to(['/exchange-refund']) ?>">
+                                    <a href="<?= Url::to(['/exchange-refund-terms']) ?>">
                                         <?= Yii::t('front', 'Обмен') ?>-<?= Yii::t('front', 'Возврат') ?>
                                     </a>
                                 </p>
