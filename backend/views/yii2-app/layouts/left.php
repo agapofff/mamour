@@ -241,7 +241,15 @@
                 ];
             }
             
-
+            if (
+                Yii::$app->user->can('/search-history/*')
+            ) {
+                $menuItems[] = [
+                    'label' => Yii::t('back', 'История поиска'),
+                    'icon' => 'search',
+                    'url' => ['/search-history'],
+                ];
+            }
             
             // if (
                 // Yii::$app->user->can('/shop/*')

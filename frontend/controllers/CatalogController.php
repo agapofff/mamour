@@ -8,6 +8,7 @@ use common\models\Languages;
 use common\models\Wishlist;
 use common\models\Slides;
 use common\models\Search;
+use common\models\SearchHistory;
 use dvizh\shop\models\Product;
 // use common\models\Category;
 use dvizh\shop\models\Category;
@@ -134,14 +135,26 @@ class CatalogController extends Controller
                 ]);
                 
             if ($search) {
+                $searchHistory = new SearchHistory();
+                $searchHistory->request = $search;
+                $searchHistory->user = Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id;
+                $searchHistory->dateandtime = date('Y.m.d H:i:s');
+                $searchHistory->save();
+                
                 $searchRequest = Search::lemmatize(Search::numbersLettersSeparate(Search::normalize($search)), Yii::$app->language);
                 
                 $searchRequest = implode(' ', array_unique(explode(' ', $searchRequest)));
 
                 $searchResults = Search::find()
                     // ->select('product_id')
-                    ->where("MATCH (content) AGAINST (:search)", [
-                        ':search' => $searchRequest
+                    ->where('MATCH (content) AGAINST (:search IN BOOLEAN MODE)', [
+                        ':search' => '*' . $searchRequest . '*'
+                    ])
+                    // ->where([
+                        // 'like', 'content', $searchRequest
+                    // ])
+                    ->andWhere([
+                        'type' => 'product'
                     ])
                     ->all();
                     

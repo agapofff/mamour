@@ -50,6 +50,7 @@ if (!$this->title) {
                 'productsPrices' => $productsPrices,
                 'products' => $products,
                 // 'actionRoute' => explode('?', Url::to())[0],
+                'isSearch' => $isSearch,
             ]);
         ?>
         </div>

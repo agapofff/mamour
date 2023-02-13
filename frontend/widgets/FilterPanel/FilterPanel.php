@@ -28,6 +28,7 @@ class FilterPanel extends \yii\base\Widget
     public $productsSizes = null;
     public $productsPrices = null;
     public $products = [];
+    public $isSearch = false;
     
     public function init()
     {
@@ -89,45 +90,47 @@ class FilterPanel extends \yii\base\Widget
             }
         ");
 
-        $title = Html::tag('p', Yii::t('front', 'Сортировка'), [
-            'class' => 'm-0'
-        ]);
-        $block = Select2::widget([
-            'name' => 'sort',
-            'value' => Yii::$app->request->get('sort'),
-            'data' => [
-                '' => Yii::t('front', 'По умолчанию'),
-                'name' => Yii::t('front', 'По названию А-Я'),
-                '-name' => Yii::t('front', 'По названию Я-А'),
-                'price' => Yii::t('front', 'По возрастанию цены'),
-                '-price' => Yii::t('front', 'По убыванию цены'),
-            ],
-            'language' => Yii::$app->language,
-            'theme' => Select2::THEME_MATERIAL,
-            'hideSearch' => true,
-            'pluginOptions' => [
-                // 'placeholder' => Yii::t('front', 'По умолчанию'),
-                // 'templateResult' => new JsExpression('sortListFormat'),
-                // 'templateSelection' => new JsExpression('sortListFormat'),
-                // 'escapeMarkup' => $escape,
-            ],
-            'pluginEvents' => [
-                'select2:select' => new JsExpression("
-                    function () {
-                        $('#products-filters').submit();
-                    }
-                "),
-                'select2:unselect' => new JsExpression("
-                    function () {
-                        $('#products-filters').submit();
-                    }
-                "),
-            ],
-        ]);
-        $return[] = Html::tag('div', $title.$block, [
-            'class' => $this->blockCssClass
-        ]);
-
+        if (count($this->products) > 1) {
+            $title = Html::tag('p', Yii::t('front', 'Сортировка'), [
+                'class' => 'm-0'
+            ]);
+            $block = Select2::widget([
+                'name' => 'sort',
+                'value' => Yii::$app->request->get('sort'),
+                'data' => [
+                    '' => Yii::t('front', 'По умолчанию'),
+                    'name' => Yii::t('front', 'По названию А-Я'),
+                    '-name' => Yii::t('front', 'По названию Я-А'),
+                    'price' => Yii::t('front', 'По возрастанию цены'),
+                    '-price' => Yii::t('front', 'По убыванию цены'),
+                ],
+                'language' => Yii::$app->language,
+                'theme' => Select2::THEME_MATERIAL,
+                'hideSearch' => true,
+                'pluginOptions' => [
+                    // 'placeholder' => Yii::t('front', 'По умолчанию'),
+                    // 'templateResult' => new JsExpression('sortListFormat'),
+                    // 'templateSelection' => new JsExpression('sortListFormat'),
+                    // 'escapeMarkup' => $escape,
+                ],
+                'pluginEvents' => [
+                    'select2:select' => new JsExpression("
+                        function () {
+                            $('#products-filters').submit();
+                        }
+                    "),
+                    'select2:unselect' => new JsExpression("
+                        function () {
+                            $('#products-filters').submit();
+                        }
+                    "),
+                ],
+            ]);
+            $return[] = Html::tag('div', $title.$block, [
+                'class' => $this->blockCssClass
+            ]);
+        }
+        
 
         // цена
         if ($this->productsPrices) {
@@ -309,8 +312,16 @@ class FilterPanel extends \yii\base\Widget
                                 }")
                             ],
                             'pluginEvents' => [
-                                'select2:select' => new JsExpression("$('#products-filters').submit();"),
-                                'select2:unselect' => new JsExpression("$('#products-filters').submit();"),
+                                'select2:select' => new JsExpression("
+                                    function (data) {
+                                        $('#products-filters').submit();
+                                    }
+                                "),
+                                'select2:unselect' => new JsExpression("
+                                    function (data) {
+                                        $('#products-filters').submit();
+                                    }
+                                "),
                             ],
                         ]);
                         
@@ -367,11 +378,13 @@ class FilterPanel extends \yii\base\Widget
             }
         }
         
-        $return[] = Html::tag('div', Html::a(Yii::t('front', 'Сбросить'), explode('?', Url::to())[0], [
-            'class' => 'btn btn-outline-secondary',
-        ]), [
-            'class' => 'col-12 mt-1 text-center'
-        ]);
+        if (!$this->isSearch || Yii::$app->request->get('search')) {
+            $return[] = Html::tag('div', Html::a(Yii::t('front', 'Сбросить'), explode('?', Url::to())[0], [
+                'class' => 'btn btn-outline-secondary',
+            ]), [
+                'class' => 'col-12 mt-1 text-center'
+            ]);
+        }
 
         if ($return) {
             // $return[] = Html::input('submit', '', $this->submitButtonValue, ['class' => 'btn btn-submit']);
