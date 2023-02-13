@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ListView;
@@ -31,9 +32,29 @@ if (!$this->title) {
                 }
             }
         ?>
-            <div class="ml-n2">
+        
+    <?php
+        if (!$isSearch) {
+    ?>
+            <div class="ml-n2 mb-2">
                 <?php Category::renderMenu(Category::buildTreeArray($menu, $rootID), 'list-unstyled pl-2', null, 'd-inline-block montserrat font-weight-bold text-uppercase fs15px mb-1', 'text-decoration-underline') ?>
             </div>
+    <?php
+        }
+    ?>
+    
+        <?php
+            if ($products) {
+                echo \frontend\widgets\FilterPanel\FilterPanel::widget([
+                    // 'itemId' => $collection['collection']->id,
+                    'blockCssClass' => 'col-12 mb-2',
+                    'productsSizes' => $productsSizes,
+                    'productsPrices' => $productsPrices,
+                    'products' => $products,
+                    // 'actionRoute' => explode('?', Url::to())[0],
+                ]);
+            }
+        ?>
         </div>
         <div class="col-sm-11 col-md-9 col-lg-8 col-xl-6 pt-0_5">
     <?php

@@ -109,8 +109,10 @@ class CatalogController extends Controller
             $modificationsSizes = Product::getAllProductsSizes($productsIDs);
             $modificationsPrices = ArrayHelper::map($modifications, 'product_id', 'price');
             $modificationsOldPrices = ArrayHelper::map($modifications, 'product_id', 'price_old');
-            $productsSizes = array_unique(ArrayHelper::map($modificationsSizes, 'id', 'value'));
-            
+            $productsSizes = array_unique(ArrayHelper::map($modificationsSizes, 'id', function ($mSize) {
+                return json_decode($mSize['value'])->{Yii::$app->language};
+            }));
+
             $wishlist = Wishlist::findAll([
                 'user_id' => (Yii::$app->user->isGuest ? Yii::$app->session->getId() : Yii::$app->user->id),
             ]);
